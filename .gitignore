@@ -40,3 +40,6 @@ crashlytics-build.properties
 
 # Ignore Editor AI Assistant package containing large binaries
 /Packages/com.unity.ai.assistant/
+
+# WebGL Builds
+/[B|b]uild_WebGL/
