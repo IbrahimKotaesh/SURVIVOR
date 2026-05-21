@@ -127,8 +127,9 @@ public class GameManager : MonoBehaviour
         barRect.anchorMin = new Vector2(0.5f, 1f); // Top Center
         barRect.anchorMax = new Vector2(0.5f, 1f);
         barRect.pivot = new Vector2(0.5f, 1f);
-        barRect.anchoredPosition = new Vector2(0f, -12f);
+        barRect.anchoredPosition = new Vector2(0f, -15f); // Positioned slightly lower for 2x scale
         barRect.sizeDelta = new Vector2(405f, 80f); // Scaled based on 324x64 aspect ratio
+        barRect.localScale = new Vector3(2f, 2f, 1f); // Scale UI by 200%
 
         Image barImage = hudBarGo.AddComponent<Image>();
         if (topBarSprite != null)
