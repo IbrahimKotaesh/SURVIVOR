@@ -71,8 +71,24 @@ public static class GameSpriteManager
         Sprite[] frames = Resources.LoadAll<Sprite>(resourcePath);
         if (frames != null && frames.Length > 0)
         {
-            characterPreviewCache[resourcePath] = frames[0];
-            return frames[0];
+            Sprite firstFrame = null;
+            string targetName = resourcePath + "_0";
+            foreach (var frame in frames)
+            {
+                if (frame != null && frame.name == targetName)
+                {
+                    firstFrame = frame;
+                    break;
+                }
+            }
+
+            if (firstFrame == null)
+            {
+                firstFrame = frames[0];
+            }
+
+            characterPreviewCache[resourcePath] = firstFrame;
+            return firstFrame;
         }
         
         return null;

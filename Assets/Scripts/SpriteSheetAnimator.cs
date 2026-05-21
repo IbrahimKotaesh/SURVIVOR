@@ -50,6 +50,11 @@ public class SpriteSheetAnimator : MonoBehaviour
             frames = Resources.LoadAll<Sprite>(resourcePath);
         }
 
+        if (frames != null && frames.Length > 0)
+        {
+            SortFramesNumerically(frames);
+        }
+
         if (frames == null || frames.Length == 0)
         {
             Debug.LogWarning($"SpriteSheetAnimator: Fallback failed. No sprites found.");
@@ -128,4 +133,32 @@ public class SpriteSheetAnimator : MonoBehaviour
 
     public int GetFramesCount() => frames != null ? frames.Length : -1;
     public string GetResourcePath() => resourcePath;
+
+    private void SortFramesNumerically(Sprite[] spriteArray)
+    {
+        System.Array.Sort(spriteArray, (a, b) =>
+        {
+            if (a == null && b == null) return 0;
+            if (a == null) return -1;
+            if (b == null) return 1;
+            int indexA = GetSpriteIndex(a.name);
+            int indexB = GetSpriteIndex(b.name);
+            return indexA.CompareTo(indexB);
+        });
+    }
+
+    private int GetSpriteIndex(string name)
+    {
+        if (string.IsNullOrEmpty(name)) return 0;
+        int lastUnderscore = name.LastIndexOf('_');
+        if (lastUnderscore >= 0 && lastUnderscore < name.Length - 1)
+        {
+            string numberStr = name.Substring(lastUnderscore + 1);
+            if (int.TryParse(numberStr, out int result))
+            {
+                return result;
+            }
+        }
+        return 0;
+    }
 }
