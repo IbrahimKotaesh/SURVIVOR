@@ -780,7 +780,7 @@ public class MainMenuShopUI : MonoBehaviour
                 string selectedPlayer = PlayerPrefs.GetString("SelectedPlayer", "Virgil");
                 string resourcePath = "van_dyk_cha";
                 if (selectedPlayer == "Yamal") resourcePath = "yamal_cha";
-                else if (selectedPlayer == "Vini") resourcePath = "vini";
+                else if (selectedPlayer == "Vini") resourcePath = "vini_cha";
                 Sprite avatarSprite = GameSpriteManager.GetCharacterPreviewSprite(resourcePath);
                 if (avatarSprite != null)
                 {
@@ -1008,7 +1008,7 @@ public class MainMenuShopUI : MonoBehaviour
         // --- CARDS CONTAINER ---
         CreateOnboardingCharacterCard(onboardingUI, "VirgilCard", "VIRGIL VAN DIJK", "A legendary wall. Unmatched strength and presence.", "van_dyk_cha", new Vector2(-220, 30), "Virgil");
 
-        CreateOnboardingCharacterCard(onboardingUI, "ViniCard", "VINICIUS JR.", "Lightning fast speed. Master of agility and dribbles.", "vini", new Vector2(0, 30), "Vini");
+        CreateOnboardingCharacterCard(onboardingUI, "ViniCard", "VINICIUS JR.", "Lightning fast speed. Master of agility and dribbles.", "vini_cha", new Vector2(0, 30), "Vini");
 
         CreateOnboardingCharacterCard(onboardingUI, "YamalCard", "LAMINE YAMAL", "Yamal Chaos. Young sensation with dazzling speed and clinical finishes.", "yamal_cha", new Vector2(220, 30), "Yamal");
 

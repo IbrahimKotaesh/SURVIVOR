@@ -35,7 +35,7 @@ public class SpriteSheetAnimator : MonoBehaviour
         }
         else if (selectedPlayer == "Vini")
         {
-            resourcePath = "vini";
+            resourcePath = "vini_cha";
         }
         else
         {
@@ -56,7 +56,7 @@ public class SpriteSheetAnimator : MonoBehaviour
             int maxAllowedIndex = int.MaxValue;
             if (resourcePath == "van_dyk_cha") maxAllowedIndex = 44;
             else if (resourcePath == "yamal_cha") maxAllowedIndex = 52;
-            else if (resourcePath == "vini") maxAllowedIndex = 20;
+            else if (resourcePath == "vini_cha") maxAllowedIndex = 48;
 
             if (maxAllowedIndex != int.MaxValue)
             {

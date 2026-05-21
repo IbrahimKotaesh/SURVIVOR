@@ -1,0 +1,1407 @@
+fileFormatVersion: 2
+guid: 2fa08f46b8d94dde8f91b679dcc631b0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6161625446977224137
+    second: vini_cha_0
+  - first:
+      213: 5644010177119011783
+    second: vini_cha_1
+  - first:
+      213: -7104835452140415033
+    second: vini_cha_2
+  - first:
+      213: 8118747772340729567
+    second: vini_cha_3
+  - first:
+      213: 3893136833876481626
+    second: vini_cha_4
+  - first:
+      213: -9057400151339292879
+    second: vini_cha_5
+  - first:
+      213: 7576022155262989475
+    second: vini_cha_6
+  - first:
+      213: 8760393057151812654
+    second: vini_cha_7
+  - first:
+      213: -6824082469091501916
+    second: vini_cha_8
+  - first:
+      213: -7751569424613027279
+    second: vini_cha_9
+  - first:
+      213: 9059921741838526186
+    second: vini_cha_10
+  - first:
+      213: 1473197406764681359
+    second: vini_cha_11
+  - first:
+      213: 7721843327131146356
+    second: vini_cha_12
+  - first:
+      213: -6237902861072133003
+    second: vini_cha_13
+  - first:
+      213: -7062993463749878693
+    second: vini_cha_14
+  - first:
+      213: 8486483028681090801
+    second: vini_cha_15
+  - first:
+      213: -1057026389777614887
+    second: vini_cha_16
+  - first:
+      213: -2685797582000118536
+    second: vini_cha_17
+  - first:
+      213: 3023244162663688434
+    second: vini_cha_18
+  - first:
+      213: 5752391479713536535
+    second: vini_cha_19
+  - first:
+      213: -5943557643249320476
+    second: vini_cha_20
+  - first:
+      213: -8560363980676175581
+    second: vini_cha_21
+  - first:
+      213: -1007491867265466313
+    second: vini_cha_22
+  - first:
+      213: -5728358013466848923
+    second: vini_cha_23
+  - first:
+      213: -1698362091819744780
+    second: vini_cha_24
+  - first:
+      213: 6367461149949659447
+    second: vini_cha_25
+  - first:
+      213: -437498781099431742
+    second: vini_cha_26
+  - first:
+      213: 7543295656369823802
+    second: vini_cha_27
+  - first:
+      213: 7887098165697995102
+    second: vini_cha_28
+  - first:
+      213: -3998874752123136252
+    second: vini_cha_29
+  - first:
+      213: -4303524345345926061
+    second: vini_cha_30
+  - first:
+      213: 2284958690017440406
+    second: vini_cha_31
+  - first:
+      213: 7694726680699832339
+    second: vini_cha_32
+  - first:
+      213: -2756067411981605787
+    second: vini_cha_33
+  - first:
+      213: 3880399701009590665
+    second: vini_cha_34
+  - first:
+      213: -189849428970147147
+    second: vini_cha_35
+  - first:
+      213: -150978430340812687
+    second: vini_cha_36
+  - first:
+      213: 2564655789233836916
+    second: vini_cha_37
+  - first:
+      213: 2691251002287337870
+    second: vini_cha_38
+  - first:
+      213: 4068289216237414104
+    second: vini_cha_39
+  - first:
+      213: 7478688201545530095
+    second: vini_cha_40
+  - first:
+      213: 8720211071577745565
+    second: vini_cha_41
+  - first:
+      213: 6410480695144360448
+    second: vini_cha_42
+  - first:
+      213: 4301132185810393148
+    second: vini_cha_43
+  - first:
+      213: 4722103110273409982
+    second: vini_cha_44
+  - first:
+      213: 897991135914460445
+    second: vini_cha_45
+  - first:
+      213: -7020703959411706348
+    second: vini_cha_46
+  - first:
+      213: 6873472368733350459
+    second: vini_cha_47
+  - first:
+      213: 8960123464949534987
+    second: vini_cha_48
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 900
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: vini_cha_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 333a83a4507847e795f9cb98e31cb8e3
+      internalID: -6161625446977224137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_1
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 522964ecdd984357899fcb744ac68254
+      internalID: 5644010177119011783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_2
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04ef2f30546a408dbd8114bdf93fd346
+      internalID: -7104835452140415033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_3
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b83808c42c447b8a83f02cb158df8a8
+      internalID: 8118747772340729567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_4
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56972eb7088c438097f58d4b0487f4c0
+      internalID: 3893136833876481626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_5
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27af1a37adcb45359719383a72a9be7a
+      internalID: -9057400151339292879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_6
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 173e2e3d55144dfe8e4c4fbb5e2dcae1
+      internalID: 7576022155262989475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a96136d0a0e346bebb8daa02fe747765
+      internalID: 8760393057151812654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_8
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe62317042e14da99852c75511801a6f
+      internalID: -6824082469091501916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_9
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 882c06859de64397a54d30417cecdb75
+      internalID: -7751569424613027279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_10
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4854d89c2ebb4681b5d2e4b36be71de5
+      internalID: 9059921741838526186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_11
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e810c488ec14f88989daa302a66176d
+      internalID: 1473197406764681359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_12
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 618d729ee0ee4fb5bd3cde5cd71435c8
+      internalID: 7721843327131146356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_13
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fe0ab0ac8214f9dbb4e08e678578599
+      internalID: -6237902861072133003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f750ed934424866b2f6369906194bf6
+      internalID: -7062993463749878693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_15
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28af16710ef546a58bb0bdb3860247c0
+      internalID: 8486483028681090801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_16
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de043236065b4cb18c4e972386228324
+      internalID: -1057026389777614887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_17
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36563b7733b24fd58dfdece0e861e5a8
+      internalID: -2685797582000118536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_18
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1142275ae0854980980b9f7c23b81a47
+      internalID: 3023244162663688434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_19
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2f7364a0abe4b729c436508187623e9
+      internalID: 5752391479713536535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_20
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 803f82fd5b6548bfa06117560335b161
+      internalID: -5943557643249320476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4416d7ac8c9f4db7898f9fc500b7e4fb
+      internalID: -8560363980676175581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_22
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62a84d0b10ca446eb3fd461999eb3312
+      internalID: -1007491867265466313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_23
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ea4e3a1751d4e2f8a5fa46d9f3d171a
+      internalID: -5728358013466848923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_24
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97ced2302fc2472cb13be6af43f2d1f2
+      internalID: -1698362091819744780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_25
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5323e7a668c4299a9f9de56c6c51e2a
+      internalID: 6367461149949659447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_26
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9eb3e289c0b41ae9c4eb8ff01d23b26
+      internalID: -437498781099431742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_27
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61bbb5c2d0b04e5480f507b4186e5c52
+      internalID: 7543295656369823802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 340640b204574152a131e170b066cab8
+      internalID: 7887098165697995102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_29
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4218cda9f8fd45abbf59cd373530a1cd
+      internalID: -3998874752123136252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_30
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fa25c409a8f40b2a0bed91ab8338df7
+      internalID: -4303524345345926061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_31
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c05caa186dd34f9b9b703a7b41e4c236
+      internalID: 2284958690017440406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_32
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bff163d30ea447bea47fc069e01680cc
+      internalID: 7694726680699832339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_33
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b572798270445f5ab4f21d489d6eddb
+      internalID: -2756067411981605787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_34
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e09e457204824a3c803ef5f91da21fc9
+      internalID: 3880399701009590665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9b23b563af54f11a31acb13e55d0d6b
+      internalID: -189849428970147147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_36
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9a2d18957654119866f6d35c09cc0e0
+      internalID: -150978430340812687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_37
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83ffc259dd104f19b167cd30686d7dc6
+      internalID: 2564655789233836916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_38
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85aefd907b9b4a9cbe1540632dc9a00f
+      internalID: 2691251002287337870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_39
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c11d3d1c07b4e2893066d5ba4f8140b
+      internalID: 4068289216237414104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_40
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0c5cc489fca4d52864c68081181473d
+      internalID: 7478688201545530095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_41
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac5a498088574ea494e1473dd2d574c6
+      internalID: 8720211071577745565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 906b1c4becc3418c8a61cce6f4f16ba8
+      internalID: 6410480695144360448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_43
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80aa67a9c7d54e40b52572b66173df1a
+      internalID: 4301132185810393148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_44
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b1f465f7a214b9bb65bd1316e8b307c
+      internalID: 4722103110273409982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_45
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5610b49ee054fcd8e82fa4248ea41bf
+      internalID: 897991135914460445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_46
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e913dad5f65f4c93b3cac89b7616fcab
+      internalID: -7020703959411706348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_47
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c23781a26c214646976aa08e8575b1b1
+      internalID: 6873472368733350459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_cha_48
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 058be2281e4543588a2bdbe1d3c31baf
+      internalID: 8960123464949534987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      vini_cha_0: 2633931940787760909
+      vini_cha_10: -1939124321227961367
+      vini_cha_11: -7924758804672390833
+      vini_cha_12: -6560962725175311338
+      vini_cha_13: -6284295086399158238
+      vini_cha_14: 2762501544921214440
+      vini_cha_15: 4225336995885467117
+      vini_cha_16: 1957248098760467755
+      vini_cha_17: -2016733233833618359
+      vini_cha_18: 7744365558939777777
+      vini_cha_19: -3577772719131819196
+      vini_cha_1: -8038010123821592343
+      vini_cha_20: 8316744039012842468
+      vini_cha_21: -4399224671447233139
+      vini_cha_22: 619266678095907415
+      vini_cha_23: -5470348793639209940
+      vini_cha_24: -2510287306858933897
+      vini_cha_25: 1583115425564815621
+      vini_cha_26: -6918505911127031398
+      vini_cha_27: -5634104134585360083
+      vini_cha_28: 3869708820932861982
+      vini_cha_29: -1194149699796948038
+      vini_cha_2: 8742045431442007151
+      vini_cha_30: 2829892764334357223
+      vini_cha_31: -193768756403930648
+      vini_cha_32: -2048503492160786754
+      vini_cha_33: -6871803254530469570
+      vini_cha_34: -3104193536714617650
+      vini_cha_35: 5089761738077224993
+      vini_cha_36: -7144483529962657070
+      vini_cha_37: 6842114689582981159
+      vini_cha_38: 1866347443422866321
+      vini_cha_39: 1444557637995692553
+      vini_cha_3: 8444696242092219697
+      vini_cha_40: -7129549694016640353
+      vini_cha_41: -5005530233519100641
+      vini_cha_42: -1950080492003908386
+      vini_cha_43: 1873959053741309027
+      vini_cha_44: -6512962398591318823
+      vini_cha_45: 5351453765165267735
+      vini_cha_46: -283588318391721486
+      vini_cha_47: -310913720921907354
+      vini_cha_48: 5682925690123972320
+      vini_cha_4: 912300802701926151
+      vini_cha_5: -9153344673948349300
+      vini_cha_6: -3925858601642510631
+      vini_cha_7: 975936175086156719
+      vini_cha_8: 3943202307627689154
+      vini_cha_9: 6501252807797395206
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
