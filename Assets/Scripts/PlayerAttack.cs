@@ -5,7 +5,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("Attack Settings")]
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float attackRange = 6f;
-    [SerializeField] private float fireRate = 1.6f; // Reduced fire rate to allow enemies to reach the player
+    [SerializeField] private float fireRate = 0.45f; // Fast fire rate to keep enemies away
 
     private float fireTimer;
 

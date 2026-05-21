@@ -7,13 +7,13 @@ public class PlayerStats : MonoBehaviour
     [Header("Base Values")]
     [SerializeField] private int baseMaxHealth = 100;
     [SerializeField] private float baseMoveSpeed = 5.0f;
-    [SerializeField] private float baseFireRate = 1.6f;
+    [SerializeField] private float baseFireRate = 0.45f;
     [SerializeField] private float baseMagnetRadius = 2.5f;
 
     [Header("Upgrade Step Values")]
     [SerializeField] private int hpStep = 20;
     [SerializeField] private float speedStep = 0.5f;
-    [SerializeField] private float fireRateStep = 0.15f; // reduction per level
+    [SerializeField] private float fireRateStep = 0.05f; // reduction per level
     [SerializeField] private float magnetStep = 1.0f;
 
     public int MaxHP { get; private set; }

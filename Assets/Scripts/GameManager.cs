@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
         coinCoverRect.anchorMax = new Vector2(0f, 0.5f);
         coinCoverRect.pivot = new Vector2(0.5f, 0.5f);
         coinCoverRect.anchoredPosition = new Vector2(90f, -1.25f);
-        coinCoverRect.sizeDelta = new Vector2(50f, 22f);
+        coinCoverRect.sizeDelta = new Vector2(65f, 32f);
         Image coinCoverImg = coinCover.AddComponent<Image>();
         coinCoverImg.sprite = GetOrCreateRoundedRectSprite();
         coinCoverImg.type = Image.Type.Sliced;
@@ -179,10 +179,10 @@ public class GameManager : MonoBehaviour
         scoreRect.anchorMax = new Vector2(0f, 0.5f);
         scoreRect.pivot = new Vector2(0.5f, 0.5f);
         scoreRect.anchoredPosition = new Vector2(90f, -1.25f);
-        scoreRect.sizeDelta = new Vector2(56f, 30f);
+        scoreRect.sizeDelta = new Vector2(65f, 35f);
 
         scoreText.alignment = TextAlignmentOptions.Center;
-        scoreText.fontSize = 18;
+        scoreText.fontSize = 22;
         scoreText.color = Color.white;
         if (GameFontManager.TitleFont != null)
         {
@@ -200,7 +200,7 @@ public class GameManager : MonoBehaviour
         bankCoverRect.anchorMax = new Vector2(0f, 0.5f);
         bankCoverRect.pivot = new Vector2(0.5f, 0.5f);
         bankCoverRect.anchoredPosition = new Vector2(162.5f, -1.25f);
-        bankCoverRect.sizeDelta = new Vector2(50f, 22f);
+        bankCoverRect.sizeDelta = new Vector2(65f, 32f);
         Image bankCoverImg = bankCover.AddComponent<Image>();
         bankCoverImg.sprite = GetOrCreateRoundedRectSprite();
         bankCoverImg.type = Image.Type.Sliced;
@@ -213,11 +213,11 @@ public class GameManager : MonoBehaviour
         bankRect.anchorMax = new Vector2(0f, 0.5f);
         bankRect.pivot = new Vector2(0.5f, 0.5f);
         bankRect.anchoredPosition = new Vector2(162.5f, -1.25f);
-        bankRect.sizeDelta = new Vector2(56f, 30f);
+        bankRect.sizeDelta = new Vector2(65f, 35f);
 
         TextMeshProUGUI bankText = bankGo.AddComponent<TextMeshProUGUI>();
         bankText.alignment = TextAlignmentOptions.Center;
-        bankText.fontSize = 18;
+        bankText.fontSize = 22;
         bankText.color = Color.white;
         if (GameFontManager.TitleFont != null)
         {
@@ -258,7 +258,7 @@ public class GameManager : MonoBehaviour
         timerCoverRect.anchorMax = new Vector2(1f, 0.5f);
         timerCoverRect.pivot = new Vector2(0.5f, 0.5f);
         timerCoverRect.anchoredPosition = new Vector2(-72.5f, -1.25f);
-        timerCoverRect.sizeDelta = new Vector2(100f, 22f);
+        timerCoverRect.sizeDelta = new Vector2(115f, 32f);
         Image timerCoverImg = timerCover.AddComponent<Image>();
         timerCoverImg.sprite = GetOrCreateRoundedRectSprite();
         timerCoverImg.type = Image.Type.Sliced;
@@ -271,7 +271,7 @@ public class GameManager : MonoBehaviour
         progressRect.anchorMax = new Vector2(1f, 0.5f);
         progressRect.pivot = new Vector2(0.5f, 0.5f);
         progressRect.anchoredPosition = new Vector2(-72.5f, -1.25f);
-        progressRect.sizeDelta = new Vector2(100f, 22f);
+        progressRect.sizeDelta = new Vector2(115f, 32f);
 
         timerProgressFill = progressContainer.AddComponent<Image>();
         timerProgressFill.sprite = GetOrCreateRoundedRectSprite();
@@ -289,11 +289,11 @@ public class GameManager : MonoBehaviour
         timerRect.anchorMax = new Vector2(1f, 0.5f);
         timerRect.pivot = new Vector2(0.5f, 0.5f);
         timerRect.anchoredPosition = new Vector2(-72.5f, -1.25f);
-        timerRect.sizeDelta = new Vector2(100f, 30f);
+        timerRect.sizeDelta = new Vector2(115f, 35f);
 
         hudTimerText = timerGo.AddComponent<TextMeshProUGUI>();
         hudTimerText.alignment = TextAlignmentOptions.Center;
-        hudTimerText.fontSize = 16;
+        hudTimerText.fontSize = 20;
         hudTimerText.color = Color.white;
         if (GameFontManager.BodyFont != null)
         {
