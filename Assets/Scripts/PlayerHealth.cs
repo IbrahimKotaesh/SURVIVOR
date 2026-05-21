@@ -79,6 +79,24 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void Heal(int amount)
+    {
+        if (currentHealth <= 0) return;
+
+        currentHealth += amount;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+
+        UpdateHealthBar();
+
+        // Create floating green text above player
+        DeathSplashEffect.CreateFloatingText(transform.position + Vector3.up * 0.5f, $"+{amount} HP", new Color(0.2f, 1.0f, 0.4f, 1f));
+
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySFX("heal");
+        }
+    }
+
     private void Die()
     {
         var controller = GetComponent<PlayerController>();

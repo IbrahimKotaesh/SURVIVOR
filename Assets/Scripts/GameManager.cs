@@ -1206,6 +1206,97 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private static Sprite heartSprite;
+    public static Sprite GetOrCreateHeartSprite()
+    {
+        if (heartSprite != null) return heartSprite;
+        int size = 64;
+        Texture2D texture = new Texture2D(size, size);
+        float centerX = size / 2f;
+        float centerY = size * 0.42f; // Offset center for math scaling
+
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < size; x++)
+            {
+                // Normalize coordinates relative to center, scaled to fit nice shape
+                float dx = (x - centerX) / (size * 0.35f);
+                float dy = (y - centerY) / (size * 0.35f);
+
+                float x2 = dx * dx;
+                float sqrtAbsX = Mathf.Sqrt(Mathf.Abs(dx));
+                
+                // Classic heart shape formula: x^2 + (1.2*y - sqrt(|x|))^2 <= 1
+                float heartValue = x2 + Mathf.Pow(1.2f * dy - sqrtAbsX, 2f);
+
+                if (heartValue > 1.0f)
+                {
+                    texture.SetPixel(x, y, Color.clear);
+                }
+                else
+                {
+                    float alpha = 1.0f;
+                    // Anti-aliasing at the edge
+                    if (heartValue > 0.9f)
+                    {
+                        alpha = Mathf.Clamp01((1.0f - heartValue) / 0.1f);
+                    }
+
+                    Color pixelColor;
+                    
+                    // Highlight shine (top-left inner area)
+                    float shineDist = Mathf.Sqrt(Mathf.Pow(dx + 0.25f, 2f) + Mathf.Pow(dy - 0.35f, 2f));
+
+                    if (heartValue > 0.82f)
+                    {
+                        // Dark red outline/border
+                        pixelColor = new Color(0.55f, 0.05f, 0.1f, alpha);
+                    }
+                    else if (shineDist < 0.22f)
+                    {
+                        // White highlight shine
+                        float shineAlpha = Mathf.Clamp01((0.22f - shineDist) / 0.12f);
+                        pixelColor = Color.Lerp(new Color(1f, 0.22f, 0.3f, alpha), new Color(1f, 1f, 1f, alpha), shineAlpha);
+                    }
+                    else
+                    {
+                        // Gradient fill
+                        float grad = (dy + 1.0f) / 2.0f;
+                        float r = Mathf.Lerp(0.85f, 1.0f, grad);
+                        float g = Mathf.Lerp(0.1f, 0.22f, grad);
+                        float b = Mathf.Lerp(0.2f, 0.3f, grad);
+                        pixelColor = new Color(r, g, b, alpha);
+                    }
+                    texture.SetPixel(x, y, pixelColor);
+                }
+            }
+        }
+        texture.Apply();
+        heartSprite = Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100f);
+        return heartSprite;
+    }
+
+    public void SpawnHeart(Vector3 position)
+    {
+        GameObject heartGo = new GameObject("CollectibleHeart");
+        heartGo.transform.position = position;
+        heartGo.transform.localScale = new Vector3(0.85f, 0.85f, 1f);
+
+        SpriteRenderer sr = heartGo.AddComponent<SpriteRenderer>();
+        sr.sprite = GetOrCreateHeartSprite();
+        sr.sortingOrder = 5; // Render on top of gems
+
+        CircleCollider2D col = heartGo.AddComponent<CircleCollider2D>();
+        col.isTrigger = true;
+        col.radius = 0.26f;
+
+        Rigidbody2D rb = heartGo.AddComponent<Rigidbody2D>();
+        rb.gravityScale = 0f;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        heartGo.AddComponent<CollectibleHeart>();
+    }
+
     private GameObject proceduralGameOverPanel;
 
     public void OnPlayerDeath()

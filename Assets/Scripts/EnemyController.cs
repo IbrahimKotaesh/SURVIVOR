@@ -81,8 +81,19 @@ public class EnemyController : MonoBehaviour
                         GameManager.Instance.SpawnGem(transform.position + offset);
                     }
 
+                    // Boss always drops a heart
+                    GameManager.Instance.SpawnHeart(transform.position);
+
                     // Tell GameManager the boss is dead to trigger victory
                     GameManager.Instance.OnBossDefeated();
+                }
+                else
+                {
+                    // 8% chance for standard enemy to drop a heart
+                    if (Random.value <= 0.08f)
+                    {
+                        GameManager.Instance.SpawnHeart(transform.position);
+                    }
                 }
             }
 

@@ -217,6 +217,10 @@ public class SoundManager : MonoBehaviour
             case "samba":
                 clip = CreateSambaSprintClip();
                 break;
+            case "heal":
+            case "heart":
+                clip = CreateHealClip();
+                break;
             default:
                 Debug.LogWarning($"[SoundManager] No procedural SFX defined for: {name}");
                 break;
@@ -426,6 +430,36 @@ public class SoundManager : MonoBehaviour
         clip.SetData(data, 0);
         return clip;
     }
+
+    private static AudioClip CreateHealClip()
+    {
+        int sampleRate = 44100;
+        float duration = 0.28f;
+        int totalSamples = (int)(sampleRate * duration);
+        float[] data = new float[totalSamples];
+        for (int i = 0; i < totalSamples; i++)
+        {
+            float pct = (float)i / totalSamples;
+            // Ascending pitch sweep from 400Hz to 1200Hz
+            float freq = Mathf.Lerp(400f, 1200f, pct);
+            float t = (float)i / sampleRate;
+            float env = 1f - pct;
+            
+            // Sine wave
+            float sineVal = Mathf.Sin(2f * Mathf.PI * freq * t);
+            
+            // Triangle wave (PingPong period is 2.0f, so we map angle to range [0, 2.0f])
+            float angle = 2f * Mathf.PI * freq * t;
+            float triVal = Mathf.PingPong(angle / Mathf.PI, 2f) - 1f;
+
+            // Blend them (60% sine, 40% triangle)
+            data[i] = (sineVal * 0.6f + triVal * 0.4f) * 0.22f * env;
+        }
+        AudioClip clip = AudioClip.Create("SFX_Heal", totalSamples, 1, sampleRate, false);
+        clip.SetData(data, 0);
+        return clip;
+    }
+
 
     private static AudioClip CreateProceduralBGMClip(string themeType)
     {

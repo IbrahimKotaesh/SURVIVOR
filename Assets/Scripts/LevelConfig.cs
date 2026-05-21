@@ -41,8 +41,8 @@ public class LevelConfig
                 // Level 2: Desert Wasteland (30s, medium spawns 1.2s -> 0.5s, cluster size 1-3, speed x1.15, Boss HP: 15, Boss Speed: 2.2f, Damage: 34)
                 return new LevelConfig(2, "DESERT WASTELAND", 30f, 1.2f, 0.5f, 1.15f, 15, 2.2f, 1, 3, 34);
             case 3:
-                // Level 3: Necropolis Dungeon (50s, intense spawns 0.8s -> 0.3s, cluster size 2-4, speed x1.35, Boss HP: 25, Boss Speed: 2.8f, Damage: 50)
-                return new LevelConfig(3, "NECROPOLIS DUNGEON", 50f, 0.8f, 0.3f, 1.35f, 25, 2.8f, 2, 4, 50);
+                // Level 3: Necropolis Dungeon (40s, spawns 1.1s -> 0.45s, cluster size 1-3, speed x1.18, Boss HP: 20, Boss Speed: 2.3f, Damage: 25)
+                return new LevelConfig(3, "NECROPOLIS DUNGEON", 40f, 1.1f, 0.45f, 1.18f, 20, 2.3f, 1, 3, 25);
             default:
                 return new LevelConfig(1, "FIELDS OF HOPE", 20f, 1.8f, 1.0f, 0.9f, 8, 1.6f, 1, 2, 25);
         }
