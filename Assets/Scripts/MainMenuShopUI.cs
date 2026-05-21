@@ -810,7 +810,7 @@ public class MainMenuShopUI : MonoBehaviour
         bgRect.offsetMax = Vector2.zero;
 
         Image cardImg = onboardingBg.AddComponent<Image>();
-        Sprite splashSprite = Resources.Load<Sprite>("onboarding_splash");
+        Sprite splashSprite = Resources.Load<Sprite>("Slpash_1");
         if (splashSprite != null)
         {
             cardImg.sprite = splashSprite;
@@ -937,7 +937,7 @@ public class MainMenuShopUI : MonoBehaviour
         bgRect.offsetMax = Vector2.zero;
 
         Image cardImg = onboardingBg.AddComponent<Image>();
-        Sprite splashSprite = Resources.Load<Sprite>("onboarding_splash");
+        Sprite splashSprite = Resources.Load<Sprite>("Slpash_1");
         if (splashSprite != null)
         {
             cardImg.sprite = splashSprite;
