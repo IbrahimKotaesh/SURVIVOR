@@ -411,7 +411,7 @@ public class GameManager : MonoBehaviour
         leftCountersRect.anchorMax = new Vector2(0f, 1f);
         leftCountersRect.pivot = new Vector2(0f, 1f);
         leftCountersRect.anchoredPosition = new Vector2(20f, -20f); // Margin from top-left
-        leftCountersRect.sizeDelta = new Vector2(305f, 32f); // Width adjusted to fit Diamonds (90) + space (12) + Coins (90) + space (12) + Level (101) = 305
+        leftCountersRect.sizeDelta = new Vector2(341f, 32f); // Width adjusted to fit Diamonds (108) + space (12) + Coins (108) + space (12) + Level (101) = 341
         leftCountersRect.localScale = new Vector3(2f, 2f, 1f); // 200% scale to match timer
 
         // Diamond Capsule (HUD_ScoreCover)
@@ -422,12 +422,24 @@ public class GameManager : MonoBehaviour
         scoreCoverRect.anchorMax = new Vector2(0f, 0.5f);
         scoreCoverRect.pivot = new Vector2(0f, 0.5f);
         scoreCoverRect.anchoredPosition = new Vector2(0f, 0f);
-        scoreCoverRect.sizeDelta = new Vector2(90f, 32f);
+        scoreCoverRect.sizeDelta = new Vector2(108f, 32f); // Widened to 108 to match custom banner ratio
 
         Image scoreCoverImg = scoreCover.AddComponent<Image>();
-        scoreCoverImg.sprite = GetOrCreateRoundedRectSprite();
-        scoreCoverImg.type = Image.Type.Sliced;
-        scoreCoverImg.color = new Color32(22, 28, 43, 220); // Semi-transparent dark capsule
+        bool diamondCustomLoaded = false;
+        Sprite diamondCounterSprite = Resources.Load<Sprite>("Diamound _counter");
+        if (diamondCounterSprite != null)
+        {
+            scoreCoverImg.sprite = diamondCounterSprite;
+            scoreCoverImg.type = Image.Type.Simple;
+            scoreCoverImg.color = Color.white;
+            diamondCustomLoaded = true;
+        }
+        else
+        {
+            scoreCoverImg.sprite = GetOrCreateRoundedRectSprite();
+            scoreCoverImg.type = Image.Type.Sliced;
+            scoreCoverImg.color = new Color32(22, 28, 43, 220); // Semi-transparent dark capsule fallback
+        }
 
         // Diamond Icon (HUD_DiamondIcon)
         GameObject diamondIconGo = new GameObject("HUD_DiamondIcon");
@@ -444,6 +456,12 @@ public class GameManager : MonoBehaviour
         diamondIconImg.type = Image.Type.Simple;
         diamondIconImg.color = Color.white;
 
+        if (diamondCustomLoaded)
+        {
+            // The custom sprite already contains the diamond icon, so hide the procedural one
+            diamondIconGo.SetActive(false);
+        }
+
         Debug.Log($"[HUD] CreateUnifiedHUD - Creating fresh HUD_ScoreText");
 
         GameObject scoreGo = new GameObject("HUD_ScoreText");
@@ -458,8 +476,16 @@ public class GameManager : MonoBehaviour
         scoreRect.anchorMax = Vector2.one;
         scoreRect.sizeDelta = Vector2.zero;
         scoreRect.anchoredPosition = Vector2.zero;
-        scoreRect.offsetMin = new Vector2(28f, 0f); // offset past the icon
-        scoreRect.offsetMax = new Vector2(-4f, 0f);
+        if (diamondCustomLoaded)
+        {
+            scoreRect.offsetMin = new Vector2(36f, 0f); // Offset past built-in diamond icon
+            scoreRect.offsetMax = new Vector2(-6f, 0f);
+        }
+        else
+        {
+            scoreRect.offsetMin = new Vector2(28f, 0f); // offset past the icon
+            scoreRect.offsetMax = new Vector2(-4f, 0f);
+        }
 
         scoreText.alignment = TextAlignmentOptions.Center;
         scoreText.fontSize = 14;
@@ -479,13 +505,25 @@ public class GameManager : MonoBehaviour
         coinsCoverRect.anchorMin = new Vector2(0f, 0.5f);
         coinsCoverRect.anchorMax = new Vector2(0f, 0.5f);
         coinsCoverRect.pivot = new Vector2(0f, 0.5f);
-        coinsCoverRect.anchoredPosition = new Vector2(102f, 0f); // 90px capsule + 12px spacing
-        coinsCoverRect.sizeDelta = new Vector2(90f, 32f);
+        coinsCoverRect.anchoredPosition = new Vector2(120f, 0f); // 108px capsule + 12px spacing
+        coinsCoverRect.sizeDelta = new Vector2(108f, 32f); // Widened to 108 to match custom banner ratio
 
         Image coinsCoverImg = coinsCover.AddComponent<Image>();
-        coinsCoverImg.sprite = GetOrCreateRoundedRectSprite();
-        coinsCoverImg.type = Image.Type.Sliced;
-        coinsCoverImg.color = new Color32(22, 28, 43, 220); // Semi-transparent dark capsule
+        bool coinCustomLoaded = false;
+        Sprite coinCounterSprite = Resources.Load<Sprite>("Coin_counter");
+        if (coinCounterSprite != null)
+        {
+            coinsCoverImg.sprite = coinCounterSprite;
+            coinsCoverImg.type = Image.Type.Simple;
+            coinsCoverImg.color = Color.white;
+            coinCustomLoaded = true;
+        }
+        else
+        {
+            coinsCoverImg.sprite = GetOrCreateRoundedRectSprite();
+            coinsCoverImg.type = Image.Type.Sliced;
+            coinsCoverImg.color = new Color32(22, 28, 43, 220); // Semi-transparent dark capsule fallback
+        }
 
         // Coin Icon (HUD_CoinIcon)
         GameObject coinIconGo = new GameObject("HUD_CoinIcon");
@@ -502,6 +540,12 @@ public class GameManager : MonoBehaviour
         coinIconImg.type = Image.Type.Simple;
         coinIconImg.color = Color.white;
 
+        if (coinCustomLoaded)
+        {
+            // The custom sprite already contains the coin icon, so hide the procedural one
+            coinIconGo.SetActive(false);
+        }
+
         // Coins Text
         GameObject coinsTextGo = new GameObject("HUD_CoinsText");
         coinsTextGo.transform.SetParent(coinsCover.transform, false);
@@ -512,8 +556,16 @@ public class GameManager : MonoBehaviour
         coinsTextRect.anchorMax = Vector2.one;
         coinsTextRect.sizeDelta = Vector2.zero;
         coinsTextRect.anchoredPosition = Vector2.zero;
-        coinsTextRect.offsetMin = new Vector2(28f, 0f); // offset past the icon
-        coinsTextRect.offsetMax = new Vector2(-4f, 0f);
+        if (coinCustomLoaded)
+        {
+            coinsTextRect.offsetMin = new Vector2(36f, 0f); // Offset past built-in coin icon
+            coinsTextRect.offsetMax = new Vector2(-6f, 0f);
+        }
+        else
+        {
+            coinsTextRect.offsetMin = new Vector2(28f, 0f); // offset past the icon
+            coinsTextRect.offsetMax = new Vector2(-4f, 0f);
+        }
 
         hudCoinsText.alignment = TextAlignmentOptions.Center;
         hudCoinsText.fontSize = 14;
@@ -533,7 +585,7 @@ public class GameManager : MonoBehaviour
         levelCoverRect.anchorMin = new Vector2(0f, 0.5f);
         levelCoverRect.anchorMax = new Vector2(0f, 0.5f);
         levelCoverRect.pivot = new Vector2(0f, 0.5f);
-        levelCoverRect.anchoredPosition = new Vector2(204f, 0f); // 90px + 12px + 90px + 12px
+        levelCoverRect.anchoredPosition = new Vector2(240f, 0f); // 108px + 12px + 108px + 12px
         levelCoverRect.sizeDelta = new Vector2(101f, 32f);
 
         Image levelCoverImg = levelCover.AddComponent<Image>();
