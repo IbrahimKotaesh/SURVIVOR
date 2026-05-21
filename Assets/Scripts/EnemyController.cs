@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour
             // Screen shake juice!
             if (CameraController.Instance != null)
             {
-                CameraController.Instance.TriggerShake(isBoss ? 0.35f : 0.12f, isBoss ? 0.32f : 0.07f);
+                CameraController.Instance.TriggerShake(isBoss ? 0.15f : 0.05f, isBoss ? 0.1f : 0.02f);
             }
 
             if (GameManager.Instance != null)
