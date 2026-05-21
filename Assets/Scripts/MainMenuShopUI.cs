@@ -1113,10 +1113,10 @@ public class MainMenuShopUI : MonoBehaviour
         imgRect.anchoredPosition = new Vector2(0f, -110f);
         imgRect.sizeDelta = new Vector2(140f, 180f);
 
-        if (characterId == "Virgil")
+        if (characterId == "Virgil" || characterId == "Vini")
         {
-            // Virgil's sprite is 1280x700 with huge transparent margins.
-            // preserveAspect makes it tiny. We use localScale to scale it up uniformly from the center!
+            // Virgil's and Vini's sprites have huge transparent margins.
+            // preserveAspect makes them tiny. We use localScale to scale them up uniformly from the center!
             imgRect.localScale = new Vector3(2.5f, 2.5f, 1f);
         }
         else
