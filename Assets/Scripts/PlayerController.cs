@@ -114,21 +114,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // 3. Squash & Stretch animation juice when moving
-        if (moveInput.sqrMagnitude > 0.01f)
-        {
-            bounceTimer += Time.deltaTime * bounceSpeed;
-            // Sine wave to swap squash & stretch on X and Y
-            float scaleY = 1f + Mathf.Sin(bounceTimer) * bounceScaleRange;
-            float scaleX = 1f - Mathf.Sin(bounceTimer) * bounceScaleRange;
-            transform.localScale = new Vector3(originalScale.x * scaleX, originalScale.y * scaleY, originalScale.z);
-        }
-        else
-        {
-            bounceTimer = 0f;
-            // Return smoothly to normal scale when idle
-            transform.localScale = Vector3.Lerp(transform.localScale, originalScale, Time.deltaTime * 10f);
-        }
+        // Reset/keep original scale (removed squash & stretch)
+        transform.localScale = originalScale;
     }
 
     public void SetFacingDirection(bool facesRight)
