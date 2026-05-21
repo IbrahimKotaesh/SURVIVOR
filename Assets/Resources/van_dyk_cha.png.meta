@@ -1,0 +1,1407 @@
+fileFormatVersion: 2
+guid: f0e1a1c439ce557709617fef56c639dc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2633931940787760909
+    second: van_dyk_cha_0
+  - first:
+      213: -8038010123821592343
+    second: van_dyk_cha_1
+  - first:
+      213: 8742045431442007151
+    second: van_dyk_cha_2
+  - first:
+      213: 8444696242092219697
+    second: van_dyk_cha_3
+  - first:
+      213: 912300802701926151
+    second: van_dyk_cha_4
+  - first:
+      213: -9153344673948349300
+    second: van_dyk_cha_5
+  - first:
+      213: -3925858601642510631
+    second: van_dyk_cha_6
+  - first:
+      213: 975936175086156719
+    second: van_dyk_cha_7
+  - first:
+      213: 3943202307627689154
+    second: van_dyk_cha_8
+  - first:
+      213: 6501252807797395206
+    second: van_dyk_cha_9
+  - first:
+      213: -1939124321227961367
+    second: van_dyk_cha_10
+  - first:
+      213: -7924758804672390833
+    second: van_dyk_cha_11
+  - first:
+      213: -6560962725175311338
+    second: van_dyk_cha_12
+  - first:
+      213: -6284295086399158238
+    second: van_dyk_cha_13
+  - first:
+      213: 2762501544921214440
+    second: van_dyk_cha_14
+  - first:
+      213: 4225336995885467117
+    second: van_dyk_cha_15
+  - first:
+      213: 1957248098760467755
+    second: van_dyk_cha_16
+  - first:
+      213: -2016733233833618359
+    second: van_dyk_cha_17
+  - first:
+      213: 7744365558939777777
+    second: van_dyk_cha_18
+  - first:
+      213: -3577772719131819196
+    second: van_dyk_cha_19
+  - first:
+      213: 8316744039012842468
+    second: van_dyk_cha_20
+  - first:
+      213: -4399224671447233139
+    second: van_dyk_cha_21
+  - first:
+      213: 619266678095907415
+    second: van_dyk_cha_22
+  - first:
+      213: -5470348793639209940
+    second: van_dyk_cha_23
+  - first:
+      213: -2510287306858933897
+    second: van_dyk_cha_24
+  - first:
+      213: 1583115425564815621
+    second: van_dyk_cha_25
+  - first:
+      213: -6918505911127031398
+    second: van_dyk_cha_26
+  - first:
+      213: -5634104134585360083
+    second: van_dyk_cha_27
+  - first:
+      213: 3869708820932861982
+    second: van_dyk_cha_28
+  - first:
+      213: -1194149699796948038
+    second: van_dyk_cha_29
+  - first:
+      213: 2829892764334357223
+    second: van_dyk_cha_30
+  - first:
+      213: -193768756403930648
+    second: van_dyk_cha_31
+  - first:
+      213: -2048503492160786754
+    second: van_dyk_cha_32
+  - first:
+      213: -6871803254530469570
+    second: van_dyk_cha_33
+  - first:
+      213: -3104193536714617650
+    second: van_dyk_cha_34
+  - first:
+      213: 5089761738077224993
+    second: van_dyk_cha_35
+  - first:
+      213: -7144483529962657070
+    second: van_dyk_cha_36
+  - first:
+      213: 6842114689582981159
+    second: van_dyk_cha_37
+  - first:
+      213: 1866347443422866321
+    second: van_dyk_cha_38
+  - first:
+      213: 1444557637995692553
+    second: van_dyk_cha_39
+  - first:
+      213: -7129549694016640353
+    second: van_dyk_cha_40
+  - first:
+      213: -5005530233519100641
+    second: van_dyk_cha_41
+  - first:
+      213: -1950080492003908386
+    second: van_dyk_cha_42
+  - first:
+      213: 1873959053741309027
+    second: van_dyk_cha_43
+  - first:
+      213: -6512962398591318823
+    second: van_dyk_cha_44
+  - first:
+      213: 5351453765165267735
+    second: van_dyk_cha_45
+  - first:
+      213: -283588318391721486
+    second: van_dyk_cha_46
+  - first:
+      213: -310913720921907354
+    second: van_dyk_cha_47
+  - first:
+      213: 5682925690123972320
+    second: van_dyk_cha_48
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 900
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: van_dyk_cha_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e75140d0f3e38d4ac67637d81a1a465
+      internalID: 2633931940787760909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_1
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afa5537f84dd2f1b8061e0812c81bf3e
+      internalID: -8038010123821592343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_2
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8af1879fa87fef909d8f541573e941a
+      internalID: 8742045431442007151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_3
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17ae86fdfb639cf831cea368df069a22
+      internalID: 8444696242092219697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_4
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dba6ac4f97a5e16d166d7b16a2a76b3
+      internalID: 912300802701926151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_5
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 755e746fb26ef860e3f4ff028e388bbd
+      internalID: -9153344673948349300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_6
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 4224
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb1a94221daedbab71f11ab79e6539c4
+      internalID: -3925858601642510631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3496b3bf30f74252d816d142377fb883
+      internalID: 975936175086156719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_8
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77d98fb937f5dead3c2bde8da15b8699
+      internalID: 3943202307627689154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_9
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19952ad7310a44283241da2f85f0d566
+      internalID: 6501252807797395206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_10
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f428d1228298a898eb6965f16ffc428f
+      internalID: -1939124321227961367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_11
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6d06e3818d88064b5f5cca25124ff3d
+      internalID: -7924758804672390833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_12
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 589ffd9695617b9b2b0d0fa21527f556
+      internalID: -6560962725175311338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_13
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 3520
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ece7888450b9d8b76034ec8553e276e8
+      internalID: -6284295086399158238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1eb82d7a6f97c01b870e60f7d4ba231
+      internalID: 2762501544921214440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_15
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49d70697d5326c915787c40935fe03d5
+      internalID: 4225336995885467117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_16
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7b4bfcd46f562831fa2ffa6c41732df
+      internalID: 1957248098760467755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_17
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3153bd941f4a993d296a97f0ad1db8d
+      internalID: -2016733233833618359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_18
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ece96690ea5b48c61f818998dc9f6b76
+      internalID: 7744365558939777777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_19
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ada0995f78dc4b80784bb4ba5ac7ad2
+      internalID: -3577772719131819196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_20
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 2816
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96af7db2c387d5c325bf0b5076b87de8
+      internalID: 8316744039012842468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fad22444fbb98ff14511f971c61665d2
+      internalID: -4399224671447233139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_22
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a52c5602a86b0676f1cdaf2ab3465da1
+      internalID: 619266678095907415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_23
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d41cb18acb14228708376b270a9349f
+      internalID: -5470348793639209940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_24
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5d3578970c242bc422704248c7186cd
+      internalID: -2510287306858933897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_25
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a7d8e0ae25e6cbbd5ed5dd8e6520cee
+      internalID: 1583115425564815621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_26
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 142a5b316a6505ea6e1df7093ca6d200
+      internalID: -6918505911127031398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_27
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 2112
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c895ca5ed2a26bff169b04ad5373b4cb
+      internalID: -5634104134585360083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6da98339a15198b3163b4a50ab81053f
+      internalID: 3869708820932861982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_29
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0d926c380f82f34f2142823430ee9e2
+      internalID: -1194149699796948038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_30
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11cd18d4699bd8776173ed0068c5a0b0
+      internalID: 2829892764334357223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_31
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 388fd438d251d1b06dc852060796b8bf
+      internalID: -193768756403930648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_32
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c37bfd86e073c3c86d827744353aabca
+      internalID: -2048503492160786754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_33
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbeb98f49c43d191bfb5e031e8c0d217
+      internalID: -6871803254530469570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_34
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 1408
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adba213eda2d0152a017022c31328a9c
+      internalID: -3104193536714617650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 502a8c326f2670e0ad384c681ab8f648
+      internalID: 5089761738077224993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_36
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a36dd88faced399cde95546598e90adf
+      internalID: -7144483529962657070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_37
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac0d7a7a6b0bb4c2993a9b16330c1cc1
+      internalID: 6842114689582981159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_38
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa55747039b933577da4fbd5bb855b58
+      internalID: 1866347443422866321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_39
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7338bda10da52ed92a1c87e5ecb20028
+      internalID: 1444557637995692553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_40
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 593ec77b2123c225cc51c312eb733121
+      internalID: -7129549694016640353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_41
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 704
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8799d7463cefe1b45d4446bbf315a5f
+      internalID: -5005530233519100641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9de7c94f12e5142bf2ec591f45ef7326
+      internalID: -1950080492003908386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_43
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a997b5159c39dff43e6fdff9486ab4b8
+      internalID: 1873959053741309027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_44
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b9dc4039889971630aa6641bfc7836
+      internalID: -6512962398591318823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_45
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 124e3ad88e06890407fce8cda8ef1fd5
+      internalID: 5351453765165267735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_46
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 558481b4c8a3401e93f37c90ae79ddb6
+      internalID: -283588318391721486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_47
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9465491ce56dd1db75a4bed9c5c508a9
+      internalID: -310913720921907354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: van_dyk_cha_48
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 0
+        width: 1296
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae361bf8b480541d01488378a20838e4
+      internalID: 5682925690123972320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      van_dyk_cha_0: 2633931940787760909
+      van_dyk_cha_10: -1939124321227961367
+      van_dyk_cha_11: -7924758804672390833
+      van_dyk_cha_12: -6560962725175311338
+      van_dyk_cha_13: -6284295086399158238
+      van_dyk_cha_14: 2762501544921214440
+      van_dyk_cha_15: 4225336995885467117
+      van_dyk_cha_16: 1957248098760467755
+      van_dyk_cha_17: -2016733233833618359
+      van_dyk_cha_18: 7744365558939777777
+      van_dyk_cha_19: -3577772719131819196
+      van_dyk_cha_1: -8038010123821592343
+      van_dyk_cha_20: 8316744039012842468
+      van_dyk_cha_21: -4399224671447233139
+      van_dyk_cha_22: 619266678095907415
+      van_dyk_cha_23: -5470348793639209940
+      van_dyk_cha_24: -2510287306858933897
+      van_dyk_cha_25: 1583115425564815621
+      van_dyk_cha_26: -6918505911127031398
+      van_dyk_cha_27: -5634104134585360083
+      van_dyk_cha_28: 3869708820932861982
+      van_dyk_cha_29: -1194149699796948038
+      van_dyk_cha_2: 8742045431442007151
+      van_dyk_cha_30: 2829892764334357223
+      van_dyk_cha_31: -193768756403930648
+      van_dyk_cha_32: -2048503492160786754
+      van_dyk_cha_33: -6871803254530469570
+      van_dyk_cha_34: -3104193536714617650
+      van_dyk_cha_35: 5089761738077224993
+      van_dyk_cha_36: -7144483529962657070
+      van_dyk_cha_37: 6842114689582981159
+      van_dyk_cha_38: 1866347443422866321
+      van_dyk_cha_39: 1444557637995692553
+      van_dyk_cha_3: 8444696242092219697
+      van_dyk_cha_40: -7129549694016640353
+      van_dyk_cha_41: -5005530233519100641
+      van_dyk_cha_42: -1950080492003908386
+      van_dyk_cha_43: 1873959053741309027
+      van_dyk_cha_44: -6512962398591318823
+      van_dyk_cha_45: 5351453765165267735
+      van_dyk_cha_46: -283588318391721486
+      van_dyk_cha_47: -310913720921907354
+      van_dyk_cha_48: 5682925690123972320
+      van_dyk_cha_4: 912300802701926151
+      van_dyk_cha_5: -9153344673948349300
+      van_dyk_cha_6: -3925858601642510631
+      van_dyk_cha_7: 975936175086156719
+      van_dyk_cha_8: 3943202307627689154
+      van_dyk_cha_9: 6501252807797395206
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

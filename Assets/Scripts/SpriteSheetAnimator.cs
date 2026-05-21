@@ -39,7 +39,7 @@ public class SpriteSheetAnimator : MonoBehaviour
         }
         else
         {
-            resourcePath = "vergil_van_dijk";
+            resourcePath = "van_dyk_cha";
         }
 
         frames = Resources.LoadAll<Sprite>(resourcePath);
