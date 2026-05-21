@@ -5,6 +5,15 @@ public class CollectibleGem : MonoBehaviour
 {
     private bool isCollected = false;
 
+    private void Start()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.sprite = GameManager.GetOrCreateDiamondSprite();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isCollected) return;
