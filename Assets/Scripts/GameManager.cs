@@ -245,10 +245,11 @@ public class GameManager : MonoBehaviour
         {
             avatarImg.sprite = eyeballSprite;
             avatarImg.color = Color.white;
+            avatarImg.enabled = true;
         }
         else
         {
-            avatarImg.color = Color.clear;
+            avatarImg.enabled = false;
         }
 
         // 6. Level Progress Bar and cover (Right side)
