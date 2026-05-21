@@ -6,6 +6,9 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float lifeTime = 3f;
 
     private Vector3 moveDirection;
+    private int damage = 1;
+    private bool isPiercing = false;
+    private float curveIntensity = 0f;
 
     public void Setup(Vector3 targetPosition)
     {
@@ -18,8 +21,36 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
+    public void SetupCustom(Vector3 direction, float customSpeed, int customDamage, bool piercing, float curve = 0f)
+    {
+        moveDirection = direction.normalized;
+        speed = customSpeed;
+        damage = customDamage;
+        isPiercing = piercing;
+        curveIntensity = curve;
+
+        float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        Destroy(gameObject, lifeTime);
+    }
+
     private void Update()
     {
+        if (curveIntensity != 0f)
+        {
+            // Rotate the move direction over time to create a curve path
+            float angleOffset = curveIntensity * Time.deltaTime;
+            float cos = Mathf.Cos(angleOffset);
+            float sin = Mathf.Sin(angleOffset);
+            float rx = moveDirection.x * cos - moveDirection.y * sin;
+            float ry = moveDirection.x * sin + moveDirection.y * cos;
+            moveDirection = new Vector3(rx, ry, 0f).normalized;
+
+            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+
         transform.position += moveDirection * speed * Time.deltaTime;
     }
 
@@ -29,9 +60,11 @@ public class Projectile : MonoBehaviour
         EnemyController enemy = collision.GetComponent<EnemyController>();
         if (enemy != null)
         {
-            // Deal 1 damage and destroy projectile
-            enemy.TakeDamage(1);
-            Destroy(gameObject);
+            enemy.TakeDamage(damage);
+            if (!isPiercing)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

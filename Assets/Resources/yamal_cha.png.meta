@@ -1,0 +1,1521 @@
+fileFormatVersion: 2
+guid: 03f5356a0d3e132459dead181264a2d6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2152427723953855008
+    second: yamal_cha_0
+  - first:
+      213: -9138476427563672568
+    second: yamal_cha_1
+  - first:
+      213: -8397728366434387649
+    second: yamal_cha_2
+  - first:
+      213: 8288381485893712721
+    second: yamal_cha_3
+  - first:
+      213: -6557224830385415601
+    second: yamal_cha_4
+  - first:
+      213: 9178536782433054604
+    second: yamal_cha_5
+  - first:
+      213: 8418144714100041396
+    second: yamal_cha_6
+  - first:
+      213: -379484522735038375
+    second: yamal_cha_7
+  - first:
+      213: -3553152973418678935
+    second: yamal_cha_8
+  - first:
+      213: -7933938145012828627
+    second: yamal_cha_9
+  - first:
+      213: 4815807012256338322
+    second: yamal_cha_10
+  - first:
+      213: -5480647892387183334
+    second: yamal_cha_11
+  - first:
+      213: -6253556779652617843
+    second: yamal_cha_12
+  - first:
+      213: 993270822318694335
+    second: yamal_cha_13
+  - first:
+      213: -136159051238393718
+    second: yamal_cha_14
+  - first:
+      213: 7478470998295168379
+    second: yamal_cha_15
+  - first:
+      213: -1498236245232100101
+    second: yamal_cha_16
+  - first:
+      213: -3869432964124061390
+    second: yamal_cha_17
+  - first:
+      213: -2433949062656698983
+    second: yamal_cha_18
+  - first:
+      213: -3278441715263141655
+    second: yamal_cha_19
+  - first:
+      213: 3764411048111840089
+    second: yamal_cha_20
+  - first:
+      213: 4058821435919951383
+    second: yamal_cha_21
+  - first:
+      213: -5218884862788991037
+    second: yamal_cha_22
+  - first:
+      213: 9020974280224211017
+    second: yamal_cha_23
+  - first:
+      213: 8637021368901672892
+    second: yamal_cha_24
+  - first:
+      213: 8994524483036611890
+    second: yamal_cha_25
+  - first:
+      213: 5425793465862314455
+    second: yamal_cha_26
+  - first:
+      213: 3198923188072763197
+    second: yamal_cha_27
+  - first:
+      213: -5659093467397699836
+    second: yamal_cha_28
+  - first:
+      213: -1664003660865271510
+    second: yamal_cha_29
+  - first:
+      213: 4413690497619031426
+    second: yamal_cha_30
+  - first:
+      213: 8282021269036519147
+    second: yamal_cha_31
+  - first:
+      213: -9132105008961578892
+    second: yamal_cha_32
+  - first:
+      213: 8180225845337069165
+    second: yamal_cha_33
+  - first:
+      213: -6909634305822758315
+    second: yamal_cha_34
+  - first:
+      213: 1507797490934064769
+    second: yamal_cha_35
+  - first:
+      213: -8687646931956343112
+    second: yamal_cha_36
+  - first:
+      213: 3437752575538268523
+    second: yamal_cha_37
+  - first:
+      213: -7285132648068969751
+    second: yamal_cha_38
+  - first:
+      213: -1920023270162111976
+    second: yamal_cha_39
+  - first:
+      213: 8128761344588016369
+    second: yamal_cha_40
+  - first:
+      213: -2333756006439181852
+    second: yamal_cha_41
+  - first:
+      213: 6494933675310016935
+    second: yamal_cha_42
+  - first:
+      213: -1250983407791796389
+    second: yamal_cha_43
+  - first:
+      213: -8078982921348201731
+    second: yamal_cha_44
+  - first:
+      213: 6234986700210210121
+    second: yamal_cha_45
+  - first:
+      213: -3423067803013869876
+    second: yamal_cha_46
+  - first:
+      213: 3548355784384578697
+    second: yamal_cha_47
+  - first:
+      213: -2892140069097459237
+    second: yamal_cha_48
+  - first:
+      213: -6361239373229082075
+    second: yamal_cha_49
+  - first:
+      213: 2867987353171767047
+    second: yamal_cha_50
+  - first:
+      213: 2163464096094726104
+    second: yamal_cha_51
+  - first:
+      213: -6400443935284701133
+    second: yamal_cha_52
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: yamal_cha_0
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 4265
+        width: 366
+        height: 633
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02ad8f26c95fedd10800000000000000
+      internalID: 2152427723953855008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_1
+      rect:
+        serializedVersion: 2
+        x: 1736
+        y: 4264
+        width: 374
+        height: 638
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80c59ca5b1c9d2180800000000000000
+      internalID: -9138476427563672568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_2
+      rect:
+        serializedVersion: 2
+        x: 3027
+        y: 4273
+        width: 380
+        height: 630
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f39f4763b86457b80800000000000000
+      internalID: -8397728366434387649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_3
+      rect:
+        serializedVersion: 2
+        x: 4323
+        y: 4273
+        width: 380
+        height: 630
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15b7e953c0f360370800000000000000
+      internalID: 8288381485893712721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_4
+      rect:
+        serializedVersion: 2
+        x: 5617
+        y: 4282
+        width: 382
+        height: 619
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4a918822ce0005a0800000000000000
+      internalID: -6557224830385415601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_5
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 4267
+        width: 383
+        height: 625
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8f67cad296b06f70800000000000000
+      internalID: 9178536782433054604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_6
+      rect:
+        serializedVersion: 2
+        x: 8212
+        y: 4259
+        width: 374
+        height: 623
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6e3c7240243d470800000000000000
+      internalID: 8418144714100041396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_7
+      rect:
+        serializedVersion: 2
+        x: 9506
+        y: 4260
+        width: 368
+        height: 626
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9509e9056dccbbaf0800000000000000
+      internalID: -379484522735038375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_8
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 3558
+        width: 374
+        height: 631
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 965b1c2323aa0bec0800000000000000
+      internalID: -3553152973418678935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_9
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 3558
+        width: 374
+        height: 631
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d26b69cfa4df4e190800000000000000
+      internalID: -7933938145012828627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_10
+      rect:
+        serializedVersion: 2
+        x: 3024
+        y: 3559
+        width: 375
+        height: 637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 291df5066fe25d240800000000000000
+      internalID: 4815807012256338322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_11
+      rect:
+        serializedVersion: 2
+        x: 4329
+        y: 3557
+        width: 369
+        height: 643
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a15c44397c3d0f3b0800000000000000
+      internalID: -5480647892387183334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_12
+      rect:
+        serializedVersion: 2
+        x: 5623
+        y: 3557
+        width: 373
+        height: 643
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d89e11edd37e639a0800000000000000
+      internalID: -6253556779652617843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_13
+      rect:
+        serializedVersion: 2
+        x: 6919
+        y: 3557
+        width: 373
+        height: 643
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbfd012ec8ec8cd00800000000000000
+      internalID: 993270822318694335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_14
+      rect:
+        serializedVersion: 2
+        x: 8209
+        y: 3569
+        width: 380
+        height: 629
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a883bf570144c1ef0800000000000000
+      internalID: -136159051238393718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_15
+      rect:
+        serializedVersion: 2
+        x: 9508
+        y: 3578
+        width: 379
+        height: 611
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b75c17410cdd8c760800000000000000
+      internalID: 7478470998295168379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_16
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 2861
+        width: 376
+        height: 619
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfc535da212353be0800000000000000
+      internalID: -1498236245232100101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_17
+      rect:
+        serializedVersion: 2
+        x: 1732
+        y: 2858
+        width: 377
+        height: 615
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 231d23368330d4ac0800000000000000
+      internalID: -3869432964124061390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_18
+      rect:
+        serializedVersion: 2
+        x: 3028
+        y: 2858
+        width: 377
+        height: 615
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 995d3fe1930e83ed0800000000000000
+      internalID: -2433949062656698983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_19
+      rect:
+        serializedVersion: 2
+        x: 4325
+        y: 2858
+        width: 375
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e80be041a2a082d0800000000000000
+      internalID: -3278441715263141655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_20
+      rect:
+        serializedVersion: 2
+        x: 5625
+        y: 2858
+        width: 370
+        height: 630
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95b134f47efdd3430800000000000000
+      internalID: 3764411048111840089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_21
+      rect:
+        serializedVersion: 2
+        x: 6931
+        y: 2858
+        width: 357
+        height: 634
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 716efb66794d35830800000000000000
+      internalID: 4058821435919951383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_22
+      rect:
+        serializedVersion: 2
+        x: 8231
+        y: 2858
+        width: 349
+        height: 634
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c78ccd3edbc297b0800000000000000
+      internalID: -5218884862788991037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_23
+      rect:
+        serializedVersion: 2
+        x: 9521
+        y: 2858
+        width: 371
+        height: 632
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94003bc0050f03d70800000000000000
+      internalID: 9020974280224211017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_24
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 2154
+        width: 371
+        height: 632
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf97d29c2ddcd770800000000000000
+      internalID: 8637021368901672892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_25
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 2158
+        width: 381
+        height: 618
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23583febc58f2dc70800000000000000
+      internalID: 8994524483036611890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_26
+      rect:
+        serializedVersion: 2
+        x: 3027
+        y: 2157
+        width: 384
+        height: 626
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d9db5df86a4c4b40800000000000000
+      internalID: 5425793465862314455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_27
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 2174
+        width: 387
+        height: 610
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3f46d0e0bbd46c20800000000000000
+      internalID: 3198923188072763197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_28
+      rect:
+        serializedVersion: 2
+        x: 5616
+        y: 2174
+        width: 387
+        height: 610
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 407c60d797cd671b0800000000000000
+      internalID: -5659093467397699836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_29
+      rect:
+        serializedVersion: 2
+        x: 6911
+        y: 2159
+        width: 386
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a290d299c7548e8e0800000000000000
+      internalID: -1664003660865271510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_30
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 2147
+        width: 383
+        height: 626
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28579137f14904d30800000000000000
+      internalID: 4413690497619031426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_31
+      rect:
+        serializedVersion: 2
+        x: 9510
+        y: 2149
+        width: 370
+        height: 619
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: beec623d676afe270800000000000000
+      internalID: 8282021269036519147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_32
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 1445
+        width: 369
+        height: 627
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4789749d0ee344180800000000000000
+      internalID: -9132105008961578892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_33
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 1445
+        width: 369
+        height: 627
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6619cdc010068170800000000000000
+      internalID: 8180225845337069165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_34
+      rect:
+        serializedVersion: 2
+        x: 3024
+        y: 1447
+        width: 374
+        height: 633
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55ae499253c0c10a0800000000000000
+      internalID: -6909634305822758315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_35
+      rect:
+        serializedVersion: 2
+        x: 4322
+        y: 1447
+        width: 374
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 186a95054d5cce410800000000000000
+      internalID: 1507797490934064769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_36
+      rect:
+        serializedVersion: 2
+        x: 5625
+        y: 1446
+        width: 369
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bedabef4274f6780800000000000000
+      internalID: -8687646931956343112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_37
+      rect:
+        serializedVersion: 2
+        x: 6917
+        y: 1451
+        width: 376
+        height: 636
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6984a2e0c955bf20800000000000000
+      internalID: 3437752575538268523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_38
+      rect:
+        serializedVersion: 2
+        x: 8209
+        y: 1470
+        width: 380
+        height: 613
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ea8f32747206ea90800000000000000
+      internalID: -7285132648068969751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_39
+      rect:
+        serializedVersion: 2
+        x: 9505
+        y: 1470
+        width: 380
+        height: 613
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 812e08d2205ba55e0800000000000000
+      internalID: -1920023270162111976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_40
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 751
+        width: 381
+        height: 618
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fa6818ff592fc070800000000000000
+      internalID: 8128761344588016369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_41
+      rect:
+        serializedVersion: 2
+        x: 1735
+        y: 745
+        width: 375
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e122c3e645dc9fd0800000000000000
+      internalID: -2333756006439181852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_42
+      rect:
+        serializedVersion: 2
+        x: 3031
+        y: 744
+        width: 375
+        height: 619
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a9639c14c3a22a50800000000000000
+      internalID: 6494933675310016935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_43
+      rect:
+        serializedVersion: 2
+        x: 4327
+        y: 744
+        width: 375
+        height: 619
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5f89a6f73d93aee0800000000000000
+      internalID: -1250983407791796389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_44
+      rect:
+        serializedVersion: 2
+        x: 5622
+        y: 745
+        width: 374
+        height: 625
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df2c79a56dfa1ef80800000000000000
+      internalID: -8078982921348201731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_45
+      rect:
+        serializedVersion: 2
+        x: 6922
+        y: 747
+        width: 369
+        height: 630
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94580559e5f178650800000000000000
+      internalID: 6234986700210210121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_46
+      rect:
+        serializedVersion: 2
+        x: 8224
+        y: 746
+        width: 359
+        height: 634
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cce084728f1de70d0800000000000000
+      internalID: -3423067803013869876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_47
+      rect:
+        serializedVersion: 2
+        x: 9516
+        y: 746
+        width: 362
+        height: 636
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98402f039ca4e3130800000000000000
+      internalID: 3548355784384578697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_48
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 42
+        width: 362
+        height: 636
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd1b5cc2eed0dd7d0800000000000000
+      internalID: -2892140069097459237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_49
+      rect:
+        serializedVersion: 2
+        x: 1731
+        y: 50
+        width: 385
+        height: 626
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52ab37b4e7658b7a0800000000000000
+      internalID: -6361239373229082075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_50
+      rect:
+        serializedVersion: 2
+        x: 3023
+        y: 58
+        width: 395
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70fad1e6d432dc720800000000000000
+      internalID: 2867987353171767047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_51
+      rect:
+        serializedVersion: 2
+        x: 4319
+        y: 41
+        width: 393
+        height: 616
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d7a904022b260e10800000000000000
+      internalID: 2163464096094726104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yamal_cha_52
+      rect:
+        serializedVersion: 2
+        x: 5617
+        y: 35
+        width: 388
+        height: 626
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3385d80e62e0d27a0800000000000000
+      internalID: -6400443935284701133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      yamal_cha_0: 2152427723953855008
+      yamal_cha_1: -9138476427563672568
+      yamal_cha_10: 4815807012256338322
+      yamal_cha_11: -5480647892387183334
+      yamal_cha_12: -6253556779652617843
+      yamal_cha_13: 993270822318694335
+      yamal_cha_14: -136159051238393718
+      yamal_cha_15: 7478470998295168379
+      yamal_cha_16: -1498236245232100101
+      yamal_cha_17: -3869432964124061390
+      yamal_cha_18: -2433949062656698983
+      yamal_cha_19: -3278441715263141655
+      yamal_cha_2: -8397728366434387649
+      yamal_cha_20: 3764411048111840089
+      yamal_cha_21: 4058821435919951383
+      yamal_cha_22: -5218884862788991037
+      yamal_cha_23: 9020974280224211017
+      yamal_cha_24: 8637021368901672892
+      yamal_cha_25: 8994524483036611890
+      yamal_cha_26: 5425793465862314455
+      yamal_cha_27: 3198923188072763197
+      yamal_cha_28: -5659093467397699836
+      yamal_cha_29: -1664003660865271510
+      yamal_cha_3: 8288381485893712721
+      yamal_cha_30: 4413690497619031426
+      yamal_cha_31: 8282021269036519147
+      yamal_cha_32: -9132105008961578892
+      yamal_cha_33: 8180225845337069165
+      yamal_cha_34: -6909634305822758315
+      yamal_cha_35: 1507797490934064769
+      yamal_cha_36: -8687646931956343112
+      yamal_cha_37: 3437752575538268523
+      yamal_cha_38: -7285132648068969751
+      yamal_cha_39: -1920023270162111976
+      yamal_cha_4: -6557224830385415601
+      yamal_cha_40: 8128761344588016369
+      yamal_cha_41: -2333756006439181852
+      yamal_cha_42: 6494933675310016935
+      yamal_cha_43: -1250983407791796389
+      yamal_cha_44: -8078982921348201731
+      yamal_cha_45: 6234986700210210121
+      yamal_cha_46: -3423067803013869876
+      yamal_cha_47: 3548355784384578697
+      yamal_cha_48: -2892140069097459237
+      yamal_cha_49: -6361239373229082075
+      yamal_cha_5: 9178536782433054604
+      yamal_cha_50: 2867987353171767047
+      yamal_cha_51: 2163464096094726104
+      yamal_cha_52: -6400443935284701133
+      yamal_cha_6: 8418144714100041396
+      yamal_cha_7: -379484522735038375
+      yamal_cha_8: -3553152973418678935
+      yamal_cha_9: -7933938145012828627
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

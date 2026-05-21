@@ -313,10 +313,13 @@ public class MainMenuShopUI : MonoBehaviour
         string selectedPlayer = PlayerPrefs.GetString("SelectedPlayer", "Virgil");
         
         // Virgil Button
-        CreatePlayerButton(lobbyCard, "Player_Virgil_Btn", "VIRGIL VAN DIJK", new Vector2(240, 38), new Vector2(-135, -85), "Virgil", selectedPlayer == "Virgil");
+        CreatePlayerButton(lobbyCard, "Player_Virgil_Btn", "VIRGIL VAN DIJK", new Vector2(170, 38), new Vector2(-190, -85), "Virgil", selectedPlayer == "Virgil");
         
         // Vini Button
-        CreatePlayerButton(lobbyCard, "Player_Vini_Btn", "VINICIUS JR.", new Vector2(240, 38), new Vector2(135, -85), "Vini", selectedPlayer == "Vini");
+        CreatePlayerButton(lobbyCard, "Player_Vini_Btn", "VINICIUS JR.", new Vector2(170, 38), new Vector2(0, -85), "Vini", selectedPlayer == "Vini");
+
+        // Yamal Button
+        CreatePlayerButton(lobbyCard, "Player_Yamal_Btn", "LAMINE YAMAL", new Vector2(170, 38), new Vector2(190, -85), "Yamal", selectedPlayer == "Yamal");
 
         // --- LEVEL SELECTION LABEL ---
         CreateText(lobbyCard, "LevelSelectLabel", "SELECT LEVEL:", 16, new Vector2(0, -145), TextAlignmentOptions.Center, true);
@@ -775,7 +778,9 @@ public class MainMenuShopUI : MonoBehaviour
             if (avatarImg != null)
             {
                 string selectedPlayer = PlayerPrefs.GetString("SelectedPlayer", "Virgil");
-                string resourcePath = (selectedPlayer == "Vini") ? "vini" : "vergil_van_dijk";
+                string resourcePath = "vergil_van_dijk";
+                if (selectedPlayer == "Yamal") resourcePath = "yamal_cha";
+                else if (selectedPlayer == "Vini") resourcePath = "vini";
                 Sprite avatarSprite = GameSpriteManager.GetCharacterPreviewSprite(resourcePath);
                 if (avatarSprite != null)
                 {
@@ -1001,11 +1006,11 @@ public class MainMenuShopUI : MonoBehaviour
         subtitleText.outlineWidth = 0.2f;
 
         // --- CARDS CONTAINER ---
-        // Left Card (Virgil) - shifted pos.y up to 30 to make more space below
-        CreateOnboardingCharacterCard(onboardingUI, "VirgilCard", "VIRGIL VAN DIJK", "A legendary wall. Unmatched strength and presence.", "vergil_van_dijk", new Vector2(-180, 30), "Virgil");
+        CreateOnboardingCharacterCard(onboardingUI, "VirgilCard", "VIRGIL VAN DIJK", "A legendary wall. Unmatched strength and presence.", "vergil_van_dijk", new Vector2(-220, 30), "Virgil");
 
-        // Right Card (Vini) - shifted pos.y up to 30 to make more space below
-        CreateOnboardingCharacterCard(onboardingUI, "ViniCard", "VINICIUS JR.", "Lightning fast speed. Master of agility and dribbles.", "vini", new Vector2(180, 30), "Vini");
+        CreateOnboardingCharacterCard(onboardingUI, "ViniCard", "VINICIUS JR.", "Lightning fast speed. Master of agility and dribbles.", "vini", new Vector2(0, 30), "Vini");
+
+        CreateOnboardingCharacterCard(onboardingUI, "YamalCard", "LAMINE YAMAL", "Yamal Chaos. Young sensation with dazzling speed and clinical finishes.", "yamal_cha", new Vector2(220, 30), "Yamal");
 
         // --- CONFIRM BUTTON ---
         // Positioned lower down (50px from bottom instead of 75px) to be clearly below the player cards
@@ -1027,7 +1032,7 @@ public class MainMenuShopUI : MonoBehaviour
         rect.anchorMin = new Vector2(0.5f, 0.5f);
         rect.anchorMax = new Vector2(0.5f, 0.5f);
         rect.pivot = new Vector2(0.5f, 0.5f);
-        rect.sizeDelta = new Vector2(280f, 360f);
+        rect.sizeDelta = new Vector2(210f, 360f);
         rect.anchoredPosition = new Vector2(pos.x, pos.y + 20f);
 
         Image cardImg = cardGo.AddComponent<Image>();
@@ -1104,15 +1109,13 @@ public class MainMenuShopUI : MonoBehaviour
         Image previewImg = imgGo.AddComponent<Image>();
         previewImg.raycastTarget = false;
 
-        // Base center position (equivalent to top-pivot at -20 with 200 height)
-        imgRect.anchoredPosition = new Vector2(0f, -120f);
-        imgRect.sizeDelta = new Vector2(160f, 200f);
+        // Base center position (equivalent to top-pivot at -20 with 180 height)
+        imgRect.anchoredPosition = new Vector2(0f, -110f);
+        imgRect.sizeDelta = new Vector2(140f, 180f);
 
-        if (characterId == "Virgil")
+        if (characterId == "Virgil" || characterId == "Yamal")
         {
-            // Virgil's sprite is 1280x700 with huge transparent margins.
-            // preserveAspect makes it tiny. We use localScale to scale it up uniformly from the center!
-            // Adjusted scale to 2.5f to match Vini's proportions based on user feedback.
+            // Both Virgil (1280x700) and Yamal (1296x704) sprites have huge frame bounds and need scaling up
             imgRect.localScale = new Vector3(2.5f, 2.5f, 1f);
         }
         else
@@ -1136,7 +1139,7 @@ public class MainMenuShopUI : MonoBehaviour
         nameRect.anchorMax = new Vector2(0.5f, 0f);
         nameRect.pivot = new Vector2(0.5f, 0f);
         nameRect.anchoredPosition = new Vector2(0f, 80f);
-        nameRect.sizeDelta = new Vector2(240f, 40f);
+        nameRect.sizeDelta = new Vector2(180f, 40f);
 
         TextMeshProUGUI nameTmp = nameGo.AddComponent<TextMeshProUGUI>();
         nameTmp.text = nameLabel;
@@ -1154,7 +1157,7 @@ public class MainMenuShopUI : MonoBehaviour
         descRect.anchorMax = new Vector2(0.5f, 0f);
         descRect.pivot = new Vector2(0.5f, 0f);
         descRect.anchoredPosition = new Vector2(0f, 15f);
-        descRect.sizeDelta = new Vector2(240f, 65f);
+        descRect.sizeDelta = new Vector2(180f, 65f);
 
         TextMeshProUGUI descTmp = descGo.AddComponent<TextMeshProUGUI>();
         descTmp.text = descText;

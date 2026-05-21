@@ -40,9 +40,9 @@ public class PlayerController : MonoBehaviour
         }
         originalScale = transform.localScale;
 
-        // Configure originalSpriteFacesRight based on selected character (both Virgil and Vini face right)
+        // Configure originalSpriteFacesRight based on selected character (Virgil, Vini, and Yamal all face right)
         string selectedPlayer = PlayerPrefs.GetString("SelectedPlayer", "Virgil");
-        if (selectedPlayer == "Vini" || selectedPlayer == "Virgil")
+        if (selectedPlayer == "Vini" || selectedPlayer == "Virgil" || selectedPlayer == "Yamal")
         {
             originalSpriteFacesRight = true;
         }
@@ -152,6 +152,10 @@ public class PlayerController : MonoBehaviour
         if (selectedPlayer == "Vini")
         {
             TriggerSambaSprint();
+        }
+        else if (selectedPlayer == "Yamal")
+        {
+            TriggerYamalStrike();
         }
         else
         {
@@ -414,5 +418,91 @@ public class PlayerController : MonoBehaviour
         }
 
         Destroy(ghost);
+    }
+
+    private void TriggerYamalStrike()
+    {
+        StartCoroutine(YamalStrikeRoutine());
+    }
+
+    private System.Collections.IEnumerator YamalStrikeRoutine()
+    {
+        speedBoostMultiplier = 1.5f; // Golden speed burst
+
+        PlayerHealth health = GetComponent<PlayerHealth>();
+        if (health != null)
+        {
+            health.SetSprintInvincible(true); // Invincible during finesse sweep
+        }
+
+        PlayerAttack attack = GetComponent<PlayerAttack>();
+
+        // Play SFX
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySFX("samba_sprint"); // Re-use fast chiptune audio
+        }
+
+        // Spawn a circular ring of 16 spiraling golden projectiles
+        if (attack != null && attack.ProjectilePrefab != null)
+        {
+            int projectileCount = 16;
+            float baseAngleOffset = Random.Range(0f, 360f); // Randomized start angle
+            for (int i = 0; i < projectileCount; i++)
+            {
+                float angle = baseAngleOffset + (i * (360f / projectileCount));
+                float rad = angle * Mathf.Deg2Rad;
+                Vector3 dir = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f);
+
+                GameObject proj = Instantiate(attack.ProjectilePrefab, transform.position, Quaternion.identity);
+                
+                // Color the projectile golden/yellow
+                SpriteRenderer projSr = proj.GetComponent<SpriteRenderer>();
+                if (projSr != null)
+                {
+                    projSr.color = new Color(1f, 0.8f, 0f, 1f); // Vibrant gold
+                }
+
+                // Add TrailRenderer for a beautiful trace effect
+                TrailRenderer tr = proj.AddComponent<TrailRenderer>();
+                tr.time = 0.25f;
+                tr.startWidth = 0.15f;
+                tr.endWidth = 0f;
+                tr.material = new Material(Shader.Find("Sprites/Default"));
+                tr.startColor = new Color(1f, 0.8f, 0f, 0.8f);
+                tr.endColor = new Color(1f, 0.4f, 0f, 0f);
+
+                Projectile pScript = proj.GetComponent<Projectile>();
+                if (pScript != null)
+                {
+                    // speed=12f, damage=5, piercing=true, curveIntensity=140f (creates a nice spiral out)
+                    pScript.SetupCustom(dir, 12f, 5, true, 140f);
+                }
+            }
+        }
+
+        float duration = 3.0f;
+        float elapsed = 0f;
+        float trailTimer = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            trailTimer += Time.deltaTime;
+
+            if (trailTimer >= 0.08f)
+            {
+                trailTimer = 0f;
+                SpawnSpeedFlareGhost(); // Spawn flashy golden trail behind the player
+            }
+
+            yield return null;
+        }
+
+        if (health != null)
+        {
+            health.SetSprintInvincible(false);
+        }
+        speedBoostMultiplier = 1f;
     }
 }

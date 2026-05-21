@@ -29,7 +29,11 @@ public class SpriteSheetAnimator : MonoBehaviour
 
         // Load all sub-sprites dynamically from Resources folder based on selection
         string selectedPlayer = PlayerPrefs.GetString("SelectedPlayer", "Virgil");
-        if (selectedPlayer == "Vini")
+        if (selectedPlayer == "Yamal")
+        {
+            resourcePath = "yamal_cha";
+        }
+        else if (selectedPlayer == "Vini")
         {
             resourcePath = "vini";
         }
