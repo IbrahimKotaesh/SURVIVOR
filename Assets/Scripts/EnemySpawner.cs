@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
 
     private Transform playerTransform;
     private float spawnTimer;
+    private bool bossSpawned = false;
 
     private void Start()
     {
@@ -28,23 +29,58 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         if (playerTransform == null)
         {
             FindPlayer();
             return;
         }
 
+        // Reset boss flag if game restarts
+        if (GameManager.Instance != null && GameManager.Instance.TimeRemaining > GameManager.Instance.CurrentLevelConfig.duration - 2f)
+        {
+            bossSpawned = false;
+        }
+
+        // Check for Boss fight time
+        if (GameManager.Instance != null && GameManager.Instance.IsBossTime)
+        {
+            if (!bossSpawned)
+            {
+                SpawnBoss();
+                bossSpawned = true;
+            }
+            return; // Stop normal spawning
+        }
+
         spawnTimer -= Time.deltaTime;
         if (spawnTimer <= 0f)
         {
             SpawnEnemy();
-            spawnTimer = spawnInterval;
+            
+            // Scaled spawn rate based on level progression
+            float interval = spawnInterval;
+            if (GameManager.Instance != null && GameManager.Instance.CurrentLevelConfig != null)
+            {
+                var config = GameManager.Instance.CurrentLevelConfig;
+                float progress = 1f - (GameManager.Instance.TimeRemaining / config.duration);
+                progress = Mathf.Clamp01(progress);
+                interval = Mathf.Lerp(config.baseSpawnInterval, config.minSpawnInterval, progress);
+            }
+            spawnTimer = interval;
         }
     }
 
     private void SpawnEnemy()
     {
         if (enemyPrefab == null) return;
+
+        float speedMult = 1.0f;
+        if (GameManager.Instance != null && GameManager.Instance.CurrentLevelConfig != null)
+        {
+            speedMult = GameManager.Instance.CurrentLevelConfig.enemySpeedMultiplier;
+        }
 
         // Spawn a cluster of 1 to 3 enemies surrounding the player
         int count = Random.Range(1, 4);
@@ -55,7 +91,39 @@ public class EnemySpawner : MonoBehaviour
             Vector3 spawnPosition = playerTransform.position + spawnOffset;
             spawnPosition.z = 0f;
 
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            if (enemyController != null)
+            {
+                enemyController.SetupEnemy(speedMult, 1, false);
+            }
+        }
+    }
+
+    private void SpawnBoss()
+    {
+        if (enemyPrefab == null || playerTransform == null) return;
+
+        // Clear existing normal enemies for clean boss duel
+        var activeEnemies = GameObject.FindObjectsByType<EnemyController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        foreach (var enemy in activeEnemies)
+        {
+            if (enemy != null) Destroy(enemy.gameObject);
+        }
+
+        // Spawn boss at spawn radius
+        float angle = Random.Range(0f, Mathf.PI * 2f);
+        Vector3 spawnOffset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f) * spawnRadius;
+        Vector3 spawnPosition = playerTransform.position + spawnOffset;
+        spawnPosition.z = 0f;
+
+        GameObject bossGo = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        EnemyController bossController = bossGo.GetComponent<EnemyController>();
+        if (bossController != null)
+        {
+            var config = GameManager.Instance.CurrentLevelConfig;
+            bossController.SetupEnemy(config.enemySpeedMultiplier, config.bossHp, true);
+            bossGo.name = "BOSS";
         }
     }
 }

@@ -3,14 +3,22 @@ using UnityEngine;
 public class InfiniteGround : MonoBehaviour
 {
     [SerializeField] private Transform cameraTransform;
-    [SerializeField] private float tileSizeX = 10.24f; // Matches texture width in world units
-    [SerializeField] private float tileSizeY = 5.58f;  // Matches texture height in world units
+    [SerializeField] private float tileSizeX = 20.48f; // Matches texture width in world units (1024 / 50 PPU)
+    [SerializeField] private float tileSizeY = 20.48f; // Matches texture height in world units (1024 / 50 PPU)
 
     private void Start()
     {
         if (cameraTransform == null)
         {
             cameraTransform = Camera.main.transform;
+        }
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.sprite = Resources.Load<Sprite>("city_street_background");
+            sr.drawMode = SpriteDrawMode.Tiled;
+            sr.size = new Vector2(100f, 100f);
         }
     }
 

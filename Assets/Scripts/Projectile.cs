@@ -26,16 +26,11 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if hit enemy
-        if (collision.GetComponent<EnemyController>() != null)
+        EnemyController enemy = collision.GetComponent<EnemyController>();
+        if (enemy != null)
         {
-            // Spawn gem drop at enemy position
-            if (GameManager.Instance != null)
-            {
-                GameManager.Instance.SpawnGem(collision.transform.position);
-            }
-
-            // Destroy the enemy and the projectile
-            Destroy(collision.gameObject);
+            // Deal 1 damage and destroy projectile
+            enemy.TakeDamage(1);
             Destroy(gameObject);
         }
     }

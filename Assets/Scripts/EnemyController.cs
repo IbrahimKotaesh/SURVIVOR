@@ -12,11 +12,95 @@ public class EnemyController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
 
+    private int currentHp = 1;
+    private bool isBoss = false;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         FindPlayer();
+    }
+
+    public void SetupEnemy(float speedMultiplier, int hp = 1, bool boss = false)
+    {
+        currentHp = hp;
+        isBoss = boss;
+        moveSpeed *= speedMultiplier;
+
+        if (isBoss)
+        {
+            // Visual indicators for boss: larger scale, tinted red/pink
+            transform.localScale = new Vector3(2.5f, 2.5f, 1f);
+            var sprite = GetComponent<SpriteRenderer>();
+            if (sprite != null)
+            {
+                sprite.color = new Color(1f, 0.4f, 0.4f, 1f);
+            }
+            // Deal double damage to player
+            damageAmount *= 2;
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHp -= damage;
+        if (currentHp <= 0)
+        {
+            // Spawn procedural death splash particles
+            Color splashColor = spriteRenderer != null ? spriteRenderer.color : Color.red;
+            DeathSplashEffect.Create(transform.position, splashColor, isBoss ? 24 : 10);
+
+            // Spawn floating text (Gold for Boss, Vibrant Green for Normal)
+            int scoreValue = isBoss ? 100 : 10;
+            Color textColor = isBoss ? new Color(1f, 0.82f, 0f, 1f) : new Color(0.2f, 0.9f, 0.3f, 1f);
+            DeathSplashEffect.CreateFloatingText(transform.position, $"+{scoreValue}", textColor);
+
+            // Screen shake juice!
+            if (CameraController.Instance != null)
+            {
+                CameraController.Instance.TriggerShake(isBoss ? 0.35f : 0.12f, isBoss ? 0.32f : 0.07f);
+            }
+
+            if (GameManager.Instance != null)
+            {
+                // Spawn normal gem drop
+                GameManager.Instance.SpawnGem(transform.position);
+
+                if (isBoss)
+                {
+                    // Spawn extra gems for defeating boss!
+                    for (int i = 0; i < 6; i++)
+                    {
+                        Vector3 offset = new Vector3(Random.Range(-0.8f, 0.8f), Random.Range(-0.8f, 0.8f), 0f);
+                        GameManager.Instance.SpawnGem(transform.position + offset);
+                    }
+
+                    // Tell GameManager the boss is dead to trigger victory
+                    GameManager.Instance.OnBossDefeated();
+                }
+            }
+
+            Destroy(gameObject);
+        }
+        else
+        {
+            StartCoroutine(FlashRedRoutine());
+        }
+    }
+
+    private System.Collections.IEnumerator FlashRedRoutine()
+    {
+        if (spriteRenderer != null)
+        {
+            Color originalColor = isBoss ? new Color(1f, 0.4f, 0.4f, 1f) : Color.white;
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = originalColor;
+            }
+        }
     }
 
     private void FindPlayer()

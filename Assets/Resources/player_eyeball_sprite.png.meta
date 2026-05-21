@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 81af92972f5d36447a6b4cd876c5d263
+guid: 2bfdbb1cd6370c3468d31db5fbe3c6ac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6568309442007424929
-    second: ground_tiled_texture_0
+      213: 5792253591439230873
+    second: player_eyeball_sprite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,15 +40,15 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ground_tiled_texture_0
+      name: player_eyeball_sprite_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 512
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f50ad46ec5da8d4a0800000000000000
-      internalID: -6568309442007424929
+      spriteID: 99747b6e3f7326050800000000000000
+      internalID: 5792253591439230873
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ground_tiled_texture_0: -6568309442007424929
+      player_eyeball_sprite_0: 5792253591439230873
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

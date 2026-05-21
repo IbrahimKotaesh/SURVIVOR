@@ -11,11 +11,23 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
+        // Load upgraded fireRate from PlayerStats
+        PlayerStats stats = GetComponent<PlayerStats>();
+        if (stats == null)
+        {
+            stats = gameObject.AddComponent<PlayerStats>();
+        }
+        if (stats != null)
+        {
+            fireRate = stats.FireRate;
+        }
         fireTimer = fireRate;
     }
 
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         fireTimer -= Time.deltaTime;
         if (fireTimer <= 0f)
         {
