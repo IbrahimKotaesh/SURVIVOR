@@ -16,6 +16,9 @@ public class PlayerHealth : MonoBehaviour
     private bool isSprintInvincible = false;
     private SpriteRenderer spriteRenderer;
     private Coroutine healthBarCoroutine;
+    private UnityEngine.UI.Image catchUpFill;
+    private Coroutine catchUpCoroutine;
+    private Coroutine pulseCoroutine;
 
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
@@ -42,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
         StyleHealthBarUI();
-        UpdateHealthBar();
+        UpdateHealthBar(false);
         RepositionHealthBar();
     }
 
@@ -160,34 +163,106 @@ public class PlayerHealth : MonoBehaviour
         transform.localScale = Vector3.zero;
     }
 
-    private void UpdateHealthBar()
+    private void UpdateHealthBar(bool animate = true)
     {
         if (healthBarFill != null)
         {
+            float targetFill = (float)currentHealth / maxHealth;
+            
             if (healthBarCoroutine != null)
             {
                 StopCoroutine(healthBarCoroutine);
             }
-            healthBarCoroutine = StartCoroutine(SmoothHealthBarRoutine((float)currentHealth / maxHealth));
+            if (catchUpCoroutine != null)
+            {
+                StopCoroutine(catchUpCoroutine);
+            }
+
+            // If we are healing or at start, move both together
+            float currentFill = healthBarFill.fillAmount;
+            if (targetFill >= currentFill || !animate)
+            {
+                healthBarFill.fillAmount = targetFill;
+                if (catchUpFill != null)
+                {
+                    catchUpFill.fillAmount = targetFill;
+                }
+            }
+            else
+            {
+                // Taking damage: green bar snaps instantly, catch-up bar slides down
+                healthBarFill.fillAmount = targetFill;
+                catchUpCoroutine = StartCoroutine(SmoothCatchUpRoutine(targetFill));
+            }
+            
+            if (animate)
+            {
+                // Trigger health bar pop/shake animation
+                if (pulseCoroutine != null)
+                {
+                    StopCoroutine(pulseCoroutine);
+                }
+                pulseCoroutine = StartCoroutine(PulseHealthBarRoutine());
+            }
         }
     }
 
-    private IEnumerator SmoothHealthBarRoutine(float targetFill)
+    private IEnumerator SmoothCatchUpRoutine(float targetFill)
     {
-        float startFill = healthBarFill.fillAmount;
+        if (catchUpFill == null) yield break;
+
+        // Pause briefly before draining
+        yield return new WaitForSeconds(0.22f);
+
+        float startFill = catchUpFill.fillAmount;
         float elapsed = 0f;
-        float duration = 0.25f; // Duration of transition
+        float duration = 0.35f;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            healthBarFill.fillAmount = Mathf.Lerp(startFill, targetFill, elapsed / duration);
+            catchUpFill.fillAmount = Mathf.Lerp(startFill, targetFill, elapsed / duration);
             yield return null;
         }
 
-        healthBarFill.fillAmount = targetFill;
-        healthBarCoroutine = null;
+        catchUpFill.fillAmount = targetFill;
+        catchUpCoroutine = null;
     }
+
+    private IEnumerator PulseHealthBarRoutine()
+    {
+        if (healthBarFill != null && healthBarFill.transform.parent != null)
+        {
+            Transform barParent = healthBarFill.transform.parent;
+            Vector3 originalScale = Vector3.one;
+            
+            // Pop out (scale up)
+            float popDuration = 0.07f;
+            float elapsed = 0f;
+            while (elapsed < popDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / popDuration;
+                barParent.localScale = Vector3.Lerp(originalScale, originalScale * 1.35f, t);
+                yield return null;
+            }
+
+            // Return to original size
+            elapsed = 0f;
+            float returnDuration = 0.12f;
+            while (elapsed < returnDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / returnDuration;
+                barParent.localScale = Vector3.Lerp(originalScale * 1.35f, originalScale, t);
+                yield return null;
+            }
+
+            barParent.localScale = originalScale;
+            pulseCoroutine = null;
+        }
+    }
+
 
     private float cachedHealthBarOffset = -1f;
     private Sprite lastCachedSprite;
@@ -287,9 +362,56 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthBarFill != null)
         {
-            // Set fill image sprite to sliced flat-vector green bar fill
+            Transform parent = healthBarFill.transform.parent;
+            if (parent != null)
+            {
+                // Create catch-up fill if it doesn't exist
+                if (catchUpFill == null)
+                {
+                    GameObject catchUpGo = new GameObject("HUD_HealthBarCatchUp");
+                    catchUpGo.transform.SetParent(parent, false);
+                    catchUpFill = catchUpGo.AddComponent<UnityEngine.UI.Image>();
+                    
+                    // Render it behind healthBarFill
+                    catchUpGo.transform.SetSiblingIndex(healthBarFill.transform.GetSiblingIndex());
+                }
+
+                UnityEngine.UI.Image bgImg = parent.GetComponent<UnityEngine.UI.Image>();
+                if (bgImg == null)
+                {
+                    bgImg = parent.gameObject.AddComponent<UnityEngine.UI.Image>();
+                }
+                
+                bgImg.sprite = GameSpriteManager.GetSprite("hud_bar_empty");
+                bgImg.type = UnityEngine.UI.Image.Type.Sliced;
+                bgImg.color = new Color(0.12f, 0.12f, 0.12f, 0.8f);
+
+                // Set parent size to be even larger (60f x 8f, up from 25f x 3.5f)
+                RectTransform parentRect = parent.GetComponent<RectTransform>();
+                if (parentRect != null)
+                {
+                    parentRect.anchorMin = new Vector2(0.5f, 0.5f);
+                    parentRect.anchorMax = new Vector2(0.5f, 0.5f);
+                    parentRect.pivot = new Vector2(0.5f, 0.5f);
+                    parentRect.anchoredPosition = Vector2.zero;
+                    parentRect.sizeDelta = new Vector2(60f, 8.0f);
+                }
+
+                // Add nice black outline to the background
+                Outline outline = parent.gameObject.GetComponent<Outline>();
+                if (outline == null)
+                {
+                    outline = parent.gameObject.AddComponent<Outline>();
+                }
+                outline.effectColor = new Color(0f, 0f, 0f, 0.65f); // Thicker, darker outline
+                outline.effectDistance = new Vector2(1.5f, 1.5f);
+            }
+
+            // Set fill image sprite to flat-vector green bar fill (Filled type for draining animation)
             healthBarFill.sprite = GameSpriteManager.GetSprite("hud_bar_fill_green");
-            healthBarFill.type = UnityEngine.UI.Image.Type.Sliced;
+            healthBarFill.type = UnityEngine.UI.Image.Type.Filled;
+            healthBarFill.fillMethod = UnityEngine.UI.Image.FillMethod.Horizontal;
+            healthBarFill.fillOrigin = 0; // Left
             healthBarFill.color = new Color(0.15f, 0.85f, 0.35f, 1f);
 
             // Get fill RectTransform and make it fill container
@@ -301,39 +423,23 @@ public class PlayerHealth : MonoBehaviour
                 fillRect.sizeDelta = Vector2.zero;
             }
 
-            // Set up background
-            Transform parent = healthBarFill.transform.parent;
-            if (parent != null)
+            // Style catch-up fill to match layout (Filled type for draining animation)
+            if (catchUpFill != null)
             {
-                UnityEngine.UI.Image bgImg = parent.GetComponent<UnityEngine.UI.Image>();
-                if (bgImg == null)
-                {
-                    bgImg = parent.gameObject.AddComponent<UnityEngine.UI.Image>();
-                }
-                
-                bgImg.sprite = GameSpriteManager.GetSprite("hud_bar_empty");
-                bgImg.type = UnityEngine.UI.Image.Type.Sliced;
-                bgImg.color = new Color(0.12f, 0.12f, 0.12f, 0.8f);
+                catchUpFill.sprite = GameSpriteManager.GetSprite("hud_bar_fill_green");
+                catchUpFill.type = UnityEngine.UI.Image.Type.Filled;
+                catchUpFill.fillMethod = UnityEngine.UI.Image.FillMethod.Horizontal;
+                catchUpFill.fillOrigin = 0; // Left
+                catchUpFill.color = new Color(0.85f, 0.15f, 0.15f, 1f); // Red catch-up
+                catchUpFill.fillAmount = healthBarFill.fillAmount;
 
-                // Set parent size to be slightly larger than fill to act as a border
-                RectTransform parentRect = parent.GetComponent<RectTransform>();
-                if (parentRect != null)
+                RectTransform catchUpRect = catchUpFill.GetComponent<RectTransform>();
+                if (catchUpRect != null)
                 {
-                    parentRect.anchorMin = new Vector2(0.5f, 0.5f);
-                    parentRect.anchorMax = new Vector2(0.5f, 0.5f);
-                    parentRect.pivot = new Vector2(0.5f, 0.5f);
-                    parentRect.anchoredPosition = Vector2.zero;
-                    parentRect.sizeDelta = new Vector2(25f, 3.5f);
+                    catchUpRect.anchorMin = Vector2.zero;
+                    catchUpRect.anchorMax = Vector2.one;
+                    catchUpRect.sizeDelta = Vector2.zero;
                 }
-
-                // Add nice black outline to the background
-                Outline outline = parent.gameObject.GetComponent<Outline>();
-                if (outline == null)
-                {
-                    outline = parent.gameObject.AddComponent<Outline>();
-                }
-                outline.effectColor = new Color(0f, 0f, 0f, 0.4f);
-                outline.effectDistance = new Vector2(1f, 1f);
             }
         }
     }
