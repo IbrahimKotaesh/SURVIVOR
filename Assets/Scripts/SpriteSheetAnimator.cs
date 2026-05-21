@@ -52,6 +52,29 @@ public class SpriteSheetAnimator : MonoBehaviour
 
         if (frames != null && frames.Length > 0)
         {
+            // Filter out empty/blank sliced frames from the tail of the sprite sheets
+            int maxAllowedIndex = int.MaxValue;
+            if (resourcePath == "van_dyk_cha") maxAllowedIndex = 44;
+            else if (resourcePath == "yamal_cha") maxAllowedIndex = 52;
+            else if (resourcePath == "vini") maxAllowedIndex = 20;
+
+            if (maxAllowedIndex != int.MaxValue)
+            {
+                var tempFrames = new System.Collections.Generic.List<Sprite>();
+                foreach (var frame in frames)
+                {
+                    if (frame != null)
+                    {
+                        int idx = GetSpriteIndex(frame.name);
+                        if (idx <= maxAllowedIndex)
+                        {
+                            tempFrames.Add(frame);
+                        }
+                    }
+                }
+                frames = tempFrames.ToArray();
+            }
+
             SortFramesNumerically(frames);
         }
 
