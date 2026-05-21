@@ -24,7 +24,7 @@ public class SpriteSheetAnimator : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         // Load all sub-sprites dynamically from Resources folder
-        resourcePath = "vergil_van_dijk";
+        resourcePath = "vergil_van_dijk_2";
         frames = Resources.LoadAll<Sprite>(resourcePath);
         if (frames == null || frames.Length == 0)
         {
