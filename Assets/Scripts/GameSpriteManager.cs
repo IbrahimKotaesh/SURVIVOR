@@ -56,4 +56,25 @@ public static class GameSpriteManager
         cachedSprites[spriteName] = newSprite;
         return newSprite;
     }
+
+    private static Dictionary<string, Sprite> characterPreviewCache = new Dictionary<string, Sprite>();
+
+    public static Sprite GetCharacterPreviewSprite(string resourcePath)
+    {
+        if (characterPreviewCache.TryGetValue(resourcePath, out Sprite cached))
+        {
+            return cached;
+        }
+
+        // LoadAll is very expensive for large sprite sheets. 
+        // We do it once here and cache the first frame.
+        Sprite[] frames = Resources.LoadAll<Sprite>(resourcePath);
+        if (frames != null && frames.Length > 0)
+        {
+            characterPreviewCache[resourcePath] = frames[0];
+            return frames[0];
+        }
+        
+        return null;
+    }
 }

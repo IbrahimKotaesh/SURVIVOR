@@ -41,7 +41,8 @@ public class CameraController : MonoBehaviour
         if (target != null)
         {
             Vector3 desiredPosition = target.position + offset;
-            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+            float lerpFactor = 1f - Mathf.Pow(1f - Mathf.Clamp01(smoothSpeed), Time.deltaTime * 60f);
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, lerpFactor);
 
             // Apply screen shake if active
             if (shakeDuration > 0f)

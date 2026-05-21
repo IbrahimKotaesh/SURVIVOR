@@ -88,6 +88,70 @@ public static class SetupTextureToSprite
         }
     }
 
+    [MenuItem("Tools/Setup Player Sprite Vergil 2")]
+    public static void SetupPlayerVergil2()
+    {
+        string spritePath = "Assets/Resources/vergil_van_dijk_2.png";
+        Object[] subAssets = AssetDatabase.LoadAllAssetsAtPath(spritePath);
+        Sprite firstFrame = null;
+        foreach (var asset in subAssets)
+        {
+            if (asset is Sprite && asset.name.EndsWith("_0"))
+            {
+                firstFrame = (Sprite)asset;
+                break;
+            }
+        }
+
+        if (firstFrame == null)
+        {
+            Debug.LogError("Could not find the sliced sprites at " + spritePath + ". Please check if the file exists and is sliced.");
+            return;
+        }
+
+        PlayerController player = GameObject.FindAnyObjectByType<PlayerController>();
+        if (player != null)
+        {
+            SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                Undo.RecordObject(sr, "Assign Vergil 2 Sprite");
+                sr.sprite = firstFrame;
+                Debug.Log("Assigned Vergil 2 first frame to Player SpriteRenderer.");
+            }
+
+            // Setup the animator
+            SpriteSheetAnimator animator = player.GetComponent<SpriteSheetAnimator>();
+            if (animator == null)
+            {
+                animator = player.gameObject.AddComponent<SpriteSheetAnimator>();
+                Undo.RegisterCreatedObjectUndo(animator, "Add SpriteSheetAnimator");
+                Debug.Log("Added SpriteSheetAnimator component to Player.");
+            }
+
+            // Update face flipping direction
+            SerializedObject serializedPlayer = new SerializedObject(player);
+            SerializedProperty facesRightProp = serializedPlayer.FindProperty("originalSpriteFacesRight");
+            if (facesRightProp != null)
+            {
+                facesRightProp.boolValue = true;
+                serializedPlayer.ApplyModifiedProperties();
+                Debug.Log("Configured PlayerController to originalSpriteFacesRight = true.");
+            }
+
+            // Mark active scene as dirty to ensure changes save
+            if (!Application.isPlaying)
+            {
+                UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(player.gameObject.scene);
+            }
+            Debug.Log("Successfully configured Virgil van Dijk 2 character and animations on Player!");
+        }
+        else
+        {
+            Debug.LogWarning("PlayerController not found in the current active scene.");
+        }
+    }
+
     [MenuItem("Tools/Slice and Setup Van Dijk Player")]
     public static void SliceAndSetupPlayer()
     {
@@ -314,4 +378,65 @@ public static class SetupTextureToSprite
             Debug.LogWarning("No InfiniteGround found!");
         }
     }
+
+    [MenuItem("Tools/Log Sprite Info")]
+    public static void LogSpriteInfo()
+    {
+        string spritePath = "Assets/Resources/vergil_van_dijk_2.png";
+        Object[] subAssets = AssetDatabase.LoadAllAssetsAtPath(spritePath);
+        Debug.Log("Total sub-assets found: " + subAssets.Length);
+        int spriteCount = 0;
+        foreach (var asset in subAssets)
+        {
+            if (asset is Sprite sprite)
+            {
+                spriteCount++;
+                if (spriteCount <= 5 || spriteCount == subAssets.Length - 1)
+                {
+                    Debug.Log($"Sprite {sprite.name}: rect={sprite.rect}, pivot={sprite.pivot}, ppu={sprite.pixelsPerUnit}, bounds={sprite.bounds}");
+                }
+            }
+        }
+        Debug.Log("Total sprites: " + spriteCount);
+    }
+
+    [MenuItem("Tools/Configure Sprite Sheet PPU and Pivots")]
+    public static void ConfigureSpriteSheets()
+    {
+        // 1. Configure Virgil
+        ConfigureImporter("Assets/Resources/vergil_van_dijk_2.png", 1000f, 0.14f);
+        // 2. Configure Vini
+        ConfigureImporter("Assets/Resources/vini.png", 900f, 0.12f);
+        
+        AssetDatabase.Refresh();
+        Debug.Log("ConfigureSpriteSheets: PPU and Pivots configured successfully!");
+    }
+
+    private static void ConfigureImporter(string path, float ppu, float pivotY)
+    {
+        TextureImporter importer = AssetImporter.GetAtPath(path) as TextureImporter;
+        if (importer == null)
+        {
+            Debug.LogError("ConfigureImporter: Importer not found for path: " + path);
+            return;
+        }
+
+        importer.spritePixelsPerUnit = ppu;
+        
+        if (importer.spriteImportMode == SpriteImportMode.Multiple)
+        {
+            var metas = importer.spritesheet;
+            for (int i = 0; i < metas.Length; i++)
+            {
+                metas[i].alignment = (int)SpriteAlignment.Custom;
+                metas[i].pivot = new Vector2(0.5f, pivotY);
+            }
+            importer.spritesheet = metas;
+        }
+        
+        importer.SaveAndReimport();
+        Debug.Log($"ConfigureImporter: Applied PPU={ppu}, pivotY={pivotY} to {path}");
+    }
 }
+
+

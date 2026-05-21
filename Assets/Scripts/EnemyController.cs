@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
 
     private int currentHp = 1;
     private bool isBoss = false;
+    public bool IsBoss => isBoss;
 
     private void Start()
     {
@@ -22,11 +23,12 @@ public class EnemyController : MonoBehaviour
         FindPlayer();
     }
 
-    public void SetupEnemy(float speedMultiplier, int hp = 1, bool boss = false)
+    public void SetupEnemy(float speedMultiplier, int hp = 1, bool boss = false, int baseDamage = 10)
     {
         currentHp = hp;
         isBoss = boss;
         moveSpeed *= speedMultiplier;
+        damageAmount = baseDamage;
 
         if (isBoss)
         {
@@ -38,7 +40,7 @@ public class EnemyController : MonoBehaviour
                 sprite.color = new Color(1f, 0.4f, 0.4f, 1f);
             }
             // Deal double damage to player
-            damageAmount *= 2;
+            damageAmount = baseDamage * 2;
         }
     }
 
@@ -64,6 +66,9 @@ public class EnemyController : MonoBehaviour
 
             if (GameManager.Instance != null)
             {
+                // Award coins immediately upon defeat
+                GameManager.Instance.AddCoins(isBoss ? 5 : 1);
+
                 // Spawn normal gem drop
                 GameManager.Instance.SpawnGem(transform.position);
 

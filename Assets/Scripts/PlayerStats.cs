@@ -28,9 +28,9 @@ public class PlayerStats : MonoBehaviour
             Instance = this;
             LoadStats();
         }
-        else
+        else if (Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
 

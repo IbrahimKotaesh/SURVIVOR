@@ -11,8 +11,11 @@ public class LevelConfig
     public float enemySpeedMultiplier;
     public int bossHp;
     public float bossSpeed;
+    public int minClusterSize;
+    public int maxClusterSize;
+    public int enemyDamage;
 
-    public LevelConfig(int index, string name, float dur, float spawn, float minSpawn, float speedMult, int bossHP, float bossSpd)
+    public LevelConfig(int index, string name, float dur, float spawn, float minSpawn, float speedMult, int bossHP, float bossSpd, int minCluster = 1, int maxCluster = 3, int damage = 10)
     {
         stageIndex = index;
         stageName = name;
@@ -22,6 +25,9 @@ public class LevelConfig
         enemySpeedMultiplier = speedMult;
         bossHp = bossHP;
         bossSpeed = bossSpd;
+        minClusterSize = minCluster;
+        maxClusterSize = maxCluster;
+        enemyDamage = damage;
     }
 
     public static LevelConfig GetConfig(int stageIndex)
@@ -29,16 +35,16 @@ public class LevelConfig
         switch (stageIndex)
         {
             case 1:
-                // Stage 1: Fields (60s, base spawn 1.2s -> min 0.6s, speed x1.0, Boss HP: 5, Boss Speed: 1.8f)
-                return new LevelConfig(1, "FIELDS OF HOPE", 60f, 1.2f, 0.6f, 1.0f, 5, 1.8f);
+                // Level 1: Fields of Hope (20s, calm spawns 1.8s -> 1.0s, cluster size 1-2, speed x0.9, Boss HP: 8, Boss Speed: 1.6f, Damage: 25, Double Gem Drops handled in GameManager)
+                return new LevelConfig(1, "FIELDS OF HOPE", 20f, 1.8f, 1.0f, 0.9f, 8, 1.6f, 1, 2, 25);
             case 2:
-                // Stage 2: Desert (90s, base spawn 0.9s -> min 0.4s, speed x1.25, Boss HP: 12, Boss Speed: 2.2f)
-                return new LevelConfig(2, "DESERT WASTELAND", 90f, 0.9f, 0.4f, 1.25f, 12, 2.2f);
+                // Level 2: Desert Wasteland (30s, medium spawns 1.2s -> 0.5s, cluster size 1-3, speed x1.15, Boss HP: 15, Boss Speed: 2.2f, Damage: 34)
+                return new LevelConfig(2, "DESERT WASTELAND", 30f, 1.2f, 0.5f, 1.15f, 15, 2.2f, 1, 3, 34);
             case 3:
-                // Stage 3: Dungeon (120s, base spawn 0.6s -> min 0.25s, speed x1.50, Boss HP: 30, Boss Speed: 2.6f)
-                return new LevelConfig(3, "NECROPOLIS DUNGEON", 120f, 0.6f, 0.25f, 1.5f, 30, 2.6f);
+                // Level 3: Necropolis Dungeon (50s, intense spawns 0.8s -> 0.3s, cluster size 2-4, speed x1.35, Boss HP: 25, Boss Speed: 2.8f, Damage: 50)
+                return new LevelConfig(3, "NECROPOLIS DUNGEON", 50f, 0.8f, 0.3f, 1.35f, 25, 2.8f, 2, 4, 50);
             default:
-                return new LevelConfig(1, "FIELDS OF HOPE", 60f, 1.2f, 0.6f, 1.0f, 5, 1.8f);
+                return new LevelConfig(1, "FIELDS OF HOPE", 20f, 1.8f, 1.0f, 0.9f, 8, 1.6f, 1, 2, 25);
         }
     }
 }

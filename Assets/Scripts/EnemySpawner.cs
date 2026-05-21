@@ -77,13 +77,23 @@ public class EnemySpawner : MonoBehaviour
         if (enemyPrefab == null) return;
 
         float speedMult = 1.0f;
+        int baseDamage = 10;
         if (GameManager.Instance != null && GameManager.Instance.CurrentLevelConfig != null)
         {
             speedMult = GameManager.Instance.CurrentLevelConfig.enemySpeedMultiplier;
+            baseDamage = GameManager.Instance.CurrentLevelConfig.enemyDamage;
         }
 
-        // Spawn a cluster of 1 to 3 enemies surrounding the player
-        int count = Random.Range(1, 4);
+        // Spawn a cluster of enemies surrounding the player, driven by LevelConfig
+        int minCluster = 1;
+        int maxCluster = 3;
+        if (GameManager.Instance != null && GameManager.Instance.CurrentLevelConfig != null)
+        {
+            minCluster = GameManager.Instance.CurrentLevelConfig.minClusterSize;
+            maxCluster = GameManager.Instance.CurrentLevelConfig.maxClusterSize;
+        }
+
+        int count = Random.Range(minCluster, maxCluster + 1); // +1 because Random.Range exclusive max
         for (int i = 0; i < count; i++)
         {
             float angle = Random.Range(0f, Mathf.PI * 2f);
@@ -95,7 +105,7 @@ public class EnemySpawner : MonoBehaviour
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
             if (enemyController != null)
             {
-                enemyController.SetupEnemy(speedMult, 1, false);
+                enemyController.SetupEnemy(speedMult, 1, false, baseDamage);
             }
         }
     }
@@ -122,7 +132,7 @@ public class EnemySpawner : MonoBehaviour
         if (bossController != null)
         {
             var config = GameManager.Instance.CurrentLevelConfig;
-            bossController.SetupEnemy(config.enemySpeedMultiplier, config.bossHp, true);
+            bossController.SetupEnemy(config.enemySpeedMultiplier, config.bossHp, true, config.enemyDamage);
             bossGo.name = "BOSS";
         }
     }

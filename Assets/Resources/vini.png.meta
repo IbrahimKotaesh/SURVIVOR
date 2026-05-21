@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: 98791fa32511fdf41b5c6ade6797c028
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6784885793030140515
+    second: vini_0
+  - first:
+      213: -8243839163911789255
+    second: vini_1
+  - first:
+      213: -8675982458200259260
+    second: vini_2
+  - first:
+      213: 488059898782134040
+    second: vini_3
+  - first:
+      213: 5873574211353304210
+    second: vini_4
+  - first:
+      213: -7351598005610321986
+    second: vini_5
+  - first:
+      213: -5715618622584302198
+    second: vini_6
+  - first:
+      213: -8390843248494449802
+    second: vini_7
+  - first:
+      213: 6143170530553979822
+    second: vini_8
+  - first:
+      213: -9105175774132322286
+    second: vini_9
+  - first:
+      213: 4856263790162361334
+    second: vini_10
+  - first:
+      213: -8325330328555155710
+    second: vini_11
+  - first:
+      213: -8673688849613037923
+    second: vini_12
+  - first:
+      213: -2595121486985337765
+    second: vini_13
+  - first:
+      213: 3060672851270259882
+    second: vini_14
+  - first:
+      213: 574609293029523815
+    second: vini_15
+  - first:
+      213: -2820856138102257408
+    second: vini_16
+  - first:
+      213: 4790425705531390545
+    second: vini_17
+  - first:
+      213: 8300047001223825605
+    second: vini_18
+  - first:
+      213: -1305137141023738566
+    second: vini_19
+  - first:
+      213: -789071096842851802
+    second: vini_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 900
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: vini_0
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 2848
+        width: 350
+        height: 626
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9d08d0b15e37d1a0800000000000000
+      internalID: -6784885793030140515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_1
+      rect:
+        serializedVersion: 2
+        x: 1709
+        y: 2848
+        width: 350
+        height: 626
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 935a59945fff79d80800000000000000
+      internalID: -8243839163911789255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_2
+      rect:
+        serializedVersion: 2
+        x: 3017
+        y: 2841
+        width: 341
+        height: 629
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 445047debe7b89780800000000000000
+      internalID: -8675982458200259260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_3
+      rect:
+        serializedVersion: 2
+        x: 4335
+        y: 2843
+        width: 360
+        height: 613
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81fa50064efe5c600800000000000000
+      internalID: 488059898782134040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_4
+      rect:
+        serializedVersion: 2
+        x: 5552
+        y: 2844
+        width: 454
+        height: 606
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29cdb9d20a0238150800000000000000
+      internalID: 5873574211353304210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_5
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 2139
+        width: 506
+        height: 614
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb760287090e9f990800000000000000
+      internalID: -7351598005610321986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_6
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 2182
+        width: 524
+        height: 582
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a855149352b0ea0b0800000000000000
+      internalID: -5715618622584302198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_7
+      rect:
+        serializedVersion: 2
+        x: 2924
+        y: 2182
+        width: 524
+        height: 582
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67be087a58cbd8b80800000000000000
+      internalID: -8390843248494449802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_8
+      rect:
+        serializedVersion: 2
+        x: 4228
+        y: 2152
+        width: 477
+        height: 616
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea36154bc0de04550800000000000000
+      internalID: 6143170530553979822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_9
+      rect:
+        serializedVersion: 2
+        x: 5551
+        y: 2136
+        width: 401
+        height: 634
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 210c95defdae3a180800000000000000
+      internalID: -9105175774132322286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_10
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 1430
+        width: 396
+        height: 627
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fb3834003ae46340800000000000000
+      internalID: 4856263790162361334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_11
+      rect:
+        serializedVersion: 2
+        x: 1723
+        y: 1430
+        width: 396
+        height: 627
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20f0fa8fc2c767c80800000000000000
+      internalID: -8325330328555155710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_12
+      rect:
+        serializedVersion: 2
+        x: 2938
+        y: 1433
+        width: 486
+        height: 617
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9e5c8a42fdd0a780800000000000000
+      internalID: -8673688849613037923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_13
+      rect:
+        serializedVersion: 2
+        x: 4160
+        y: 1435
+        width: 569
+        height: 622
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b546143d1c64cfbd0800000000000000
+      internalID: -2595121486985337765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_14
+      rect:
+        serializedVersion: 2
+        x: 5446
+        y: 1452
+        width: 522
+        height: 613
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa455a9fdb1b97a20800000000000000
+      internalID: 3060672851270259882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_15
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 734
+        width: 478
+        height: 628
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 761c9ab8b1c69f700800000000000000
+      internalID: 574609293029523815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_16
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 734
+        width: 478
+        height: 628
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0094fe5b94e4ad8d0800000000000000
+      internalID: -2820856138102257408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_17
+      rect:
+        serializedVersion: 2
+        x: 2999
+        y: 734
+        width: 412
+        height: 628
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15a39156cc20b7240800000000000000
+      internalID: 4790425705531390545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_18
+      rect:
+        serializedVersion: 2
+        x: 4236
+        y: 736
+        width: 497
+        height: 622
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c80ef6a5c0bf2370800000000000000
+      internalID: 8300047001223825605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_19
+      rect:
+        serializedVersion: 2
+        x: 5471
+        y: 738
+        width: 553
+        height: 630
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a357c166fa833ede0800000000000000
+      internalID: -1305137141023738566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vini_20
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 96
+        width: 568
+        height: 581
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62a6722a408ac05f0800000000000000
+      internalID: -789071096842851802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      vini_0: -6784885793030140515
+      vini_1: -8243839163911789255
+      vini_10: 4856263790162361334
+      vini_11: -8325330328555155710
+      vini_12: -8673688849613037923
+      vini_13: -2595121486985337765
+      vini_14: 3060672851270259882
+      vini_15: 574609293029523815
+      vini_16: -2820856138102257408
+      vini_17: 4790425705531390545
+      vini_18: 8300047001223825605
+      vini_19: -1305137141023738566
+      vini_2: -8675982458200259260
+      vini_20: -789071096842851802
+      vini_3: 488059898782134040
+      vini_4: 5873574211353304210
+      vini_5: -7351598005610321986
+      vini_6: -5715618622584302198
+      vini_7: -8390843248494449802
+      vini_8: 6143170530553979822
+      vini_9: -9105175774132322286
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

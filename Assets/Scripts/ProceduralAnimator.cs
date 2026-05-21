@@ -27,6 +27,10 @@ public class ProceduralAnimator : MonoBehaviour
         }
 
         rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            rb = GetComponentInParent<Rigidbody2D>();
+        }
 
         if (spriteRenderer != null)
         {
@@ -47,9 +51,18 @@ public class ProceduralAnimator : MonoBehaviour
         }
         else
         {
-            // Fallback: check raw input axes
-            float moveX = Input.GetAxisRaw("Horizontal");
-            float moveY = Input.GetAxisRaw("Vertical");
+            // Fallback: check raw input axes using new Input System
+            float moveX = 0f;
+            float moveY = 0f;
+            var keyboard = UnityEngine.InputSystem.Keyboard.current;
+            if (keyboard != null)
+            {
+                if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed) moveY = 1f;
+                else if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed) moveY = -1f;
+
+                if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed) moveX = -1f;
+                else if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed) moveX = 1f;
+            }
             isMoving = (moveX != 0f || moveY != 0f);
         }
 

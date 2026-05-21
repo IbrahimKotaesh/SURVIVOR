@@ -6,6 +6,32 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+#if UNITY_WEBGL && !UNITY_EDITOR
+    [System.Runtime.InteropServices.DllImport("__Internal")]
+    private static extern void SendGameOverToAndroid(int score, int coins);
+
+    [System.Runtime.InteropServices.DllImport("__Internal")]
+    private static extern void SendVictoryToAndroid(int score, int coins, int bonus);
+
+    [System.Runtime.InteropServices.DllImport("__Internal")]
+    private static extern void SendGemsUpdatedToAndroid(int newBalance);
+#else
+    private static void SendGameOverToAndroid(int score, int coins)
+    {
+        Debug.Log($"[Mock Android Bridge] Game Over - Score: {score}, Coins: {coins}");
+    }
+
+    private static void SendVictoryToAndroid(int score, int coins, int bonus)
+    {
+        Debug.Log($"[Mock Android Bridge] Victory - Score: {score}, Coins: {coins}, Bonus: {bonus}");
+    }
+
+    private static void SendGemsUpdatedToAndroid(int newBalance)
+    {
+        Debug.Log($"[Mock Android Bridge] Gems Updated: {newBalance}");
+    }
+#endif
+
     // Static variable to persist selected stage between scene reloads
     public static int SelectedStage = 1;
 
@@ -26,13 +52,19 @@ public class GameManager : MonoBehaviour
     public bool IsBossTime { get; private set; } = false;
 
     private int score = 0;
+    private int coins = 0;
     private bool isGameOver = false;
     private bool isVictory = false;
 
     // HUD references
     private TextMeshProUGUI hudTimerText;
-    private Image timerProgressFill;
+    private TextMeshProUGUI hudCoinsText;
+    private TextMeshProUGUI hudScoreText;
+    private TextMeshProUGUI hudLevelText;
+    private Image timerBarFillImage;
     private GameObject warningTextGo;
+    private Button hudAbilityButton;
+    private TextMeshProUGUI hudAbilityButtonText;
 
     // Victory Panel programmatic reference
     private GameObject victoryPanel;
@@ -63,6 +95,12 @@ public class GameManager : MonoBehaviour
         }
 
         CreateUnifiedHUD();
+
+        // Start BGM battle fallback if running unpaused (without menu)
+        if (SoundManager.Instance != null && Time.timeScale > 0f)
+        {
+            SoundManager.Instance.PlayBGM("battle");
+        }
     }
 
     private static Sprite roundedRectSprite;
@@ -96,16 +134,260 @@ public class GameManager : MonoBehaviour
         return roundedRectSprite;
     }
 
+    private static Sprite coinSprite;
+    public static Sprite GetOrCreateCoinSprite()
+    {
+        if (coinSprite != null) return coinSprite;
+        int size = 64;
+        Texture2D texture = new Texture2D(size, size);
+        float centerX = size / 2f;
+        float centerY = size / 2f;
+        float radius = 24f;
+
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < size; x++)
+            {
+                float dx = x - centerX;
+                float dy = y - centerY;
+                float dist = Mathf.Sqrt(dx * dx + dy * dy);
+
+                if (dist > radius + 0.5f)
+                {
+                    texture.SetPixel(x, y, Color.clear);
+                }
+                else
+                {
+                    float alpha = 1f;
+                    if (dist > radius - 0.5f)
+                    {
+                        alpha = (radius + 0.5f - dist);
+                    }
+
+                    Color pixelColor;
+                    if (dist < 6f && Mathf.Abs(dx) < 3.5f && Mathf.Abs(dy) < 3.5f)
+                    {
+                        pixelColor = new Color(0.50f, 0.30f, 0.02f, alpha); // Dark center relief
+                    }
+                    else if (dist > radius - 3.5f)
+                    {
+                        pixelColor = new Color(0.70f, 0.45f, 0.05f, alpha); // Dark gold outline
+                    }
+                    else if (dist > radius - 6.5f)
+                    {
+                        pixelColor = new Color(0.95f, 0.70f, 0.10f, alpha); // Medium gold ring
+                    }
+                    else if (dist > radius - 9.5f)
+                    {
+                        pixelColor = new Color(1.00f, 0.90f, 0.45f, alpha); // Light highlight ring
+                    }
+                    else
+                    {
+                        float shade = (dx - dy) / (2f * radius);
+                        float r = 0.90f + shade * 0.10f;
+                        float g = 0.68f + shade * 0.10f;
+                        float b = 0.08f + shade * 0.05f;
+                        pixelColor = new Color(Mathf.Clamp01(r), Mathf.Clamp01(g), Mathf.Clamp01(b), alpha);
+                    }
+                    texture.SetPixel(x, y, pixelColor);
+                }
+            }
+        }
+        texture.Apply();
+        coinSprite = Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100f);
+        return coinSprite;
+    }
+
+    private static Sprite diamondSprite;
+    public static Sprite GetOrCreateDiamondSprite()
+    {
+        if (diamondSprite != null) return diamondSprite;
+        int size = 64;
+        Texture2D texture = new Texture2D(size, size);
+        float centerX = size / 2f;
+        float centerY = size / 2f;
+
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < size; x++)
+            {
+                float dx = x - centerX;
+                float dy = y - centerY;
+
+                float normX = Mathf.Abs(dx) / 20f;
+                float normY = Mathf.Abs(dy) / 24f;
+                float dist = normX + normY;
+
+                if (dist > 1.05f)
+                {
+                    texture.SetPixel(x, y, Color.clear);
+                }
+                else
+                {
+                    float alpha = 1f;
+                    if (dist > 0.95f)
+                    {
+                        alpha = (1.05f - dist) / 0.1f;
+                    }
+
+                    Color pixelColor;
+                    bool isRight = dx >= 0;
+                    bool isTop = dy >= 0;
+
+                    float innerDist = normX / 0.5f + normY / 0.5f;
+
+                    if (innerDist <= 1.0f)
+                    {
+                        if (isTop && isRight)
+                            pixelColor = new Color(0.70f, 0.95f, 1.00f, alpha);
+                        else if (isTop && !isRight)
+                            pixelColor = new Color(0.50f, 0.85f, 1.00f, alpha);
+                        else if (!isTop && !isRight)
+                            pixelColor = new Color(0.25f, 0.55f, 0.95f, alpha);
+                        else
+                            pixelColor = new Color(0.35f, 0.65f, 0.98f, alpha);
+                    }
+                    else
+                    {
+                        if (isTop && isRight)
+                            pixelColor = new Color(0.30f, 0.70f, 0.95f, alpha);
+                        else if (isTop && !isRight)
+                            pixelColor = new Color(0.15f, 0.55f, 0.85f, alpha);
+                        else if (!isTop && !isRight)
+                            pixelColor = new Color(0.05f, 0.30f, 0.70f, alpha);
+                        else
+                            pixelColor = new Color(0.10f, 0.40f, 0.80f, alpha);
+                    }
+
+                    if (dist > 0.88f && dist <= 0.98f)
+                    {
+                        pixelColor = new Color(0.85f, 0.95f, 1.00f, alpha);
+                    }
+
+                    texture.SetPixel(x, y, pixelColor);
+                }
+            }
+        }
+        texture.Apply();
+        diamondSprite = Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100f);
+        return diamondSprite;
+    }
+
+    private static Sprite levelBadgeSprite;
+    public static Sprite GetOrCreateLevelBadgeSprite()
+    {
+        if (levelBadgeSprite != null) return levelBadgeSprite;
+        int size = 64;
+        Texture2D texture = new Texture2D(size, size);
+        float centerX = size / 2f;
+        float centerY = size / 2f;
+
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < size; x++)
+            {
+                float dx = x - centerX;
+                float dy = y - centerY;
+
+                // Golden-amber shield shape
+                float px = Mathf.Abs(dx);
+                float py = dy;
+
+                float widthFactor = 1f;
+                if (py < 0f)
+                {
+                    widthFactor = 1f - Mathf.Pow(py / -24f, 2f);
+                }
+                else
+                {
+                    widthFactor = 1f - (py / 35f);
+                }
+
+                float shieldWidth = 20f * widthFactor;
+                bool inShield = px <= shieldWidth && py >= -22f && py <= 18f;
+
+                if (!inShield)
+                {
+                    texture.SetPixel(x, y, Color.clear);
+                }
+                else
+                {
+                    float distFromEdge = shieldWidth - px;
+                    float alpha = 1f;
+                    if (distFromEdge < 1f) alpha = distFromEdge;
+
+                    Color pixelColor;
+                    if (px < 3f || py > 15f || py < -19f || distFromEdge < 3f)
+                    {
+                        pixelColor = new Color(0.85f, 0.65f, 0.1f, alpha); // Gold border
+                    }
+                    else
+                    {
+                        float highlight = (dx + dy) / 40f;
+                        float r = 0.95f + highlight * 0.05f;
+                        float g = 0.75f + highlight * 0.10f;
+                        float b = 0.20f;
+                        pixelColor = new Color(Mathf.Clamp01(r), Mathf.Clamp01(g), Mathf.Clamp01(b), alpha);
+                    }
+
+                    // Central star/cross detail
+                    if (px <= 6f && py >= -4f && py <= 4f)
+                    {
+                        if (px <= 2f || (py >= -2f && py <= 2f))
+                        {
+                            pixelColor = new Color(1f, 0.95f, 0.8f, alpha);
+                        }
+                    }
+
+                    texture.SetPixel(x, y, pixelColor);
+                }
+            }
+        }
+        texture.Apply();
+        levelBadgeSprite = Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100f);
+        return levelBadgeSprite;
+    }
+
     private void CreateUnifiedHUD()
     {
-        // Deactivate old score UI container if present in the scene to prevent overlapping
+        // Destroy old score UI container if present in the scene to prevent overlapping
         GameObject oldScoreContainer = GameObject.Find("ScoreContainer");
         if (oldScoreContainer != null)
         {
-            oldScoreContainer.SetActive(false);
+            DestroyImmediate(oldScoreContainer);
         }
 
-        Canvas canvas = FindAnyObjectByType<Canvas>();
+        GameObject oldScoreTextGo = GameObject.Find("HUD_ScoreText");
+        if (oldScoreTextGo != null)
+        {
+            DestroyImmediate(oldScoreTextGo);
+        }
+
+        GameObject oldTimerCover = GameObject.Find("HUD_TimerCover");
+        if (oldTimerCover != null)
+        {
+            DestroyImmediate(oldTimerCover);
+        }
+
+        GameObject oldLevelCover = GameObject.Find("HUD_LevelCover");
+        if (oldLevelCover != null)
+        {
+            DestroyImmediate(oldLevelCover);
+        }
+
+        GameObject oldAbilityButton = GameObject.Find("HUD_AbilityButton");
+        if (oldAbilityButton != null)
+        {
+            DestroyImmediate(oldAbilityButton);
+        }
+
+        GameObject oldMuteButton = GameObject.Find("HUD_MuteButton");
+        if (oldMuteButton != null)
+        {
+            DestroyImmediate(oldMuteButton);
+        }
+
+        Canvas canvas = GetMainCanvas();
         if (canvas == null) return;
 
         Transform uiParent = canvas.transform;
@@ -115,75 +397,72 @@ public class GameManager : MonoBehaviour
             uiParent = safeArea.transform;
         }
 
-        // 1. Load the bar_game_top sprite
-        Sprite[] topBarSprites = Resources.LoadAll<Sprite>("bar_game_top");
-        Sprite topBarSprite = (topBarSprites != null && topBarSprites.Length > 0) ? topBarSprites[0] : null;
-
-        // 2. Create the unified top-HUD background panel
-        GameObject hudBarGo = new GameObject("HUD_Bar_Game_Top");
-        hudBarGo.transform.SetParent(uiParent, false);
-
-        RectTransform barRect = hudBarGo.AddComponent<RectTransform>();
-        barRect.anchorMin = new Vector2(0.5f, 1f); // Top Center
-        barRect.anchorMax = new Vector2(0.5f, 1f);
-        barRect.pivot = new Vector2(0.5f, 1f);
-        barRect.anchoredPosition = new Vector2(0f, -15f); // Positioned slightly lower for 2x scale
-        barRect.sizeDelta = new Vector2(405f, 80f); // Scaled based on 324x64 aspect ratio
-        barRect.localScale = new Vector3(2f, 2f, 1f); // Scale UI by 200%
-
-        Image barImage = hudBarGo.AddComponent<Image>();
-        if (topBarSprite != null)
+        // 1. Create a parent container for the left counters to match timer's top-right layout
+        GameObject oldLeftCounters = GameObject.Find("HUD_LeftCounters");
+        if (oldLeftCounters != null)
         {
-            barImage.sprite = topBarSprite;
+            DestroyImmediate(oldLeftCounters);
         }
-        else
-        {
-            // Fallback to blue panel if asset not loaded
-            barImage.sprite = GameSpriteManager.GetSprite("panel_blue_top");
-            barImage.type = Image.Type.Sliced;
-        }
-        barImage.color = Color.white;
 
-        // Add a clean outline to stand out from background
-        Outline barOutline = hudBarGo.AddComponent<Outline>();
-        barOutline.effectColor = new Color(0.1f, 0.1f, 0.2f, 0.4f);
-        barOutline.effectDistance = new Vector2(1.5f, 1.5f);
+        GameObject leftCounters = new GameObject("HUD_LeftCounters");
+        leftCounters.transform.SetParent(uiParent, false);
+        RectTransform leftCountersRect = leftCounters.AddComponent<RectTransform>();
+        leftCountersRect.anchorMin = new Vector2(0f, 1f); // Top Left
+        leftCountersRect.anchorMax = new Vector2(0f, 1f);
+        leftCountersRect.pivot = new Vector2(0f, 1f);
+        leftCountersRect.anchoredPosition = new Vector2(20f, -20f); // Margin from top-left
+        leftCountersRect.sizeDelta = new Vector2(305f, 32f); // Width adjusted to fit Diamonds (90) + space (12) + Coins (90) + space (12) + Level (101) = 305
+        leftCountersRect.localScale = new Vector3(2f, 2f, 1f); // 200% scale to match timer
 
-        // 3. Score slot cover & text container (Gold Coin capsule, left side)
-        GameObject coinCover = new GameObject("HUD_CoinCover");
-        coinCover.transform.SetParent(hudBarGo.transform, false);
-        RectTransform coinCoverRect = coinCover.AddComponent<RectTransform>();
-        coinCoverRect.anchorMin = new Vector2(0f, 0.5f);
-        coinCoverRect.anchorMax = new Vector2(0f, 0.5f);
-        coinCoverRect.pivot = new Vector2(0.5f, 0.5f);
-        coinCoverRect.anchoredPosition = new Vector2(90f, -1.25f);
-        coinCoverRect.sizeDelta = new Vector2(65f, 32f);
-        Image coinCoverImg = coinCover.AddComponent<Image>();
-        coinCoverImg.sprite = GetOrCreateRoundedRectSprite();
-        coinCoverImg.type = Image.Type.Sliced;
-        coinCoverImg.color = new Color32(22, 28, 43, 255);
+        // Diamond Capsule (HUD_ScoreCover)
+        GameObject scoreCover = new GameObject("HUD_ScoreCover");
+        scoreCover.transform.SetParent(leftCounters.transform, false);
+        RectTransform scoreCoverRect = scoreCover.AddComponent<RectTransform>();
+        scoreCoverRect.anchorMin = new Vector2(0f, 0.5f);
+        scoreCoverRect.anchorMax = new Vector2(0f, 0.5f);
+        scoreCoverRect.pivot = new Vector2(0f, 0.5f);
+        scoreCoverRect.anchoredPosition = new Vector2(0f, 0f);
+        scoreCoverRect.sizeDelta = new Vector2(90f, 32f);
 
-        if (scoreText == null)
-        {
-            GameObject scoreGo = new GameObject("HUD_ScoreText");
-            scoreGo.transform.SetParent(hudBarGo.transform, false);
-            scoreText = scoreGo.AddComponent<TextMeshProUGUI>();
-        }
-        else
-        {
-            scoreText.transform.SetParent(hudBarGo.transform, false);
-        }
+        Image scoreCoverImg = scoreCover.AddComponent<Image>();
+        scoreCoverImg.sprite = GetOrCreateRoundedRectSprite();
+        scoreCoverImg.type = Image.Type.Sliced;
+        scoreCoverImg.color = new Color32(22, 28, 43, 220); // Semi-transparent dark capsule
+
+        // Diamond Icon (HUD_DiamondIcon)
+        GameObject diamondIconGo = new GameObject("HUD_DiamondIcon");
+        diamondIconGo.transform.SetParent(scoreCover.transform, false);
+        RectTransform diamondIconRect = diamondIconGo.AddComponent<RectTransform>();
+        diamondIconRect.anchorMin = new Vector2(0f, 0.5f);
+        diamondIconRect.anchorMax = new Vector2(0f, 0.5f);
+        diamondIconRect.pivot = new Vector2(0f, 0.5f);
+        diamondIconRect.anchoredPosition = new Vector2(6f, 0f);
+        diamondIconRect.sizeDelta = new Vector2(24f, 24f);
+
+        Image diamondIconImg = diamondIconGo.AddComponent<Image>();
+        diamondIconImg.sprite = GetOrCreateDiamondSprite();
+        diamondIconImg.type = Image.Type.Simple;
+        diamondIconImg.color = Color.white;
+
+        Debug.Log($"[HUD] CreateUnifiedHUD - Creating fresh HUD_ScoreText");
+
+        GameObject scoreGo = new GameObject("HUD_ScoreText");
+        scoreGo.transform.SetParent(scoreCover.transform, false);
+        hudScoreText = scoreGo.AddComponent<TextMeshProUGUI>();
+        scoreText = hudScoreText;
+        Debug.Log($"[HUD] Created new HUD_ScoreText: {hudScoreText}");
 
         RectTransform scoreRect = scoreText.GetComponent<RectTransform>();
         if (scoreRect == null) scoreRect = scoreText.gameObject.AddComponent<RectTransform>();
-        scoreRect.anchorMin = new Vector2(0f, 0.5f);
-        scoreRect.anchorMax = new Vector2(0f, 0.5f);
-        scoreRect.pivot = new Vector2(0.5f, 0.5f);
-        scoreRect.anchoredPosition = new Vector2(90f, -1.25f);
-        scoreRect.sizeDelta = new Vector2(65f, 35f);
+        scoreRect.anchorMin = Vector2.zero;
+        scoreRect.anchorMax = Vector2.one;
+        scoreRect.sizeDelta = Vector2.zero;
+        scoreRect.anchoredPosition = Vector2.zero;
+        scoreRect.offsetMin = new Vector2(28f, 0f); // offset past the icon
+        scoreRect.offsetMax = new Vector2(-4f, 0f);
 
         scoreText.alignment = TextAlignmentOptions.Center;
-        scoreText.fontSize = 22;
+        scoreText.fontSize = 14;
         scoreText.color = Color.white;
         if (GameFontManager.TitleFont != null)
         {
@@ -193,109 +472,243 @@ public class GameManager : MonoBehaviour
         scoreText.outlineColor = new Color32(20, 20, 50, 255);
         scoreText.outlineWidth = 0.2f;
 
-        // 4. Gems Bank slot cover & text container (Blue Diamond capsule, middle-left side)
-        GameObject bankCover = new GameObject("HUD_BankCover");
-        bankCover.transform.SetParent(hudBarGo.transform, false);
-        RectTransform bankCoverRect = bankCover.AddComponent<RectTransform>();
-        bankCoverRect.anchorMin = new Vector2(0f, 0.5f);
-        bankCoverRect.anchorMax = new Vector2(0f, 0.5f);
-        bankCoverRect.pivot = new Vector2(0.5f, 0.5f);
-        bankCoverRect.anchoredPosition = new Vector2(162.5f, -1.25f);
-        bankCoverRect.sizeDelta = new Vector2(65f, 32f);
-        Image bankCoverImg = bankCover.AddComponent<Image>();
-        bankCoverImg.sprite = GetOrCreateRoundedRectSprite();
-        bankCoverImg.type = Image.Type.Sliced;
-        bankCoverImg.color = new Color32(22, 28, 43, 255);
+        // Coin Capsule (HUD_CoinsCover)
+        GameObject coinsCover = new GameObject("HUD_CoinsCover");
+        coinsCover.transform.SetParent(leftCounters.transform, false);
+        RectTransform coinsCoverRect = coinsCover.AddComponent<RectTransform>();
+        coinsCoverRect.anchorMin = new Vector2(0f, 0.5f);
+        coinsCoverRect.anchorMax = new Vector2(0f, 0.5f);
+        coinsCoverRect.pivot = new Vector2(0f, 0.5f);
+        coinsCoverRect.anchoredPosition = new Vector2(102f, 0f); // 90px capsule + 12px spacing
+        coinsCoverRect.sizeDelta = new Vector2(90f, 32f);
 
-        GameObject bankGo = new GameObject("HUD_BankText");
-        bankGo.transform.SetParent(hudBarGo.transform, false);
-        RectTransform bankRect = bankGo.AddComponent<RectTransform>();
-        bankRect.anchorMin = new Vector2(0f, 0.5f);
-        bankRect.anchorMax = new Vector2(0f, 0.5f);
-        bankRect.pivot = new Vector2(0.5f, 0.5f);
-        bankRect.anchoredPosition = new Vector2(162.5f, -1.25f);
-        bankRect.sizeDelta = new Vector2(65f, 35f);
+        Image coinsCoverImg = coinsCover.AddComponent<Image>();
+        coinsCoverImg.sprite = GetOrCreateRoundedRectSprite();
+        coinsCoverImg.type = Image.Type.Sliced;
+        coinsCoverImg.color = new Color32(22, 28, 43, 220); // Semi-transparent dark capsule
 
-        TextMeshProUGUI bankText = bankGo.AddComponent<TextMeshProUGUI>();
-        bankText.alignment = TextAlignmentOptions.Center;
-        bankText.fontSize = 22;
-        bankText.color = Color.white;
+        // Coin Icon (HUD_CoinIcon)
+        GameObject coinIconGo = new GameObject("HUD_CoinIcon");
+        coinIconGo.transform.SetParent(coinsCover.transform, false);
+        RectTransform coinIconRect = coinIconGo.AddComponent<RectTransform>();
+        coinIconRect.anchorMin = new Vector2(0f, 0.5f);
+        coinIconRect.anchorMax = new Vector2(0f, 0.5f);
+        coinIconRect.pivot = new Vector2(0f, 0.5f);
+        coinIconRect.anchoredPosition = new Vector2(6f, 0f);
+        coinIconRect.sizeDelta = new Vector2(24f, 24f);
+
+        Image coinIconImg = coinIconGo.AddComponent<Image>();
+        coinIconImg.sprite = GetOrCreateCoinSprite();
+        coinIconImg.type = Image.Type.Simple;
+        coinIconImg.color = Color.white;
+
+        // Coins Text
+        GameObject coinsTextGo = new GameObject("HUD_CoinsText");
+        coinsTextGo.transform.SetParent(coinsCover.transform, false);
+        hudCoinsText = coinsTextGo.AddComponent<TextMeshProUGUI>();
+
+        RectTransform coinsTextRect = hudCoinsText.GetComponent<RectTransform>();
+        coinsTextRect.anchorMin = Vector2.zero;
+        coinsTextRect.anchorMax = Vector2.one;
+        coinsTextRect.sizeDelta = Vector2.zero;
+        coinsTextRect.anchoredPosition = Vector2.zero;
+        coinsTextRect.offsetMin = new Vector2(28f, 0f); // offset past the icon
+        coinsTextRect.offsetMax = new Vector2(-4f, 0f);
+
+        hudCoinsText.alignment = TextAlignmentOptions.Center;
+        hudCoinsText.fontSize = 14;
+        hudCoinsText.color = Color.white;
         if (GameFontManager.TitleFont != null)
         {
-            bankText.font = GameFontManager.TitleFont;
+            hudCoinsText.font = GameFontManager.TitleFont;
         }
-        bankText.fontStyle = FontStyles.Bold;
-        bankText.outlineColor = new Color32(20, 20, 50, 255);
-        bankText.outlineWidth = 0.2f;
-        bankText.text = SaveSystem.GetGemsBank().ToString();
+        hudCoinsText.fontStyle = FontStyles.Bold;
+        hudCoinsText.outlineColor = new Color32(20, 20, 50, 255);
+        hudCoinsText.outlineWidth = 0.2f;
 
-        // 5. Avatar (Eyeball) Image inside Center Circle
-        GameObject avatarGo = new GameObject("HUD_Avatar");
-        avatarGo.transform.SetParent(hudBarGo.transform, false);
-        RectTransform avatarRect = avatarGo.AddComponent<RectTransform>();
-        avatarRect.anchorMin = new Vector2(0.5f, 0.5f);
-        avatarRect.anchorMax = new Vector2(0.5f, 0.5f);
-        avatarRect.pivot = new Vector2(0.5f, 0.5f);
-        avatarRect.anchoredPosition = new Vector2(0f, 1.5f);
-        avatarRect.sizeDelta = new Vector2(52f, 52f);
+        // Level Capsule (HUD_LevelCover)
+        GameObject levelCover = new GameObject("HUD_LevelCover");
+        levelCover.transform.SetParent(leftCounters.transform, false);
+        RectTransform levelCoverRect = levelCover.AddComponent<RectTransform>();
+        levelCoverRect.anchorMin = new Vector2(0f, 0.5f);
+        levelCoverRect.anchorMax = new Vector2(0f, 0.5f);
+        levelCoverRect.pivot = new Vector2(0f, 0.5f);
+        levelCoverRect.anchoredPosition = new Vector2(204f, 0f); // 90px + 12px + 90px + 12px
+        levelCoverRect.sizeDelta = new Vector2(101f, 32f);
 
-        Image avatarImg = avatarGo.AddComponent<Image>();
-        Sprite eyeballSprite = Resources.Load<Sprite>("player_eyeball_sprite");
-        if (eyeballSprite != null)
+        Image levelCoverImg = levelCover.AddComponent<Image>();
+        levelCoverImg.sprite = GetOrCreateRoundedRectSprite();
+        levelCoverImg.type = Image.Type.Sliced;
+        levelCoverImg.color = new Color32(22, 28, 43, 220); // Semi-transparent dark capsule
+
+        // Level Badge Icon (HUD_LevelIcon)
+        GameObject levelIconGo = new GameObject("HUD_LevelIcon");
+        levelIconGo.transform.SetParent(levelCover.transform, false);
+        RectTransform levelIconRect = levelIconGo.AddComponent<RectTransform>();
+        levelIconRect.anchorMin = new Vector2(0f, 0.5f);
+        levelIconRect.anchorMax = new Vector2(0f, 0.5f);
+        levelIconRect.pivot = new Vector2(0f, 0.5f);
+        levelIconRect.anchoredPosition = new Vector2(6f, 0f);
+        levelIconRect.sizeDelta = new Vector2(24f, 24f);
+
+        Image levelIconImg = levelIconGo.AddComponent<Image>();
+        levelIconImg.sprite = GetOrCreateLevelBadgeSprite();
+        levelIconImg.type = Image.Type.Simple;
+        levelIconImg.color = Color.white;
+
+        // Level Text (e.g. LEVEL 1)
+        GameObject levelTextGo = new GameObject("HUD_LevelText");
+        levelTextGo.transform.SetParent(levelCover.transform, false);
+        hudLevelText = levelTextGo.AddComponent<TextMeshProUGUI>();
+
+        RectTransform levelTextRect = hudLevelText.GetComponent<RectTransform>();
+        levelTextRect.anchorMin = Vector2.zero;
+        levelTextRect.anchorMax = Vector2.one;
+        levelTextRect.sizeDelta = Vector2.zero;
+        levelTextRect.anchoredPosition = Vector2.zero;
+        levelTextRect.offsetMin = new Vector2(28f, 0f); // offset past the badge
+        levelTextRect.offsetMax = new Vector2(-4f, 0f);
+
+        hudLevelText.alignment = TextAlignmentOptions.Center;
+        hudLevelText.fontSize = 13;
+        hudLevelText.color = new Color(0.95f, 0.75f, 0.2f, 1f); // Golden-amber level indicator
+        if (GameFontManager.TitleFont != null)
         {
-            avatarImg.sprite = eyeballSprite;
-            avatarImg.color = Color.white;
-            avatarImg.enabled = true;
+            hudLevelText.font = GameFontManager.TitleFont;
+        }
+        hudLevelText.fontStyle = FontStyles.Bold;
+        hudLevelText.outlineColor = new Color32(20, 20, 50, 255);
+        hudLevelText.outlineWidth = 0.2f;
+        hudLevelText.text = $"LEVEL {SelectedStageIndex}";
+
+
+        // 2. Load the custom timer sprite x_0 from resources
+        Sprite timerSprite = null;
+        Sprite[] timerSprites = Resources.LoadAll<Sprite>("x");
+        if (timerSprites != null && timerSprites.Length > 0)
+        {
+            timerSprite = timerSprites[0];
+        }
+
+        // 3. Dynamically slice timerSprite at runtime into clock and bar sprites
+        Sprite clockSprite = null;
+        Sprite barSprite = null;
+
+        if (timerSprite != null)
+        {
+            Rect rect = timerSprite.rect;
+            float clockWidth = rect.height; // Assuming clock is square (230x230)
+            float barWidth = rect.width - clockWidth; // Remaining is bar (766)
+
+            Rect clockRect = new Rect(rect.x, rect.y, clockWidth, rect.height);
+            Rect barRect = new Rect(rect.x + clockWidth, rect.y, barWidth, rect.height);
+
+            clockSprite = Sprite.Create(timerSprite.texture, clockRect, new Vector2(0.5f, 0.5f), timerSprite.pixelsPerUnit);
+            barSprite = Sprite.Create(timerSprite.texture, barRect, new Vector2(0.5f, 0.5f), timerSprite.pixelsPerUnit);
+        }
+
+        Vector2 timerSize = new Vector2(130f, 30f); // 4.33:1 aspect ratio matching 996x230
+
+        // 4. Timer container anchored to the top-right corner
+        GameObject timerCover = new GameObject("HUD_TimerCover");
+        timerCover.transform.SetParent(uiParent, false);
+        RectTransform timerCoverRect = timerCover.AddComponent<RectTransform>();
+        timerCoverRect.anchorMin = new Vector2(1f, 1f); // Top Right
+        timerCoverRect.anchorMax = new Vector2(1f, 1f);
+        timerCoverRect.pivot = new Vector2(1f, 1f);
+        timerCoverRect.anchoredPosition = new Vector2(-20f, -20f); // Position at top-right corner with margins
+        timerCoverRect.sizeDelta = timerSize;
+        timerCoverRect.localScale = new Vector3(2f, 2f, 1f); // 200% scale
+
+        // 5. Clock Image (left side, width 30, fully colored)
+        GameObject clockGo = new GameObject("HUD_TimerClock");
+        clockGo.transform.SetParent(timerCover.transform, false);
+        RectTransform clockRectTrans = clockGo.AddComponent<RectTransform>();
+        clockRectTrans.anchorMin = new Vector2(0f, 0.5f);
+        clockRectTrans.anchorMax = new Vector2(0f, 0.5f);
+        clockRectTrans.pivot = new Vector2(0f, 0.5f);
+        clockRectTrans.anchoredPosition = Vector2.zero;
+        clockRectTrans.sizeDelta = new Vector2(30f, 30f);
+
+        Image clockImg = clockGo.AddComponent<Image>();
+        if (clockSprite != null)
+        {
+            clockImg.sprite = clockSprite;
+            clockImg.type = Image.Type.Simple;
+            clockImg.color = Color.white;
         }
         else
         {
-            avatarImg.enabled = false;
+            clockImg.sprite = GetOrCreateRoundedRectSprite();
+            clockImg.type = Image.Type.Sliced;
+            clockImg.color = new Color32(230, 80, 80, 255);
         }
 
-        // 6. Level Progress Bar and cover (Right side)
-        GameObject timerCover = new GameObject("HUD_TimerCover");
-        timerCover.transform.SetParent(hudBarGo.transform, false);
-        RectTransform timerCoverRect = timerCover.AddComponent<RectTransform>();
-        timerCoverRect.anchorMin = new Vector2(1f, 0.5f);
-        timerCoverRect.anchorMax = new Vector2(1f, 0.5f);
-        timerCoverRect.pivot = new Vector2(0.5f, 0.5f);
-        timerCoverRect.anchoredPosition = new Vector2(-72.5f, -1.25f);
-        timerCoverRect.sizeDelta = new Vector2(115f, 32f);
-        Image timerCoverImg = timerCover.AddComponent<Image>();
-        timerCoverImg.sprite = GetOrCreateRoundedRectSprite();
-        timerCoverImg.type = Image.Type.Sliced;
-        timerCoverImg.color = new Color32(22, 28, 43, 255);
+        // 6. Empty Shaded Bar Silhouette Background (right side, width 100, shaded dark)
+        GameObject emptyBarGo = new GameObject("HUD_TimerBarEmpty");
+        emptyBarGo.transform.SetParent(timerCover.transform, false);
+        RectTransform emptyBarRectTrans = emptyBarGo.AddComponent<RectTransform>();
+        emptyBarRectTrans.anchorMin = new Vector2(0f, 0.5f);
+        emptyBarRectTrans.anchorMax = new Vector2(0f, 0.5f);
+        emptyBarRectTrans.pivot = new Vector2(0f, 0.5f);
+        emptyBarRectTrans.anchoredPosition = new Vector2(30f, 0f);
+        emptyBarRectTrans.sizeDelta = new Vector2(100f, 30f);
 
-        GameObject progressContainer = new GameObject("HUD_TimerProgress");
-        progressContainer.transform.SetParent(hudBarGo.transform, false);
-        RectTransform progressRect = progressContainer.AddComponent<RectTransform>();
-        progressRect.anchorMin = new Vector2(1f, 0.5f);
-        progressRect.anchorMax = new Vector2(1f, 0.5f);
-        progressRect.pivot = new Vector2(0.5f, 0.5f);
-        progressRect.anchoredPosition = new Vector2(-72.5f, -1.25f);
-        progressRect.sizeDelta = new Vector2(115f, 32f);
+        Image emptyBarImg = emptyBarGo.AddComponent<Image>();
+        if (barSprite != null)
+        {
+            emptyBarImg.sprite = barSprite;
+            emptyBarImg.type = Image.Type.Simple;
+            emptyBarImg.color = new Color32(80, 80, 85, 255); // Dark shaded background
+        }
+        else
+        {
+            emptyBarImg.sprite = GetOrCreateRoundedRectSprite();
+            emptyBarImg.type = Image.Type.Sliced;
+            emptyBarImg.color = new Color32(40, 45, 60, 255);
+        }
 
-        timerProgressFill = progressContainer.AddComponent<Image>();
-        timerProgressFill.sprite = GetOrCreateRoundedRectSprite();
-        timerProgressFill.type = Image.Type.Filled;
-        timerProgressFill.fillMethod = Image.FillMethod.Horizontal;
-        timerProgressFill.fillOrigin = (int)Image.OriginHorizontal.Left;
-        timerProgressFill.color = new Color(0.12f, 0.65f, 0.95f, 0.85f);
-        timerProgressFill.fillAmount = 0f;
+        // 7. Active Progress Bar Foreground (right side, width 100, Type.Filled)
+        GameObject filledBarGo = new GameObject("HUD_TimerBarFilled");
+        filledBarGo.transform.SetParent(timerCover.transform, false);
+        RectTransform filledBarRectTrans = filledBarGo.AddComponent<RectTransform>();
+        filledBarRectTrans.anchorMin = new Vector2(0f, 0.5f);
+        filledBarRectTrans.anchorMax = new Vector2(0f, 0.5f);
+        filledBarRectTrans.pivot = new Vector2(0f, 0.5f);
+        filledBarRectTrans.anchoredPosition = new Vector2(30f, 0f);
+        filledBarRectTrans.sizeDelta = new Vector2(100f, 30f);
 
-        // 7. Timer text centered on the right progress bar
+        timerBarFillImage = filledBarGo.AddComponent<Image>();
+        if (barSprite != null)
+        {
+            timerBarFillImage.sprite = barSprite;
+            timerBarFillImage.type = Image.Type.Filled;
+            timerBarFillImage.fillMethod = Image.FillMethod.Horizontal;
+            timerBarFillImage.fillOrigin = (int)Image.OriginHorizontal.Left;
+            timerBarFillImage.color = Color.white; // Keeps original orange color of sprite
+        }
+        else
+        {
+            timerBarFillImage.sprite = GetOrCreateRoundedRectSprite();
+            timerBarFillImage.type = Image.Type.Filled;
+            timerBarFillImage.fillMethod = Image.FillMethod.Horizontal;
+            timerBarFillImage.fillOrigin = (int)Image.OriginHorizontal.Left;
+            timerBarFillImage.color = new Color(0.95f, 0.5f, 0.1f, 1f); // Orange fallback
+        }
+
+        // 8. Timer Text centered on the progress bar area
         GameObject timerGo = new GameObject("HUD_TimerText");
-        timerGo.transform.SetParent(hudBarGo.transform, false);
+        timerGo.transform.SetParent(timerCover.transform, false);
         RectTransform timerRect = timerGo.AddComponent<RectTransform>();
-        timerRect.anchorMin = new Vector2(1f, 0.5f);
-        timerRect.anchorMax = new Vector2(1f, 0.5f);
+        timerRect.anchorMin = new Vector2(0.5f, 0.5f);
+        timerRect.anchorMax = new Vector2(0.5f, 0.5f);
         timerRect.pivot = new Vector2(0.5f, 0.5f);
-        timerRect.anchoredPosition = new Vector2(-72.5f, -1.25f);
-        timerRect.sizeDelta = new Vector2(115f, 35f);
+        timerRect.anchoredPosition = new Vector2(15f, 0f); // Centered relative to the bar section (x=30 to x=130)
+        timerRect.sizeDelta = new Vector2(100f, 30f);
 
         hudTimerText = timerGo.AddComponent<TextMeshProUGUI>();
         hudTimerText.alignment = TextAlignmentOptions.Center;
-        hudTimerText.fontSize = 20;
+        hudTimerText.fontSize = 18;
         hudTimerText.color = Color.white;
         if (GameFontManager.BodyFont != null)
         {
@@ -320,7 +733,145 @@ public class GameManager : MonoBehaviour
         warnTmp.text = "BOSS INCOMING!";
         warningTextGo.SetActive(false);
 
+        // Create Ability Button programmatically
+        GameObject abilityBtnGo = new GameObject("HUD_AbilityButton");
+        abilityBtnGo.transform.SetParent(uiParent, false);
+        RectTransform abilityBtnRect = abilityBtnGo.AddComponent<RectTransform>();
+        abilityBtnRect.anchorMin = new Vector2(1f, 0f); // Bottom Right
+        abilityBtnRect.anchorMax = new Vector2(1f, 0f);
+        abilityBtnRect.pivot = new Vector2(1f, 0f);
+        abilityBtnRect.anchoredPosition = new Vector2(-40f, 40f);
+        abilityBtnRect.sizeDelta = new Vector2(110f, 110f);
+
+        Image abilityBtnImg = abilityBtnGo.AddComponent<Image>();
+        abilityBtnImg.sprite = GetOrCreateRoundedRectSprite(); // Flat rounded rect
+        abilityBtnImg.type = Image.Type.Sliced;
+
+        hudAbilityButton = abilityBtnGo.AddComponent<Button>();
+
+        // Wire onClick to player's TriggerAbilityIfAvailable with scale bounce feedback
+        hudAbilityButton.onClick.AddListener(() => {
+            if (SoundManager.Instance != null) SoundManager.Instance.PlaySFX("click");
+            StartCoroutine(BounceButtonRoutine(abilityBtnRect));
+
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null) player = GameObject.Find("Player");
+            if (player != null)
+            {
+                PlayerController pc = player.GetComponent<PlayerController>();
+                if (pc != null)
+                {
+                    pc.TriggerAbilityIfAvailable();
+                }
+            }
+        });
+
+        // Add Outline to the button for visual pop
+        Outline btnOutline = abilityBtnGo.AddComponent<Outline>();
+        btnOutline.effectColor = new Color(0f, 0f, 0f, 0.5f);
+        btnOutline.effectDistance = new Vector2(2f, -2f);
+
+        // Add Label text to the button
+        GameObject btnTextGo = new GameObject("Text");
+        btnTextGo.transform.SetParent(abilityBtnGo.transform, false);
+        RectTransform btnTextRect = btnTextGo.AddComponent<RectTransform>();
+        btnTextRect.anchorMin = Vector2.zero;
+        btnTextRect.anchorMax = Vector2.one;
+        btnTextRect.sizeDelta = Vector2.zero;
+
+        hudAbilityButtonText = btnTextGo.AddComponent<TextMeshProUGUI>();
+        hudAbilityButtonText.alignment = TextAlignmentOptions.Center;
+        hudAbilityButtonText.fontSize = 15;
+        hudAbilityButtonText.color = Color.white;
+        hudAbilityButtonText.raycastTarget = false; // Prevent blocking click events
+        if (GameFontManager.TitleFont != null)
+        {
+            hudAbilityButtonText.font = GameFontManager.TitleFont;
+        }
+        hudAbilityButtonText.fontStyle = FontStyles.Bold;
+        hudAbilityButtonText.outlineColor = new Color32(20, 20, 50, 255);
+        hudAbilityButtonText.outlineWidth = 0.2f;
+
+        // Apply initial visual settings based on selected player
+        int initialUses = 5;
+        GameObject initialPlayer = GameObject.FindGameObjectWithTag("Player");
+        if (initialPlayer == null) initialPlayer = GameObject.Find("Player");
+        if (initialPlayer != null)
+        {
+            PlayerController pc = initialPlayer.GetComponent<PlayerController>();
+            if (pc != null)
+            {
+                initialUses = pc.AbilityUsesLeft;
+            }
+        }
+        UpdateAbilityButtonVisuals(initialUses);
+
+        // --- HUD MUTE BUTTON ---
+        GameObject hudMuteGo = new GameObject("HUD_MuteButton");
+        hudMuteGo.transform.SetParent(uiParent, false);
+        RectTransform hudMuteRect = hudMuteGo.AddComponent<RectTransform>();
+        hudMuteRect.anchorMin = new Vector2(1f, 1f); // Top Right
+        hudMuteRect.anchorMax = new Vector2(1f, 1f);
+        hudMuteRect.pivot = new Vector2(1f, 1f);
+        hudMuteRect.anchoredPosition = new Vector2(-20f, -90f); // Right below timer cover (bottom of timer is -80)
+        hudMuteRect.sizeDelta = new Vector2(36f, 36f);
+        hudMuteRect.localScale = new Vector3(2f, 2f, 1f); // 200% scale to match other HUD elements
+
+        Image hudMuteImg = hudMuteGo.AddComponent<Image>();
+        hudMuteImg.sprite = GetOrCreateRoundedRectSprite();
+        hudMuteImg.type = Image.Type.Sliced;
+
+        Button hudMuteBtn = hudMuteGo.AddComponent<Button>();
+        
+        // Add Outline to the button for visual pop
+        Outline hudMuteOutline = hudMuteGo.AddComponent<Outline>();
+        hudMuteOutline.effectColor = new Color(0f, 0f, 0f, 0.5f);
+        hudMuteOutline.effectDistance = new Vector2(2f, -2f);
+
+        // Add Label text to the button
+        GameObject hudMuteTextGo = new GameObject("Text");
+        hudMuteTextGo.transform.SetParent(hudMuteGo.transform, false);
+        RectTransform hudMuteTextRect = hudMuteTextGo.AddComponent<RectTransform>();
+        hudMuteTextRect.anchorMin = Vector2.zero;
+        hudMuteTextRect.anchorMax = Vector2.one;
+        hudMuteTextRect.sizeDelta = Vector2.zero;
+
+        TextMeshProUGUI hudMuteText = hudMuteTextGo.AddComponent<TextMeshProUGUI>();
+        hudMuteText.alignment = TextAlignmentOptions.Center;
+        hudMuteText.fontSize = 16;
+        hudMuteText.color = Color.white;
+        hudMuteText.raycastTarget = false;
+        if (GameFontManager.TitleFont != null)
+        {
+            hudMuteText.font = GameFontManager.TitleFont;
+        }
+        hudMuteText.fontStyle = FontStyles.Bold;
+        hudMuteText.outlineColor = new Color32(20, 20, 50, 255);
+        hudMuteText.outlineWidth = 0.2f;
+
+        // Function to update the button display state
+        System.Action updateHudMuteVisuals = () =>
+        {
+            bool isMuted = SoundManager.Instance != null && SoundManager.Instance.IsMuted;
+            hudMuteText.text = isMuted ? "🔇" : "🔊";
+            hudMuteImg.color = isMuted ? new Color(0.9f, 0.25f, 0.25f, 1.0f) : new Color(0.15f, 0.55f, 0.9f, 1.0f);
+        };
+
+        // Initialize state
+        updateHudMuteVisuals();
+
+        hudMuteBtn.onClick.AddListener(() =>
+        {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.ToggleMute();
+                SoundManager.Instance.PlaySFX("click");
+            }
+            updateHudMuteVisuals();
+        });
+
         UpdateScoreUI();
+        UpdateCoinsUI();
         UpdateHUDTimerText();
     }
 
@@ -348,19 +899,21 @@ public class GameManager : MonoBehaviour
         if (IsBossTime)
         {
             hudTimerText.text = "BOSS!";
-            if (timerProgressFill != null)
+            if (timerBarFillImage != null)
             {
-                timerProgressFill.fillAmount = 1f;
+                timerBarFillImage.fillAmount = 0f;
             }
         }
         else
         {
-            int minutes = Mathf.FloorToInt(TimeRemaining / 60f);
-            int seconds = Mathf.FloorToInt(TimeRemaining % 60f);
-            hudTimerText.text = $"{minutes:D2}:{seconds:D2}";
-            if (timerProgressFill != null && CurrentLevelConfig != null && CurrentLevelConfig.duration > 0f)
+            // Countdown text in seconds format (e.g. 59s)
+            int secondsRemaining = Mathf.CeilToInt(TimeRemaining);
+            hudTimerText.text = $"{secondsRemaining}s";
+            
+            if (timerBarFillImage != null && CurrentLevelConfig != null && CurrentLevelConfig.duration > 0f)
             {
-                timerProgressFill.fillAmount = 1f - (TimeRemaining / CurrentLevelConfig.duration);
+                float ratio = TimeRemaining / CurrentLevelConfig.duration;
+                timerBarFillImage.fillAmount = ratio;
             }
         }
     }
@@ -373,6 +926,11 @@ public class GameManager : MonoBehaviour
             warningTextGo.SetActive(true);
             Destroy(warningTextGo, 3.0f); // Auto-hide warning after 3 seconds
         }
+
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySFX("boss_warning");
+        }
     }
 
     public void OnBossDefeated()
@@ -380,9 +938,15 @@ public class GameManager : MonoBehaviour
         if (isGameOver || isVictory) return;
         isVictory = true;
 
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.StopBGM();
+            SoundManager.Instance.PlayBGM("menu"); // Play menu BGM as victory theme
+        }
+
         // Save Gems with 25 bonus gems for clearing!
         int bonusGems = 25;
-        SaveSystem.AddGems(score + bonusGems);
+        SaveSystem.AddGems(score + coins + bonusGems);
 
         // Unlock next stage in progression
         SaveSystem.UnlockStage(SelectedStageIndex + 1);
@@ -391,11 +955,15 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
 
         ShowVictoryPanel(bonusGems);
+
+        // Send stats to Android Bridge
+        SendVictoryToAndroid(score, coins, bonusGems);
+        SendGemsUpdatedToAndroid(SaveSystem.GetGemsBank());
     }
 
     private void ShowVictoryPanel(int bonusGems)
     {
-        Canvas canvas = FindAnyObjectByType<Canvas>();
+        Canvas canvas = GetMainCanvas();
         if (canvas == null) return;
 
         Transform uiParent = canvas.transform;
@@ -450,15 +1018,15 @@ public class GameManager : MonoBehaviour
         statsBg.type = Image.Type.Sliced;
         statsBg.color = Color.white;
 
-        string rewardStr = $"Gems Collected: {score}\nClear Bonus: +{bonusGems} Gems!\n\nTotal Bank: {SaveSystem.GetGemsBank()}";
+        string rewardStr = $"Gems Collected: {score}\nCoins Collected: {coins}\nClear Bonus: +{bonusGems} Gems!\n\nTotal Bank: {SaveSystem.GetGemsBank()}";
         CreateText(statsBox, "RewardDetails", rewardStr, 18, Vector2.zero, new Color(0.4f, 1f, 0.7f, 1f));
 
         // Buttons
         float buttonY = -120f;
-        // Button 1: Next Stage (only if there is a next stage config)
+        // Button 1: Next Level (only if there is a next level config)
         if (SelectedStageIndex < 3)
         {
-            CreateButton(dialog, "NextButton", "NEXT STAGE", new Vector2(200f, 44f), new Vector2(0f, buttonY), () =>
+            CreateButton(dialog, "NextButton", "NEXT LEVEL", new Vector2(200f, 44f), new Vector2(0f, buttonY), () =>
             {
                 SelectedStage = SelectedStageIndex + 1;
                 RestartGame();
@@ -528,7 +1096,10 @@ public class GameManager : MonoBehaviour
         img.type = Image.Type.Sliced;
         
         Button btn = go.AddComponent<Button>();
-        btn.onClick.AddListener(() => onClickAction?.Invoke());
+        btn.onClick.AddListener(() => {
+            if (SoundManager.Instance != null) SoundManager.Instance.PlaySFX("click");
+            onClickAction?.Invoke();
+        });
         
         GameObject labelGo = new GameObject("Text");
         labelGo.transform.SetParent(go.transform, false);
@@ -572,6 +1143,14 @@ public class GameManager : MonoBehaviour
         if (gemPrefab != null)
         {
             Instantiate(gemPrefab, position, Quaternion.identity);
+
+            // Level 1 Double Gem Drop hook!
+            if (SelectedStageIndex == 1)
+            {
+                // Spawn a second gem with a tiny offset so they don't overlap completely
+                Vector3 offset = new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), 0f);
+                Instantiate(gemPrefab, position + offset, Quaternion.identity);
+            }
         }
     }
 
@@ -582,13 +1161,22 @@ public class GameManager : MonoBehaviour
         if (isGameOver || isVictory) return;
         isGameOver = true;
 
-        // Save collected gems to bank
-        SaveSystem.AddGems(score);
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.StopBGM();
+        }
+
+        // Save collected gems and coins to bank
+        SaveSystem.AddGems(score + coins);
 
         // Freeze game
         Time.timeScale = 0f;
 
         ShowGameOverPanel();
+
+        // Send stats to Android Bridge
+        SendGameOverToAndroid(score, coins);
+        SendGemsUpdatedToAndroid(SaveSystem.GetGemsBank());
     }
 
     private void ShowGameOverPanel()
@@ -599,7 +1187,7 @@ public class GameManager : MonoBehaviour
             gameOverPanel.SetActive(false);
         }
 
-        Canvas canvas = FindAnyObjectByType<Canvas>();
+        Canvas canvas = GetMainCanvas();
         if (canvas == null) return;
 
         Transform uiParent = canvas.transform;
@@ -654,7 +1242,7 @@ public class GameManager : MonoBehaviour
         statsBg.type = Image.Type.Sliced;
         statsBg.color = Color.white;
 
-        string rewardStr = $"Gems Collected: {score}\n\nTotal Bank: {SaveSystem.GetGemsBank()}";
+        string rewardStr = $"Gems Collected: {score}\nCoins Collected: {coins}\n\nTotal Bank: {SaveSystem.GetGemsBank()}";
         CreateText(statsBox, "RewardDetails", rewardStr, 18, Vector2.zero, new Color(1f, 0.7f, 0.7f, 1f));
 
         // Buttons
@@ -679,13 +1267,173 @@ public class GameManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 
+    private Canvas GetMainCanvas()
+    {
+        Canvas canvas = null;
+        GameObject canvasGo = GameObject.Find("Canvas");
+        if (canvasGo != null)
+        {
+            canvas = canvasGo.GetComponent<Canvas>();
+        }
+        if (canvas == null)
+        {
+            canvas = FindAnyObjectByType<Canvas>();
+        }
+        return canvas;
+    }
+
     // StyleScoreUI is now obsolete as we use CreateUnifiedHUD instead.
 
     private void UpdateScoreUI()
     {
-        if (scoreText != null)
+        Debug.Log($"[HUD] UpdateScoreUI - scoreText: {scoreText}, hudScoreText: {hudScoreText}, score: {score}");
+        if (hudScoreText != null)
+        {
+            hudScoreText.text = score.ToString();
+            Debug.Log($"[HUD] hudScoreText.text updated to {hudScoreText.text}");
+        }
+        else if (scoreText != null)
         {
             scoreText.text = score.ToString();
+            Debug.Log($"[HUD] scoreText.text updated to {scoreText.text}");
         }
+        else
+        {
+            Debug.LogError("[HUD] UpdateScoreUI - both scoreText and hudScoreText are null!");
+        }
+    }
+
+    public void AddCoins(int amount)
+    {
+        coins += amount;
+        UpdateCoinsUI();
+    }
+
+    private void UpdateCoinsUI()
+    {
+        Debug.Log($"[HUD] UpdateCoinsUI - hudCoinsText: {hudCoinsText}, coins: {coins}");
+        if (hudCoinsText != null)
+        {
+            hudCoinsText.text = coins.ToString();
+            Debug.Log($"[HUD] hudCoinsText.text updated to {hudCoinsText.text}");
+        }
+        else
+        {
+            Debug.LogError("[HUD] UpdateCoinsUI - hudCoinsText is null!");
+        }
+    }
+
+    public void DisableAbilityButton()
+    {
+        UpdateAbilityButtonVisuals(0);
+    }
+
+    public void UpdateAbilityButtonUses(int usesLeft)
+    {
+        UpdateAbilityButtonVisuals(usesLeft);
+    }
+
+    public void UpdateAbilityButtonVisuals(int usesLeft)
+    {
+        if (hudAbilityButton == null) return;
+
+        Image abilityBtnImg = hudAbilityButton.GetComponent<Image>();
+        string activePlayer = PlayerPrefs.GetString("SelectedPlayer", "Virgil");
+
+        if (usesLeft <= 0)
+        {
+            if (abilityBtnImg != null)
+            {
+                abilityBtnImg.color = new Color(0.4f, 0.4f, 0.4f, 0.8f); // Gray out
+            }
+            if (hudAbilityButtonText != null)
+            {
+                hudAbilityButtonText.text = "❌\nUSED";
+            }
+            hudAbilityButton.interactable = false;
+            return;
+        }
+
+        hudAbilityButton.interactable = true;
+        if (activePlayer == "Vini")
+        {
+            if (abilityBtnImg != null)
+            {
+                abilityBtnImg.color = new Color(0.95f, 0.5f, 0.1f, 0.9f); // Orange tint
+            }
+            if (hudAbilityButtonText != null)
+            {
+                hudAbilityButtonText.text = $"⚡\nSAMBA FLARE\n({usesLeft} LEFT)";
+            }
+        }
+        else
+        {
+            if (abilityBtnImg != null)
+            {
+                abilityBtnImg.color = new Color(0.15f, 0.45f, 0.9f, 0.9f); // Cyan/blue tint
+            }
+            if (hudAbilityButtonText != null)
+            {
+                hudAbilityButtonText.text = $"🛡️\nSHIELD WAVE\n({usesLeft} LEFT)";
+            }
+        }
+    }
+
+    private System.Collections.IEnumerator BounceButtonRoutine(RectTransform buttonRect)
+    {
+        Vector3 originalScale = Vector3.one;
+        float elapsed = 0f;
+        float duration = 0.1f;
+        
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float pct = elapsed / duration;
+            buttonRect.localScale = Vector3.Lerp(originalScale, originalScale * 0.88f, pct);
+            yield return null;
+        }
+        
+        elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float pct = elapsed / duration;
+            buttonRect.localScale = Vector3.Lerp(originalScale * 0.88f, originalScale, pct);
+            yield return null;
+        }
+        buttonRect.localScale = originalScale;
+    }
+
+    // --- ANDROID BRIDGE INCOMING HANDLERS ---
+    
+    public void AndroidAddGems(int amount)
+    {
+        SaveSystem.AddGems(amount);
+        UpdateScoreUI();
+        UpdateCoinsUI();
+        if (MainMenuShopUI.Instance != null)
+        {
+            MainMenuShopUI.Instance.RefreshShopUI();
+        }
+        
+        // Sync back current gems bank balance to Android
+        SendGemsUpdatedToAndroid(SaveSystem.GetGemsBank());
+    }
+
+    public void AndroidSelectPlayer(string characterId)
+    {
+        PlayerPrefs.SetString("SelectedPlayer", characterId);
+        PlayerPrefs.Save();
+
+        if (MainMenuShopUI.Instance != null)
+        {
+            MainMenuShopUI.Instance.UpdateActivePlayerVisuals();
+            MainMenuShopUI.Instance.SetupUI();
+        }
+    }
+
+    public void AndroidRestartGame()
+    {
+        RestartGame();
     }
 }

@@ -13,7 +13,7 @@ public class SpriteSheetAnimator : MonoBehaviour
     private float timer = 0f;
     private bool isMoving = false;
 
-    private void Start()
+    public void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer == null)
@@ -22,9 +22,22 @@ public class SpriteSheetAnimator : MonoBehaviour
         }
 
         rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            rb = GetComponentInParent<Rigidbody2D>();
+        }
 
-        // Load all sub-sprites dynamically from Resources folder
-        resourcePath = "vergil_van_dijk_2";
+        // Load all sub-sprites dynamically from Resources folder based on selection
+        string selectedPlayer = PlayerPrefs.GetString("SelectedPlayer", "Virgil");
+        if (selectedPlayer == "Vini")
+        {
+            resourcePath = "vini";
+        }
+        else
+        {
+            resourcePath = "vergil_van_dijk";
+        }
+
         frames = Resources.LoadAll<Sprite>(resourcePath);
         if (frames == null || frames.Length == 0)
         {
@@ -39,6 +52,7 @@ public class SpriteSheetAnimator : MonoBehaviour
         }
         else
         {
+            Debug.Log($"SpriteSheetAnimator: Successfully loaded {frames.Length} frames. First frame size: {frames[0].rect.width}x{frames[0].rect.height}, PPU: {frames[0].pixelsPerUnit}");
             if (spriteRenderer != null)
             {
                 spriteRenderer.sprite = frames[0];
@@ -64,8 +78,17 @@ public class SpriteSheetAnimator : MonoBehaviour
         }
         else
         {
-            float moveX = Input.GetAxisRaw("Horizontal");
-            float moveY = Input.GetAxisRaw("Vertical");
+            float moveX = 0f;
+            float moveY = 0f;
+            var keyboard = UnityEngine.InputSystem.Keyboard.current;
+            if (keyboard != null)
+            {
+                if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed) moveY = 1f;
+                else if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed) moveY = -1f;
+
+                if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed) moveX = -1f;
+                else if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed) moveX = 1f;
+            }
             isMoving = (moveX != 0f || moveY != 0f);
         }
 

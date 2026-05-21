@@ -13,20 +13,26 @@ public class PlayerHealth : MonoBehaviour
 
     private int currentHealth;
     private bool isInvincible = false;
+    private bool isSprintInvincible = false;
     private SpriteRenderer spriteRenderer;
     private Coroutine healthBarCoroutine;
 
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
     public bool IsInvincible => isInvincible;
+    public bool IsSprintInvincible => isSprintInvincible;
 
     private void Start()
     {
         // Load upgraded maxHealth from PlayerStats
-        PlayerStats stats = GetComponent<PlayerStats>();
+        PlayerStats stats = PlayerStats.Instance;
         if (stats == null)
         {
-            stats = gameObject.AddComponent<PlayerStats>();
+            stats = GetComponent<PlayerStats>();
+            if (stats == null)
+            {
+                stats = gameObject.AddComponent<PlayerStats>();
+            }
         }
         if (stats != null)
         {
@@ -40,9 +46,14 @@ public class PlayerHealth : MonoBehaviour
         RepositionHealthBar();
     }
 
+    public void SetSprintInvincible(bool val)
+    {
+        isSprintInvincible = val;
+    }
+
     public void TakeDamage(int amount)
     {
-        if (isInvincible || currentHealth <= 0) return;
+        if (isInvincible || isSprintInvincible || currentHealth <= 0) return;
 
         currentHealth -= amount;
         if (currentHealth < 0) currentHealth = 0;
@@ -60,6 +71,10 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySFX("player_hurt");
+            }
             StartCoroutine(FlashRoutine());
         }
     }
@@ -74,6 +89,11 @@ public class PlayerHealth : MonoBehaviour
 
         var rb = GetComponent<Rigidbody2D>();
         if (rb != null) rb.linearVelocity = Vector2.zero;
+
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySFX("player_death");
+        }
 
         StartCoroutine(DeathScaleRoutine());
 
@@ -151,6 +171,11 @@ public class PlayerHealth : MonoBehaviour
         healthBarCoroutine = null;
     }
 
+    private float cachedHealthBarOffset = -1f;
+    private Sprite lastCachedSprite;
+    private Vector3 initialCanvasScale;
+    private bool initializedCanvasScale = false;
+
     public void RepositionHealthBar()
     {
         if (healthBarFill != null)
@@ -158,6 +183,12 @@ public class PlayerHealth : MonoBehaviour
             Canvas canvas = healthBarFill.GetComponentInParent<Canvas>();
             if (canvas != null && canvas.transform.parent == transform)
             {
+                if (!initializedCanvasScale)
+                {
+                    initialCanvasScale = canvas.transform.localScale;
+                    initializedCanvasScale = true;
+                }
+
                 SpriteRenderer sr = GetComponent<SpriteRenderer>();
                 if (sr == null)
                 {
@@ -166,18 +197,41 @@ public class PlayerHealth : MonoBehaviour
 
                 if (sr != null && sr.sprite != null)
                 {
-                    float spriteHeight = sr.sprite.rect.height / sr.sprite.pixelsPerUnit;
-                    float playerScaleY = transform.localScale.y;
-                    if (playerScaleY == 0f) playerScaleY = 1f;
+                    if (sr.sprite != lastCachedSprite)
+                    {
+                        lastCachedSprite = sr.sprite;
+                        float spriteHeight = sr.sprite.rect.height / sr.sprite.pixelsPerUnit;
+                        float pivotY = sr.sprite.pivot.y / sr.sprite.rect.height;
+                        float playerScaleY = transform.localScale.y;
+                        if (playerScaleY == 0f) playerScaleY = 1f;
 
-                    // Place health bar slightly above the player's head, accounting for scale
-                    float worldTargetHeight = (spriteHeight * 0.5f) * playerScaleY + 0.28f;
-                    float localY = worldTargetHeight / playerScaleY;
-
-                    canvas.transform.localPosition = new Vector3(0f, localY, 0f);
+                        // Calculate offset dynamically based on the sprite's height and pivot Y
+                        float distanceToTop = spriteHeight * (1.0f - pivotY);
+                        cachedHealthBarOffset = distanceToTop * playerScaleY + 0.28f;
+                    }
                 }
+                else if (cachedHealthBarOffset < 0f)
+                {
+                    cachedHealthBarOffset = 1.0f; // Fallback
+                }
+
+                // Inverse scale the canvas so it doesn't squash/stretch with the player,
+                // but preserve its original small scale used for World Space Canvas!
+                canvas.transform.localScale = new Vector3(
+                    initialCanvasScale.x / transform.localScale.x,
+                    initialCanvasScale.y / transform.localScale.y,
+                    initialCanvasScale.z / transform.localScale.z
+                );
+
+                // Set world position directly using the fixed offset
+                canvas.transform.position = transform.position + new Vector3(0f, cachedHealthBarOffset, 0f);
             }
         }
+    }
+
+    private void LateUpdate()
+    {
+        RepositionHealthBar();
     }
 
     private static Sprite roundedRectSprite;

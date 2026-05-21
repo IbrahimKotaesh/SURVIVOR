@@ -7,6 +7,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float attackRange = 6f;
     [SerializeField] private float fireRate = 0.45f; // Fast fire rate to keep enemies away
 
+    public GameObject ProjectilePrefab => projectilePrefab;
+
     private float fireTimer;
 
     private void Start()
@@ -73,6 +75,11 @@ public class PlayerAttack : MonoBehaviour
         if (projectileScript != null)
         {
             projectileScript.Setup(target.position);
+        }
+
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySFX("shoot");
         }
     }
 }
