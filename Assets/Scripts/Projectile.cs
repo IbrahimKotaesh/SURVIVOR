@@ -18,7 +18,8 @@ public class Projectile : MonoBehaviour
         float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         
-        Destroy(gameObject, lifeTime);
+        // Start lifetime coroutine
+        StartCoroutine(LifeTimeRoutine());
     }
 
     public void SetupCustom(Vector3 direction, float customSpeed, int customDamage, bool piercing, float curve = 0f)
@@ -32,7 +33,14 @@ public class Projectile : MonoBehaviour
         float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        Destroy(gameObject, lifeTime);
+        // Start lifetime coroutine
+        StartCoroutine(LifeTimeRoutine());
+    }
+
+    private System.Collections.IEnumerator LifeTimeRoutine()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        ObjectPoolManager.Instance.ReturnObjectToPool(gameObject);
     }
 
     private void Update()
@@ -63,7 +71,7 @@ public class Projectile : MonoBehaviour
             enemy.TakeDamage(damage);
             if (!isPiercing)
             {
-                Destroy(gameObject);
+                ObjectPoolManager.Instance.ReturnObjectToPool(gameObject);
             }
         }
     }

@@ -4,6 +4,40 @@ using UnityEngine;
 public class CollectibleHeart : MonoBehaviour
 {
     private bool isCollected = false;
+    private TrailRenderer trail;
+
+    private void Awake()
+    {
+        // Setup TrailRenderer once for pooling
+        trail = gameObject.AddComponent<TrailRenderer>();
+        trail.time = 0.3f;
+        trail.startWidth = 0.3f;
+        trail.endWidth = 0f;
+        trail.material = new Material(Shader.Find("Sprites/Default"));
+        trail.startColor = new Color(1f, 0.25f, 0.4f, 0.85f);
+        trail.endColor = new Color(1f, 0.25f, 0.4f, 0f);
+        trail.enabled = false;
+        trail.sortingOrder = 4;
+    }
+
+    private void OnEnable()
+    {
+        isCollected = false;
+        transform.localScale = new Vector3(0.85f, 0.85f, 1f);
+        transform.rotation = Quaternion.identity;
+        
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = true;
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null) rb.simulated = true;
+
+        if (trail != null)
+        {
+            trail.Clear();
+            trail.enabled = false;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -71,9 +105,6 @@ public class CollectibleHeart : MonoBehaviour
         float flyDuration = 0.4f;
         elapsed = 0f;
 
-        float particleSpawnTimer = 0f;
-        float particleInterval = 0.04f; // Spawn a trail particle every 40ms
-
         while (elapsed < flyDuration)
         {
             if (playerTransform == null) break; // Player died or became null
@@ -90,13 +121,8 @@ public class CollectibleHeart : MonoBehaviour
             // Subtle rotation towards player or rocking motion
             transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Sin(ratio * Mathf.PI * 4f) * 45f);
 
-            // Spawn trail particles
-            particleSpawnTimer += Time.deltaTime;
-            if (particleSpawnTimer >= particleInterval)
-            {
-                particleSpawnTimer = 0f;
-                SpawnTrailParticle(transform.position);
-            }
+            // Enable TrailRenderer instead of spawning particles manually
+            if (trail != null) trail.enabled = true;
 
             yield return null;
         }
@@ -111,57 +137,6 @@ public class CollectibleHeart : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
-    }
-
-    private void SpawnTrailParticle(Vector3 pos)
-    {
-        GameObject pGo = new GameObject("HeartTrailParticle");
-        pGo.transform.position = pos;
-        
-        // Randomize size
-        float scale = Random.Range(0.12f, 0.25f);
-        pGo.transform.localScale = new Vector3(scale, scale, 1f);
-
-        SpriteRenderer sr = pGo.AddComponent<SpriteRenderer>();
-        sr.sprite = DeathSplashEffect.GetOrCreateCircleSprite();
-        
-        // Pinkish-red glowing trail color
-        sr.color = new Color(1f, 0.25f, 0.4f, 0.85f);
-        sr.sortingOrder = 4; // Render right behind the heart
-
-        // Add a slight outward expansion drift
-        Vector3 drift = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f).normalized * Random.Range(0.3f, 0.8f);
-
-        StartCoroutine(AnimateTrailParticle(pGo, sr, drift));
-    }
-
-    private IEnumerator AnimateTrailParticle(GameObject pGo, SpriteRenderer sr, Vector3 drift)
-    {
-        float duration = 0.35f;
-        float elapsed = 0f;
-        Vector3 startScale = pGo.transform.localScale;
-        Color startColor = sr.color;
-
-        while (elapsed < duration)
-        {
-            if (pGo == null) yield break;
-            elapsed += Time.deltaTime;
-            float ratio = Mathf.Clamp01(elapsed / duration);
-
-            // Move the particle along the drift direction
-            pGo.transform.position += drift * Time.deltaTime;
-
-            // Fade and shrink
-            sr.color = new Color(startColor.r, startColor.g, startColor.b, startColor.a * (1f - ratio));
-            pGo.transform.localScale = Vector3.Lerp(startScale, Vector3.zero, ratio);
-
-            yield return null;
-        }
-
-        if (pGo != null)
-        {
-            Destroy(pGo);
-        }
+        ObjectPoolManager.Instance.ReturnObjectToPool(gameObject);
     }
 }

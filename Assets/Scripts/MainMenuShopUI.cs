@@ -241,7 +241,7 @@ public class MainMenuShopUI : MonoBehaviour
         GameObject lobbyCard = new GameObject("LobbyCard");
         lobbyCard.transform.SetParent(menuPanel.transform, false);
         RectTransform lobbyRect = lobbyCard.AddComponent<RectTransform>();
-        lobbyRect.sizeDelta = new Vector2(660f, 620f); // Height increased to 620 to fit character selection
+        lobbyRect.sizeDelta = new Vector2(900f, 850f); // Massively increased for cartoony look
         lobbyRect.anchoredPosition = Vector2.zero;
 
         Image lobbyImg = lobbyCard.AddComponent<Image>();
@@ -252,16 +252,16 @@ public class MainMenuShopUI : MonoBehaviour
         // Glowing cyan outline for the card
         Outline cardOutline = lobbyCard.AddComponent<Outline>();
         cardOutline.effectColor = new Color(0.7f, 0.4f, 0.9f, 0.3f);
-        cardOutline.effectDistance = new Vector2(2f, 2f);
+        cardOutline.effectDistance = new Vector2(4f, -4f); // Thicker shadow/outline
 
         // --- TITLE ---
-        CreateText(lobbyCard, "TitleText", "EYES OF THE ECLIPSE", 36, new Vector2(0, 255), TextAlignmentOptions.Center, true);
+        CreateText(lobbyCard, "TitleText", "EYES OF THE ECLIPSE", 56, new Vector2(0, 360), TextAlignmentOptions.Center, true);
 
         // --- MUTE TOGGLE BUTTON ---
         bool soundMuted = SoundManager.Instance != null && SoundManager.Instance.IsMuted;
         string muteText = soundMuted ? "🔇" : "🔊";
         Color muteBtnColor = soundMuted ? new Color(0.9f, 0.25f, 0.25f, 1f) : new Color(0.15f, 0.55f, 0.9f, 1f);
-        CreateButton(lobbyCard, "MuteButton", muteText, new Vector2(44f, 44f), new Vector2(285f, 260f), () =>
+        CreateButton(lobbyCard, "MuteButton", muteText, new Vector2(64f, 64f), new Vector2(380f, 360f), () =>
         {
             if (SoundManager.Instance != null)
             {
@@ -271,7 +271,7 @@ public class MainMenuShopUI : MonoBehaviour
         }, muteBtnColor);
 
         // --- GEMS BALANCE ---
-        gemsText = CreateText(lobbyCard, "GemsBankText", "Gems Bank: " + SaveSystem.GetGemsBank(), 20, new Vector2(0, 205));
+        gemsText = CreateText(lobbyCard, "GemsBankText", "Gems Bank: " + SaveSystem.GetGemsBank(), 28, new Vector2(0, 290));
         gemsText.color = new Color(0.12f, 0.58f, 0.92f, 1f); // Rich sapphire blue
         gemsText.outlineColor = new Color32(20, 20, 50, 255);
         gemsText.outlineWidth = 0.2f;
@@ -280,8 +280,8 @@ public class MainMenuShopUI : MonoBehaviour
         GameObject shopBackdrop = new GameObject("ShopBackdrop");
         shopBackdrop.transform.SetParent(lobbyCard.transform, false);
         RectTransform backdropRect = shopBackdrop.AddComponent<RectTransform>();
-        backdropRect.sizeDelta = new Vector2(580, 180);
-        backdropRect.anchoredPosition = new Vector2(0, 75);
+        backdropRect.sizeDelta = new Vector2(800f, 320f);
+        backdropRect.anchoredPosition = new Vector2(0, 100);
         Image backdropImg = shopBackdrop.AddComponent<Image>();
         backdropImg.sprite = GameSpriteManager.GetSprite("panel_blue_top");
         backdropImg.type = Image.Type.Sliced;
@@ -292,8 +292,8 @@ public class MainMenuShopUI : MonoBehaviour
         backdropOutline.effectDistance = new Vector2(1f, 1f);
 
         // --- UPGRADE ROWS ---
-        float startY = 50;
-        float spacingY = 50;
+        float startY = 80;
+        float spacingY = 80;
 
         // HP Row
         CreateUpgradeRow("Max HP", SaveSystem.HPKey, 0, startY - (0 * spacingY), shopBackdrop,
@@ -308,29 +308,31 @@ public class MainMenuShopUI : MonoBehaviour
             out fireRateText, out fireRateProgressFill, out fireRateButton, out fireRateButtonText, () => TryUpgrade(SaveSystem.FireRateKey));
 
         // --- SELECT PLAYER ---
-        CreateText(lobbyCard, "CharacterSelectLabel", "SELECT PLAYER:", 16, new Vector2(0, -45), TextAlignmentOptions.Center, true);
+        CreateText(lobbyCard, "CharacterSelectLabel", "SELECT PLAYER:", 22, new Vector2(0, -90), TextAlignmentOptions.Center, true);
         
         string selectedPlayer = PlayerPrefs.GetString("SelectedPlayer", "Virgil");
         
         // Virgil Button
-        CreatePlayerButton(lobbyCard, "Player_Virgil_Btn", "VIRGIL VAN DIJK", new Vector2(170, 38), new Vector2(-190, -85), "Virgil", selectedPlayer == "Virgil");
+        CreatePlayerButton(lobbyCard, "Player_Virgil_Btn", "VIRGIL VAN DIJK", new Vector2(240, 50), new Vector2(-260, -145), "Virgil", selectedPlayer == "Virgil");
         
         // Vini Button
-        CreatePlayerButton(lobbyCard, "Player_Vini_Btn", "VINICIUS JR.", new Vector2(170, 38), new Vector2(0, -85), "Vini", selectedPlayer == "Vini");
+        CreatePlayerButton(lobbyCard, "Player_Vini_Btn", "VINICIUS JR.", new Vector2(240, 50), new Vector2(0, -145), "Vini", selectedPlayer == "Vini");
 
         // Yamal Button
-        CreatePlayerButton(lobbyCard, "Player_Yamal_Btn", "LAMINE YAMAL", new Vector2(170, 38), new Vector2(190, -85), "Yamal", selectedPlayer == "Yamal");
+        CreatePlayerButton(lobbyCard, "Player_Yamal_Btn", "LAMINE YAMAL", new Vector2(240, 50), new Vector2(260, -145), "Yamal", selectedPlayer == "Yamal");
 
         // --- LEVEL SELECTION LABEL ---
-        CreateText(lobbyCard, "LevelSelectLabel", "SELECT LEVEL:", 16, new Vector2(0, -145), TextAlignmentOptions.Center, true);
+        CreateText(lobbyCard, "LevelSelectLabel", "SELECT LEVEL:", 22, new Vector2(0, -220), TextAlignmentOptions.Center, true);
 
-        // Create Stage Selection Buttons
-        CreateStageButton(lobbyCard, "Stage1_Btn", "LEVEL 1", new Vector2(130, 36), new Vector2(-150, -185), 1);
-        CreateStageButton(lobbyCard, "Stage2_Btn", "LEVEL 2", new Vector2(130, 36), new Vector2(0, -185), 2);
-        CreateStageButton(lobbyCard, "Stage3_Btn", "LEVEL 3", new Vector2(130, 36), new Vector2(150, -185), 3);
+        // Create Stage Selection Buttons (5 levels layout)
+        CreateStageButton(lobbyCard, "Stage1_Btn", "LEVEL 1", new Vector2(130, 50), new Vector2(-280, -275), 1);
+        CreateStageButton(lobbyCard, "Stage2_Btn", "LEVEL 2", new Vector2(130, 50), new Vector2(-140, -275), 2);
+        CreateStageButton(lobbyCard, "Stage3_Btn", "LEVEL 3", new Vector2(130, 50), new Vector2(0, -275), 3);
+        CreateStageButton(lobbyCard, "Stage4_Btn", "LEVEL 4", new Vector2(130, 50), new Vector2(140, -275), 4);
+        CreateStageButton(lobbyCard, "Stage5_Btn", "LEVEL 5", new Vector2(130, 50), new Vector2(280, -275), 5);
 
         // --- START GAME BUTTON ---
-        CreateButton(lobbyCard, "StartButton", "START RUN", new Vector2(250, 52), new Vector2(0, -255), StartGame, new Color(0.1f, 0.7f, 0.3f, 1f));
+        CreateButton(lobbyCard, "StartButton", "START RUN", new Vector2(360, 80), new Vector2(0, -365), StartGame, new Color(0.1f, 0.7f, 0.3f, 1f));
 
         RefreshShopUI();
     }
@@ -340,16 +342,16 @@ public class MainMenuShopUI : MonoBehaviour
     {
 
         // 1. Label
-        labelText = CreateText(parent, statName + "_Label", statName, 18, new Vector2(-110f, yPos), TextAlignmentOptions.Left);
-        labelText.rectTransform.sizeDelta = new Vector2(180, 40);
+        labelText = CreateText(parent, statName + "_Label", statName, 26, new Vector2(-220f, yPos), TextAlignmentOptions.Left);
+        labelText.rectTransform.sizeDelta = new Vector2(240, 50);
 
         // 2. Progress bar (GRAPHICAL BAR!)
         // Container
         GameObject progressContainer = new GameObject(statName + "_ProgressContainer");
         progressContainer.transform.SetParent(parent.transform, false);
         RectTransform containerRect = progressContainer.AddComponent<RectTransform>();
-        containerRect.sizeDelta = new Vector2(120f, 18f);
-        containerRect.anchoredPosition = new Vector2(40f, yPos);
+        containerRect.sizeDelta = new Vector2(200f, 28f);
+        containerRect.anchoredPosition = new Vector2(20f, yPos);
         
         Image containerImg = progressContainer.AddComponent<Image>();
         containerImg.sprite = GameSpriteManager.GetSprite("hud_bar_empty");
@@ -364,7 +366,7 @@ public class MainMenuShopUI : MonoBehaviour
         fillRect.anchorMax = new Vector2(0f, 0.5f);
         fillRect.pivot = new Vector2(0f, 0.5f);
         fillRect.anchoredPosition = Vector2.zero;
-        fillRect.sizeDelta = new Vector2(0f, 14f); // slightly smaller than container height
+        fillRect.sizeDelta = new Vector2(0f, 22f); // slightly smaller than container height
 
         progressFill = progressFillGo.AddComponent<Image>();
         progressFill.sprite = GameSpriteManager.GetSprite("hud_bar_fill_green");
@@ -375,8 +377,8 @@ public class MainMenuShopUI : MonoBehaviour
         GameObject btnGo = new GameObject(statName + "_Button");
         btnGo.transform.SetParent(parent.transform, false);
         RectTransform btnRect = btnGo.AddComponent<RectTransform>();
-        btnRect.sizeDelta = new Vector2(130, 36);
-        btnRect.anchoredPosition = new Vector2(200, yPos);
+        btnRect.sizeDelta = new Vector2(180, 55);
+        btnRect.anchoredPosition = new Vector2(260, yPos);
 
         Image btnImg = btnGo.AddComponent<Image>();
         btnImg.sprite = GameSpriteManager.GetSprite("button_shop_blue");
@@ -399,7 +401,7 @@ public class MainMenuShopUI : MonoBehaviour
 
         btnText = btnLabelGo.AddComponent<TextMeshProUGUI>();
         btnText.text = "+ 15 Gems";
-        btnText.fontSize = 15;
+        btnText.fontSize = 24;
         TMP_FontAsset customFont = GameFontManager.BodyFont;
         if (customFont != null)
         {
@@ -474,7 +476,7 @@ public class MainMenuShopUI : MonoBehaviour
 
         // Progress bar build - graphically adjust size delta width!
         float percent = level / (float)MAX_LEVEL;
-        progressFill.rectTransform.sizeDelta = new Vector2(percent * 120f, 14f);
+        progressFill.rectTransform.sizeDelta = new Vector2(percent * 200f, 22f); // Matched to new 200f width
         progressFill.gameObject.SetActive(level > 0);
 
         Image btnImg = button.GetComponent<Image>();
@@ -574,7 +576,21 @@ public class MainMenuShopUI : MonoBehaviour
         img.type = Image.Type.Sliced;
         
         Color btnColor = normalColor;
-        if (name.Contains("Start") || label.Contains("START") || name.Contains("Play") || label.Contains("PLAY"))
+        bool isMuteBtn = name.Contains("Mute") || name.Contains("mute") || label == "🔇" || label == "🔊";
+        if (isMuteBtn)
+        {
+            Sprite soundOnSprite = GameManager.LoadSpriteFromResources("Sound_on_button");
+            Sprite soundOffSprite = GameManager.LoadSpriteFromResources("sound_off_botton");
+            if (soundOnSprite != null && soundOffSprite != null)
+            {
+                bool isMuted = SoundManager.Instance != null && SoundManager.Instance.IsMuted;
+                img.sprite = isMuted ? soundOffSprite : soundOnSprite;
+                img.type = Image.Type.Simple;
+                btnColor = Color.white;
+                label = "";
+            }
+        }
+        else if (name.Contains("Start") || label.Contains("START") || name.Contains("Play") || label.Contains("PLAY"))
             btnColor = new Color(0.12f, 0.74f, 0.35f, 1f); // Emerald green
         else if (name.Contains("Back") || label.Contains("BACK"))
             btnColor = new Color(0.9f, 0.25f, 0.25f, 1f); // Crimson red
@@ -589,6 +605,26 @@ public class MainMenuShopUI : MonoBehaviour
         btn.onClick.AddListener(() => {
             if (SoundManager.Instance != null) SoundManager.Instance.PlaySFX("click");
             onClickAction?.Invoke();
+            if (isMuteBtn)
+            {
+                bool isMuted = SoundManager.Instance != null && SoundManager.Instance.IsMuted;
+                Sprite soundOnSprite = GameManager.LoadSpriteFromResources("Sound_on_button");
+                Sprite soundOffSprite = GameManager.LoadSpriteFromResources("sound_off_botton");
+                if (soundOnSprite != null && soundOffSprite != null)
+                {
+                    img.sprite = isMuted ? soundOffSprite : soundOnSprite;
+                    img.color = Color.white;
+                }
+                else
+                {
+                    TextMeshProUGUI tmpText = go.GetComponentInChildren<TextMeshProUGUI>();
+                    if (tmpText != null)
+                    {
+                        tmpText.text = isMuted ? "🔇" : "🔊";
+                    }
+                    img.color = isMuted ? new Color(0.9f, 0.25f, 0.25f, 1f) : new Color(0.15f, 0.55f, 0.9f, 1f);
+                }
+            }
         });
         
         GameObject labelGo = new GameObject("Text");
@@ -669,7 +705,7 @@ public class MainMenuShopUI : MonoBehaviour
 
         TextMeshProUGUI tmp = labelGo.AddComponent<TextMeshProUGUI>();
         tmp.text = isUnlocked ? label : "LOCKED";
-        tmp.fontSize = 14;
+        tmp.fontSize = 22;
         
         TMP_FontAsset customFont = GameFontManager.TitleFont;
         if (customFont != null)
@@ -728,7 +764,7 @@ public class MainMenuShopUI : MonoBehaviour
 
         TextMeshProUGUI tmp = labelGo.AddComponent<TextMeshProUGUI>();
         tmp.text = label;
-        tmp.fontSize = 13;
+        tmp.fontSize = 22;
         
         TMP_FontAsset customFont = GameFontManager.TitleFont;
         if (customFont != null)

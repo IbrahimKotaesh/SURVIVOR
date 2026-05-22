@@ -45,8 +45,8 @@ public class PlayerAttack : MonoBehaviour
     private Transform FindNearestEnemy()
     {
         // Try finding by EnemyController instances
-        var clones = GameObject.FindObjectsByType<EnemyController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-        if (clones == null || clones.Length == 0) return null;
+        var clones = EnemyController.ActiveEnemies;
+        if (clones == null || clones.Count == 0) return null;
 
         Transform nearest = null;
         float minDistance = attackRange;
@@ -70,7 +70,7 @@ public class PlayerAttack : MonoBehaviour
         if (projectilePrefab == null) return;
 
         // Instantiate projectile at player's position
-        GameObject proj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        GameObject proj = ObjectPoolManager.Instance.SpawnObject(projectilePrefab, transform.position, Quaternion.identity);
         Projectile projectileScript = proj.GetComponent<Projectile>();
         if (projectileScript != null)
         {

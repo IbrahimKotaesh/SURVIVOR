@@ -101,11 +101,14 @@ public class EnemySpawner : MonoBehaviour
             Vector3 spawnPosition = playerTransform.position + spawnOffset;
             spawnPosition.z = 0f;
 
-            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            GameObject enemy = ObjectPoolManager.Instance.SpawnObject(enemyPrefab, spawnPosition, Quaternion.identity);
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
             if (enemyController != null)
             {
-                enemyController.SetupEnemy(speedMult, 1, false, baseDamage);
+                // 30% chance to spawn an orange heavy enemy (3 HP), 70% chance to spawn a purple enemy (1 HP)
+                bool isOrange = Random.value < 0.30f;
+                int hp = isOrange ? 3 : 1;
+                enemyController.SetupEnemy(speedMult, hp, false, baseDamage, isOrange);
             }
         }
     }
@@ -115,25 +118,31 @@ public class EnemySpawner : MonoBehaviour
         if (enemyPrefab == null || playerTransform == null) return;
 
         // Clear existing normal enemies for clean boss duel
-        var activeEnemies = GameObject.FindObjectsByType<EnemyController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-        foreach (var enemy in activeEnemies)
+        for (int i = EnemyController.ActiveEnemies.Count - 1; i >= 0; i--)
         {
-            if (enemy != null) Destroy(enemy.gameObject);
+            var enemy = EnemyController.ActiveEnemies[i];
+            if (enemy != null) ObjectPoolManager.Instance.ReturnObjectToPool(enemy.gameObject);
         }
 
-        // Spawn boss at spawn radius
-        float angle = Random.Range(0f, Mathf.PI * 2f);
-        Vector3 spawnOffset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f) * spawnRadius;
-        Vector3 spawnPosition = playerTransform.position + spawnOffset;
-        spawnPosition.z = 0f;
+        var config = GameManager.Instance.CurrentLevelConfig;
+        int count = config != null ? config.bossCount : 1;
 
-        GameObject bossGo = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        EnemyController bossController = bossGo.GetComponent<EnemyController>();
-        if (bossController != null)
+        for (int i = 0; i < count; i++)
         {
-            var config = GameManager.Instance.CurrentLevelConfig;
-            bossController.SetupEnemy(config.enemySpeedMultiplier, config.bossHp, true, config.enemyDamage);
-            bossGo.name = "BOSS";
+            // Spawn bosses distributed in a circle if there are multiple
+            float angleOffset = (Mathf.PI * 2f / count) * i;
+            float angle = Random.Range(0f, Mathf.PI * 0.5f) + angleOffset;
+            Vector3 spawnOffset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f) * spawnRadius;
+            Vector3 spawnPosition = playerTransform.position + spawnOffset;
+            spawnPosition.z = 0f;
+
+            GameObject bossGo = ObjectPoolManager.Instance.SpawnObject(enemyPrefab, spawnPosition, Quaternion.identity);
+            EnemyController bossController = bossGo.GetComponent<EnemyController>();
+            if (bossController != null)
+            {
+                bossController.SetupEnemy(config.enemySpeedMultiplier, config.bossHp, true, config.enemyDamage);
+                bossGo.name = "BOSS_" + i;
+            }
         }
     }
 }

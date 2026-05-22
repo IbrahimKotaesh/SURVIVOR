@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     // Victory Panel programmatic reference
     private GameObject victoryPanel;
+    private GameObject bossEnvironmentOverlay;
 
     private void Awake()
     {
@@ -198,10 +199,34 @@ public class GameManager : MonoBehaviour
         return coinSprite;
     }
 
+    public static Sprite LoadSpriteFromResources(string path)
+    {
+        Sprite sprite = Resources.Load<Sprite>(path);
+        if (sprite != null) return sprite;
+
+        Sprite[] sprites = Resources.LoadAll<Sprite>(path);
+        if (sprites != null && sprites.Length > 0)
+        {
+            foreach (var s in sprites)
+            {
+                if (s.name == path + "_0" || s.name == path.ToLower() + "_0" || s.name.EndsWith("_0"))
+                {
+                    return s;
+                }
+            }
+            return sprites[0];
+        }
+        return null;
+    }
+
     private static Sprite diamondSprite;
     public static Sprite GetOrCreateDiamondSprite()
     {
         if (diamondSprite != null) return diamondSprite;
+
+        diamondSprite = LoadSpriteFromResources("Diamond");
+        if (diamondSprite != null) return diamondSprite;
+
         int size = 64;
         Texture2D texture = new Texture2D(size, size);
         float centerX = size / 2f;
@@ -411,16 +436,16 @@ public class GameManager : MonoBehaviour
         leftCountersRect.anchorMax = new Vector2(0f, 1f);
         leftCountersRect.pivot = new Vector2(0f, 1f);
         leftCountersRect.anchoredPosition = new Vector2(20f, -20f); // Margin from top-left
-        leftCountersRect.sizeDelta = new Vector2(341f, 32f); // Width adjusted to fit Diamonds (108) + space (12) + Coins (108) + space (12) + Level (101) = 341
-        leftCountersRect.localScale = new Vector3(2f, 2f, 1f); // 200% scale to match timer
+        leftCountersRect.sizeDelta = new Vector2(341f, 68f); // Height adjusted to fit two rows
+        leftCountersRect.localScale = new Vector3(2.15f, 2.15f, 1f); // 215% scale - slightly larger than original 200%, but fits on screen
 
         // Diamond Capsule (HUD_ScoreCover)
         GameObject scoreCover = new GameObject("HUD_ScoreCover");
         scoreCover.transform.SetParent(leftCounters.transform, false);
         RectTransform scoreCoverRect = scoreCover.AddComponent<RectTransform>();
-        scoreCoverRect.anchorMin = new Vector2(0f, 0.5f);
-        scoreCoverRect.anchorMax = new Vector2(0f, 0.5f);
-        scoreCoverRect.pivot = new Vector2(0f, 0.5f);
+        scoreCoverRect.anchorMin = new Vector2(0f, 1f);
+        scoreCoverRect.anchorMax = new Vector2(0f, 1f);
+        scoreCoverRect.pivot = new Vector2(0f, 1f);
         scoreCoverRect.anchoredPosition = new Vector2(0f, 0f);
         scoreCoverRect.sizeDelta = new Vector2(108f, 32f); // Widened to 108 to match custom banner ratio
 
@@ -502,10 +527,10 @@ public class GameManager : MonoBehaviour
         GameObject coinsCover = new GameObject("HUD_CoinsCover");
         coinsCover.transform.SetParent(leftCounters.transform, false);
         RectTransform coinsCoverRect = coinsCover.AddComponent<RectTransform>();
-        coinsCoverRect.anchorMin = new Vector2(0f, 0.5f);
-        coinsCoverRect.anchorMax = new Vector2(0f, 0.5f);
-        coinsCoverRect.pivot = new Vector2(0f, 0.5f);
-        coinsCoverRect.anchoredPosition = new Vector2(120f, 0f); // 108px capsule + 12px spacing
+        coinsCoverRect.anchorMin = new Vector2(0f, 1f);
+        coinsCoverRect.anchorMax = new Vector2(0f, 1f);
+        coinsCoverRect.pivot = new Vector2(0f, 1f);
+        coinsCoverRect.anchoredPosition = new Vector2(0f, -36f); // Underneath Diamonds
         coinsCoverRect.sizeDelta = new Vector2(108f, 32f); // Widened to 108 to match custom banner ratio
 
         Image coinsCoverImg = coinsCover.AddComponent<Image>();
@@ -582,10 +607,10 @@ public class GameManager : MonoBehaviour
         GameObject levelCover = new GameObject("HUD_LevelCover");
         levelCover.transform.SetParent(leftCounters.transform, false);
         RectTransform levelCoverRect = levelCover.AddComponent<RectTransform>();
-        levelCoverRect.anchorMin = new Vector2(0f, 0.5f);
-        levelCoverRect.anchorMax = new Vector2(0f, 0.5f);
-        levelCoverRect.pivot = new Vector2(0f, 0.5f);
-        levelCoverRect.anchoredPosition = new Vector2(240f, 0f); // 108px + 12px + 108px + 12px
+        levelCoverRect.anchorMin = new Vector2(0f, 1f);
+        levelCoverRect.anchorMax = new Vector2(0f, 1f);
+        levelCoverRect.pivot = new Vector2(0f, 1f);
+        levelCoverRect.anchoredPosition = new Vector2(120f, 0f); // Right next to Diamond
         levelCoverRect.sizeDelta = new Vector2(101f, 32f);
 
         Image levelCoverImg = levelCover.AddComponent<Image>();
@@ -659,7 +684,7 @@ public class GameManager : MonoBehaviour
             barSprite = Sprite.Create(timerSprite.texture, barRect, new Vector2(0.5f, 0.5f), timerSprite.pixelsPerUnit);
         }
 
-        Vector2 timerSize = new Vector2(130f, 30f); // 4.33:1 aspect ratio matching 996x230
+        Vector2 timerSize = new Vector2(180f, 30f); // Wider timer bar to fill space
 
         // 4. Timer container anchored to the top-right corner
         GameObject timerCover = new GameObject("HUD_TimerCover");
@@ -668,11 +693,11 @@ public class GameManager : MonoBehaviour
         timerCoverRect.anchorMin = new Vector2(1f, 1f); // Top Right
         timerCoverRect.anchorMax = new Vector2(1f, 1f);
         timerCoverRect.pivot = new Vector2(1f, 1f);
-        timerCoverRect.anchoredPosition = new Vector2(-20f, -20f); // Position at top-right corner with margins
+        timerCoverRect.anchoredPosition = new Vector2(-20f, -20f); // Position at top-right corner
         timerCoverRect.sizeDelta = timerSize;
-        timerCoverRect.localScale = new Vector3(2f, 2f, 1f); // 200% scale
+        timerCoverRect.localScale = new Vector3(2.15f, 2.15f, 1f); // Match left counters scale
 
-        // 5. Clock Image (left side, width 30, fully colored)
+        // 5. Clock Image (left side, width 30)
         GameObject clockGo = new GameObject("HUD_TimerClock");
         clockGo.transform.SetParent(timerCover.transform, false);
         RectTransform clockRectTrans = clockGo.AddComponent<RectTransform>();
@@ -696,22 +721,22 @@ public class GameManager : MonoBehaviour
             clockImg.color = new Color32(230, 80, 80, 255);
         }
 
-        // 6. Empty Shaded Bar Silhouette Background (right side, width 100, shaded dark)
+        // 6. Empty Shaded Bar Silhouette Background (stretches remaining width)
         GameObject emptyBarGo = new GameObject("HUD_TimerBarEmpty");
         emptyBarGo.transform.SetParent(timerCover.transform, false);
         RectTransform emptyBarRectTrans = emptyBarGo.AddComponent<RectTransform>();
         emptyBarRectTrans.anchorMin = new Vector2(0f, 0.5f);
-        emptyBarRectTrans.anchorMax = new Vector2(0f, 0.5f);
+        emptyBarRectTrans.anchorMax = new Vector2(1f, 0.5f); // Stretch horizontally
         emptyBarRectTrans.pivot = new Vector2(0f, 0.5f);
-        emptyBarRectTrans.anchoredPosition = new Vector2(30f, 0f);
-        emptyBarRectTrans.sizeDelta = new Vector2(100f, 30f);
+        emptyBarRectTrans.offsetMin = new Vector2(30f, -15f); // Start after clock
+        emptyBarRectTrans.offsetMax = new Vector2(0f, 15f);  // Fill to right edge
 
         Image emptyBarImg = emptyBarGo.AddComponent<Image>();
         if (barSprite != null)
         {
             emptyBarImg.sprite = barSprite;
             emptyBarImg.type = Image.Type.Simple;
-            emptyBarImg.color = new Color32(80, 80, 85, 255); // Dark shaded background
+            emptyBarImg.color = new Color32(80, 80, 85, 255);
         }
         else
         {
@@ -720,15 +745,15 @@ public class GameManager : MonoBehaviour
             emptyBarImg.color = new Color32(40, 45, 60, 255);
         }
 
-        // 7. Active Progress Bar Foreground (right side, width 100, Type.Filled)
+        // 7. Active Progress Bar Foreground
         GameObject filledBarGo = new GameObject("HUD_TimerBarFilled");
         filledBarGo.transform.SetParent(timerCover.transform, false);
         RectTransform filledBarRectTrans = filledBarGo.AddComponent<RectTransform>();
         filledBarRectTrans.anchorMin = new Vector2(0f, 0.5f);
-        filledBarRectTrans.anchorMax = new Vector2(0f, 0.5f);
+        filledBarRectTrans.anchorMax = new Vector2(1f, 0.5f); // Stretch horizontally
         filledBarRectTrans.pivot = new Vector2(0f, 0.5f);
-        filledBarRectTrans.anchoredPosition = new Vector2(30f, 0f);
-        filledBarRectTrans.sizeDelta = new Vector2(100f, 30f);
+        filledBarRectTrans.offsetMin = new Vector2(30f, -15f); // Start after clock
+        filledBarRectTrans.offsetMax = new Vector2(0f, 15f);  // Fill to right edge
 
         timerBarFillImage = filledBarGo.AddComponent<Image>();
         if (barSprite != null)
@@ -737,7 +762,7 @@ public class GameManager : MonoBehaviour
             timerBarFillImage.type = Image.Type.Filled;
             timerBarFillImage.fillMethod = Image.FillMethod.Horizontal;
             timerBarFillImage.fillOrigin = (int)Image.OriginHorizontal.Left;
-            timerBarFillImage.color = Color.white; // Keeps original orange color of sprite
+            timerBarFillImage.color = Color.white;
         }
         else
         {
@@ -745,18 +770,18 @@ public class GameManager : MonoBehaviour
             timerBarFillImage.type = Image.Type.Filled;
             timerBarFillImage.fillMethod = Image.FillMethod.Horizontal;
             timerBarFillImage.fillOrigin = (int)Image.OriginHorizontal.Left;
-            timerBarFillImage.color = new Color(0.95f, 0.5f, 0.1f, 1f); // Orange fallback
+            timerBarFillImage.color = new Color(0.95f, 0.5f, 0.1f, 1f);
         }
 
-        // 8. Timer Text centered on the progress bar area
+        // 8. Timer Text
         GameObject timerGo = new GameObject("HUD_TimerText");
         timerGo.transform.SetParent(timerCover.transform, false);
         RectTransform timerRect = timerGo.AddComponent<RectTransform>();
-        timerRect.anchorMin = new Vector2(0.5f, 0.5f);
-        timerRect.anchorMax = new Vector2(0.5f, 0.5f);
+        timerRect.anchorMin = new Vector2(0f, 0.5f);
+        timerRect.anchorMax = new Vector2(1f, 0.5f); // Stretch horizontally
         timerRect.pivot = new Vector2(0.5f, 0.5f);
-        timerRect.anchoredPosition = new Vector2(15f, 0f); // Centered relative to the bar section (x=30 to x=130)
-        timerRect.sizeDelta = new Vector2(100f, 30f);
+        timerRect.offsetMin = new Vector2(30f, -15f); // Start after clock
+        timerRect.offsetMax = new Vector2(0f, 15f);  // Fill to right edge
 
         hudTimerText = timerGo.AddComponent<TextMeshProUGUI>();
         hudTimerText.alignment = TextAlignmentOptions.Center;
@@ -905,8 +930,23 @@ public class GameManager : MonoBehaviour
         System.Action updateHudMuteVisuals = () =>
         {
             bool isMuted = SoundManager.Instance != null && SoundManager.Instance.IsMuted;
-            hudMuteText.text = isMuted ? "🔇" : "🔊";
-            hudMuteImg.color = isMuted ? new Color(0.9f, 0.25f, 0.25f, 1.0f) : new Color(0.15f, 0.55f, 0.9f, 1.0f);
+            Sprite soundOnSprite = LoadSpriteFromResources("Sound_on_button");
+            Sprite soundOffSprite = LoadSpriteFromResources("sound_off_botton");
+
+            if (soundOnSprite != null && soundOffSprite != null)
+            {
+                hudMuteImg.sprite = isMuted ? soundOffSprite : soundOnSprite;
+                hudMuteImg.type = Image.Type.Simple;
+                hudMuteImg.color = Color.white;
+                hudMuteText.text = "";
+            }
+            else
+            {
+                hudMuteText.text = isMuted ? "🔇" : "🔊";
+                hudMuteImg.sprite = GetOrCreateRoundedRectSprite();
+                hudMuteImg.type = Image.Type.Sliced;
+                hudMuteImg.color = isMuted ? new Color(0.9f, 0.25f, 0.25f, 1.0f) : new Color(0.15f, 0.55f, 0.9f, 1.0f);
+            }
         };
 
         // Initialize state
@@ -983,12 +1023,66 @@ public class GameManager : MonoBehaviour
         {
             SoundManager.Instance.PlaySFX("boss_warning");
         }
+
+        StartCoroutine(FadeBossEnvironmentRoutine());
+    }
+
+    private System.Collections.IEnumerator FadeBossEnvironmentRoutine()
+    {
+        Canvas canvas = GetMainCanvas();
+        if (canvas == null) yield break;
+
+        Transform uiParent = canvas.transform;
+        GameObject safeArea = GameObject.Find("SafeAreaContainer");
+        if (safeArea != null) uiParent = safeArea.transform;
+
+        bossEnvironmentOverlay = new GameObject("BossEnvironmentOverlay");
+        bossEnvironmentOverlay.transform.SetParent(uiParent, false);
+        bossEnvironmentOverlay.transform.SetAsFirstSibling(); // Push to back of UI, covering game but behind HUD
+
+        RectTransform overlayRect = bossEnvironmentOverlay.AddComponent<RectTransform>();
+        overlayRect.anchorMin = Vector2.zero;
+        overlayRect.anchorMax = Vector2.one;
+        overlayRect.sizeDelta = Vector2.zero;
+
+        Image overlayBg = bossEnvironmentOverlay.AddComponent<Image>();
+        overlayBg.raycastTarget = false; // Don't block clicks
+
+        Color targetColor = CurrentLevelConfig != null ? CurrentLevelConfig.bossEnvironmentColor : new Color(0.4f, 0f, 0f, 0.75f);
+        Color startColor = new Color(targetColor.r, targetColor.g, targetColor.b, 0f);
+        
+        float duration = 2.0f;
+        float elapsed = 0f;
+        
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            overlayBg.color = Color.Lerp(startColor, targetColor, elapsed / duration);
+            yield return null;
+        }
+        overlayBg.color = targetColor;
     }
 
     public void OnBossDefeated()
     {
+        // Check if there are other bosses still alive (the dying one is still active at this exact moment)
+        var activeEnemies = EnemyController.ActiveEnemies;
+        int bossesAlive = 0;
+        foreach (var e in activeEnemies)
+        {
+            if (e != null && e.IsBoss) bossesAlive++;
+        }
+        
+        // If there is more than 1 boss alive (the dying one + others), don't trigger victory yet!
+        if (bossesAlive > 1) return;
+
         if (isGameOver || isVictory) return;
         isVictory = true;
+
+        if (bossEnvironmentOverlay != null)
+        {
+            Destroy(bossEnvironmentOverlay);
+        }
 
         if (SoundManager.Instance != null)
         {
@@ -1006,7 +1100,10 @@ public class GameManager : MonoBehaviour
         // Freeze game
         Time.timeScale = 0f;
 
-        ShowVictoryPanel(bonusGems);
+        // Show Weapon Upgrade Selection instead of Victory Panel
+        GameObject uiGo = new GameObject("UpgradeSelectionUI");
+        UpgradeSelectionUI ui = uiGo.AddComponent<UpgradeSelectionUI>();
+        ui.Show();
 
         // Send stats to Android Bridge
         SendVictoryToAndroid(score, coins, bonusGems);
@@ -1076,7 +1173,7 @@ public class GameManager : MonoBehaviour
         // Buttons
         float buttonY = -120f;
         // Button 1: Next Level (only if there is a next level config)
-        if (SelectedStageIndex < 3)
+        if (SelectedStageIndex < 5)
         {
             CreateButton(dialog, "NextButton", "NEXT LEVEL", new Vector2(200f, 44f), new Vector2(0f, buttonY), () =>
             {
@@ -1094,7 +1191,7 @@ public class GameManager : MonoBehaviour
         }, new Color(0.2f, 0.3f, 0.5f, 1f));
     }
 
-    private void CreateText(GameObject parent, string name, string content, int fontSize, Vector2 anchoredPosition, Color color, bool bold = false)
+    public static void CreateText(GameObject parent, string name, string content, int fontSize, Vector2 anchoredPosition, Color color, bool bold = false)
     {
         GameObject go = new GameObject(name);
         go.transform.SetParent(parent.transform, false);
@@ -1194,14 +1291,14 @@ public class GameManager : MonoBehaviour
     {
         if (gemPrefab != null)
         {
-            Instantiate(gemPrefab, position, Quaternion.identity);
+            ObjectPoolManager.Instance.SpawnObject(gemPrefab, position, Quaternion.identity);
 
             // Level 1 Double Gem Drop hook!
             if (SelectedStageIndex == 1)
             {
                 // Spawn a second gem with a tiny offset so they don't overlap completely
                 Vector3 offset = new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), 0f);
-                Instantiate(gemPrefab, position + offset, Quaternion.identity);
+                ObjectPoolManager.Instance.SpawnObject(gemPrefab, position + offset, Quaternion.identity);
             }
         }
     }
@@ -1278,23 +1375,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnHeart(Vector3 position)
     {
-        GameObject heartGo = new GameObject("CollectibleHeart");
-        heartGo.transform.position = position;
-        heartGo.transform.localScale = new Vector3(0.85f, 0.85f, 1f);
-
-        SpriteRenderer sr = heartGo.AddComponent<SpriteRenderer>();
-        sr.sprite = GetOrCreateHeartSprite();
-        sr.sortingOrder = 5; // Render on top of gems
-
-        CircleCollider2D col = heartGo.AddComponent<CircleCollider2D>();
-        col.isTrigger = true;
-        col.radius = 0.26f;
-
-        Rigidbody2D rb = heartGo.AddComponent<Rigidbody2D>();
-        rb.gravityScale = 0f;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-        heartGo.AddComponent<CollectibleHeart>();
+        // Hearts are disabled per user request
     }
 
     private GameObject proceduralGameOverPanel;
@@ -1324,25 +1405,12 @@ public class GameManager : MonoBehaviour
 
     private void ShowGameOverPanel()
     {
-        // Disable scene's default panel if it exists
-        if (gameOverPanel != null)
-        {
-            gameOverPanel.SetActive(false);
-        }
-
         Canvas canvas = GetMainCanvas();
         if (canvas == null) return;
 
-        Transform uiParent = canvas.transform;
-        GameObject safeArea = GameObject.Find("SafeAreaContainer");
-        if (safeArea != null)
-        {
-            uiParent = safeArea.transform;
-        }
-
         // Fullscreen dark overlay
         proceduralGameOverPanel = new GameObject("GameOverPanelOverlay");
-        proceduralGameOverPanel.transform.SetParent(uiParent, false);
+        proceduralGameOverPanel.transform.SetParent(canvas.transform, false);
 
         RectTransform overlayRect = proceduralGameOverPanel.AddComponent<RectTransform>();
         overlayRect.anchorMin = Vector2.zero;
@@ -1350,14 +1418,14 @@ public class GameManager : MonoBehaviour
         overlayRect.sizeDelta = Vector2.zero;
 
         Image overlayBg = proceduralGameOverPanel.AddComponent<Image>();
-        overlayBg.color = new Color(0f, 0f, 0f, 0.7f); // Darker semi-transparent overlay
+        overlayBg.color = new Color(0.1f, 0f, 0f, 0.85f); 
 
         // Center Dialog Box
         GameObject dialog = new GameObject("GameOverDialog");
         dialog.transform.SetParent(proceduralGameOverPanel.transform, false);
 
         RectTransform dialogRect = dialog.AddComponent<RectTransform>();
-        dialogRect.sizeDelta = new Vector2(460f, 400f);
+        dialogRect.sizeDelta = new Vector2(400f, 250f);
         dialogRect.anchoredPosition = Vector2.zero;
 
         Image dialogBg = dialog.AddComponent<Image>();
@@ -1366,41 +1434,56 @@ public class GameManager : MonoBehaviour
         dialogBg.color = Color.white;
 
         Outline outline = dialog.AddComponent<Outline>();
-        outline.effectColor = new Color(0.8f, 0.2f, 0.2f, 0.6f); // Glowing red outline
+        outline.effectColor = new Color(0.8f, 0.2f, 0.2f, 0.6f); 
         outline.effectDistance = new Vector2(2f, 2f);
 
-        // Title text
-        CreateText(dialog, "Title", "DEFEATED", 42, new Vector2(0f, 130f), new Color(1f, 0.3f, 0.3f, 1f), true);
-        CreateText(dialog, "Subtitle", "RUN ENDED", 18, new Vector2(0f, 90f), Color.white);
+        CreateText(dialog, "Title", "YOU DIED", 54, new Vector2(0f, 30f), new Color(1f, 0.3f, 0.3f, 1f), true);
 
-        // Stats Backdrop inside Dialog
-        GameObject statsBox = new GameObject("StatsBox");
-        statsBox.transform.SetParent(dialog.transform, false);
-        RectTransform statsRect = statsBox.AddComponent<RectTransform>();
-        statsRect.sizeDelta = new Vector2(380f, 140f);
-        statsRect.anchoredPosition = new Vector2(0f, -10f);
-
-        Image statsBg = statsBox.AddComponent<Image>();
-        statsBg.sprite = GameSpriteManager.GetSprite("panel_blue_top");
-        statsBg.type = Image.Type.Sliced;
-        statsBg.color = Color.white;
-
-        string rewardStr = $"Gems Collected: {score}\nCoins Collected: {coins}\n\nTotal Bank: {SaveSystem.GetGemsBank()}";
-        CreateText(statsBox, "RewardDetails", rewardStr, 18, Vector2.zero, new Color(1f, 0.7f, 0.7f, 1f));
-
-        // Buttons
-        // Button 1: Restart Run
-        CreateButton(dialog, "RestartButton", "RETRY RUN", new Vector2(200f, 44f), new Vector2(0f, -120f), () =>
-        {
-            RestartGame();
-        }, new Color(0.7f, 0.2f, 0.2f, 1f));
-
-        // Button 2: Menu
-        CreateButton(dialog, "MenuButton", "MAIN MENU", new Vector2(200f, 44f), new Vector2(0f, -175f), () =>
+        CreateButton(dialog, "RestartButton", "RETRY", new Vector2(200f, 60f), new Vector2(0f, -50f), () =>
         {
             Time.timeScale = 1f;
             RestartGame();
-        }, new Color(0.2f, 0.3f, 0.5f, 1f));
+        }, new Color(0.7f, 0.2f, 0.2f, 1f));
+    }
+
+    public void StartNextStageSeamlessly()
+    {
+        SelectedStageIndex++;
+        if (SelectedStageIndex > 5) SelectedStageIndex = 1;
+
+        CurrentLevelConfig = LevelConfig.GetConfig(SelectedStageIndex);
+        TimeRemaining = CurrentLevelConfig.duration;
+
+        // Clear scene
+        var enemies = GameObject.FindObjectsByType<EnemyController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        foreach (var e in enemies) ObjectPoolManager.Instance.ReturnObjectToPool(e.gameObject);
+
+        var projectiles = GameObject.FindObjectsByType<Projectile>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        foreach (var p in projectiles) ObjectPoolManager.Instance.ReturnObjectToPool(p.gameObject);
+
+        var gems = GameObject.FindObjectsByType<CollectibleGem>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        foreach (var g in gems) ObjectPoolManager.Instance.ReturnObjectToPool(g.gameObject);
+
+        var hearts = GameObject.FindObjectsByType<CollectibleHeart>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        foreach (var h in hearts) ObjectPoolManager.Instance.ReturnObjectToPool(h.gameObject);
+
+        var rockets = GameObject.FindObjectsByType<RocketProjectile>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        foreach (var r in rockets) Destroy(r.gameObject);
+        
+        var bottles = GameObject.FindObjectsByType<FireBottleProjectile>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        foreach (var b in bottles) Destroy(b.gameObject);
+
+        var fireZones = GameObject.FindObjectsByType<FireZoneLogic>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        foreach (var fz in fireZones) Destroy(fz.gameObject);
+
+        // isVictory and isGameOver are reset
+        isGameOver = false;
+        isVictory = false;
+        IsBossTime = false; // Reset Boss Time so normal enemies spawn!
+
+        if (hudLevelText != null) hudLevelText.text = $"LEVEL {SelectedStageIndex}";
+        
+        if (SoundManager.Instance != null) SoundManager.Instance.PlayBGM("battle");
     }
 
     public void RestartGame()
@@ -1410,7 +1493,7 @@ public class GameManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 
-    private Canvas GetMainCanvas()
+    public Canvas GetMainCanvas()
     {
         Canvas canvas = null;
         GameObject canvasGo = GameObject.Find("Canvas");

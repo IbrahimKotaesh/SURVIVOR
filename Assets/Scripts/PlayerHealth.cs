@@ -63,9 +63,16 @@ public class PlayerHealth : MonoBehaviour
 
         UpdateHealthBar();
 
-        if (CameraController.Instance != null)
+        if (amount > 0)
         {
-            CameraController.Instance.TriggerShake(0.22f, 0.22f);
+            if (CameraController.Instance != null)
+            {
+                // Trigger screen shake on damage
+                CameraController.Instance.TriggerShake(0.15f, 0.08f);
+            }
+            #if UNITY_ANDROID || UNITY_IOS
+            Handheld.Vibrate();
+            #endif
         }
 
         if (currentHealth <= 0)

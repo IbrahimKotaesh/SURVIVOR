@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -159,12 +160,6 @@ public class PlayerController : MonoBehaviour
 
     private void TriggerShieldWave()
     {
-        // 1. Shake screen violently
-        if (CameraController.Instance != null)
-        {
-            CameraController.Instance.TriggerShake(0.55f, 0.45f);
-        }
-
         // Play SFX
         if (SoundManager.Instance != null)
         {
@@ -206,11 +201,12 @@ public class PlayerController : MonoBehaviour
             float currentRadius = wave.transform.localScale.x * 0.32f;
 
             // Deal damage to any enemy that has been touched by the expanding wave
-            var enemies = GameObject.FindObjectsByType<EnemyController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            var enemies = EnemyController.ActiveEnemies;
             if (enemies != null)
             {
                 Vector3 centerPosition = wave.transform.position;
-                foreach (var enemy in enemies)
+                var enemiesCopy = new List<EnemyController>(enemies);
+                foreach (var enemy in enemiesCopy)
                 {
                     if (enemy == null || hitEnemies.Contains(enemy)) continue;
 
@@ -302,7 +298,7 @@ public class PlayerController : MonoBehaviour
                     Vector3 spiralDir = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f);
                     spiralAngle += 24f; // Spiraling rotation step
 
-                    GameObject proj1 = Instantiate(attack.ProjectilePrefab, transform.position, Quaternion.identity);
+                    GameObject proj1 = ObjectPoolManager.Instance.SpawnObject(attack.ProjectilePrefab, transform.position, Quaternion.identity);
                     Projectile pScript1 = proj1.GetComponent<Projectile>();
                     if (pScript1 != null)
                     {
@@ -313,7 +309,7 @@ public class PlayerController : MonoBehaviour
                     Transform nearest = FindNearestEnemyForMachineGun();
                     if (nearest != null)
                     {
-                        GameObject proj2 = Instantiate(attack.ProjectilePrefab, transform.position, Quaternion.identity);
+                        GameObject proj2 = ObjectPoolManager.Instance.SpawnObject(attack.ProjectilePrefab, transform.position, Quaternion.identity);
                         Projectile pScript2 = proj2.GetComponent<Projectile>();
                         if (pScript2 != null)
                         {
@@ -341,8 +337,8 @@ public class PlayerController : MonoBehaviour
 
     private Transform FindNearestEnemyForMachineGun()
     {
-        var clones = GameObject.FindObjectsByType<EnemyController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-        if (clones == null || clones.Length == 0) return null;
+        var clones = EnemyController.ActiveEnemies;
+        if (clones == null || clones.Count == 0) return null;
 
         Transform nearest = null;
         float minDistance = 12f; // Large search range for machine gun targeting
@@ -441,7 +437,7 @@ public class PlayerController : MonoBehaviour
                 float rad = angle * Mathf.Deg2Rad;
                 Vector3 dir = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f);
 
-                GameObject proj = Instantiate(attack.ProjectilePrefab, transform.position, Quaternion.identity);
+                GameObject proj = ObjectPoolManager.Instance.SpawnObject(attack.ProjectilePrefab, transform.position, Quaternion.identity);
                 
                 // Color the projectile golden/yellow
                 SpriteRenderer projSr = proj.GetComponent<SpriteRenderer>();

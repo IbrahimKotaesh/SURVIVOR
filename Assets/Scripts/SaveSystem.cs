@@ -48,7 +48,14 @@ public static class SaveSystem
 
     public static int GetHighestUnlockedStage()
     {
-        return PlayerPrefs.GetInt(HIGHEST_UNLOCKED_STAGE_KEY, 1);
+        int val = PlayerPrefs.GetInt(HIGHEST_UNLOCKED_STAGE_KEY, 5);
+        if (val < 5)
+        {
+            PlayerPrefs.SetInt(HIGHEST_UNLOCKED_STAGE_KEY, 5);
+            PlayerPrefs.Save();
+            val = 5;
+        }
+        return val;
     }
 
     public static void UnlockStage(int stageNumber)

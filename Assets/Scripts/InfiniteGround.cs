@@ -13,6 +13,9 @@ public class InfiniteGround : MonoBehaviour
             cameraTransform = Camera.main.transform;
         }
 
+        // Apply a 2x zoom to the background pattern
+        transform.localScale = new Vector3(2f, 2f, 1f);
+
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
         {
@@ -26,9 +29,13 @@ public class InfiniteGround : MonoBehaviour
     {
         if (cameraTransform != null)
         {
-            // Calculate nearest snap position based on tile sizes
-            float snapX = Mathf.Round(cameraTransform.position.x / tileSizeX) * tileSizeX;
-            float snapY = Mathf.Round(cameraTransform.position.y / tileSizeY) * tileSizeY;
+            // Calculate effective tile size taking scale into account
+            float effectiveTileX = tileSizeX * transform.localScale.x;
+            float effectiveTileY = tileSizeY * transform.localScale.y;
+
+            // Calculate nearest snap position based on effective tile sizes
+            float snapX = Mathf.Round(cameraTransform.position.x / effectiveTileX) * effectiveTileX;
+            float snapY = Mathf.Round(cameraTransform.position.y / effectiveTileY) * effectiveTileY;
             
             // Move ground to snapped position, keeping Z behind player (Z = 1)
             transform.position = new Vector3(snapX, snapY, 1f);

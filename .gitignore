@@ -43,3 +43,9 @@ crashlytics-build.properties
 
 # WebGL Builds
 /[B|b]uild_WebGL/
+
+# Local User Settings & Temp Files
+UserSettings/
+.firebase/
+build_log.txt
+Assets/_Recovery/
