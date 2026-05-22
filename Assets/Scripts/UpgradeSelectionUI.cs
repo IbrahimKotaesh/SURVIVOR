@@ -63,8 +63,31 @@ public class UpgradeSelectionUI : MonoBehaviour
         iconRect.anchoredPosition = new Vector2(0f, 70f);
         iconRect.sizeDelta = new Vector2(80f, 80f);
         Image iconImg = icon.AddComponent<Image>();
-        iconImg.sprite = PlayerHealth.GetOrCreateRoundedRectSprite(); // Nice rounded rect for icon
-        iconImg.color = themeColor;
+
+        Sprite iconSprite = null;
+        if (weaponId == "Rocket")
+        {
+            iconSprite = GameManager.LoadSpriteFromResources("roket");
+        }
+        else if (weaponId == "Bomb")
+        {
+            iconSprite = GameManager.LoadSpriteFromResources("fire");
+        }
+        else if (weaponId == "Aura")
+        {
+            iconSprite = GameManager.LoadSpriteFromResources("shield");
+        }
+
+        if (iconSprite != null)
+        {
+            iconImg.sprite = iconSprite;
+            iconImg.color = Color.white;
+        }
+        else
+        {
+            iconImg.sprite = PlayerHealth.GetOrCreateRoundedRectSprite(); // Nice rounded rect for icon
+            iconImg.color = themeColor;
+        }
 
         // Name
         GameManager.CreateText(card, "Name", nameStr, 22, new Vector2(0f, 0f), themeColor, true);
