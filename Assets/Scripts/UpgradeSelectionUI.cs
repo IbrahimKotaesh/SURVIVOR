@@ -61,7 +61,7 @@ public class UpgradeSelectionUI : MonoBehaviour
         icon.transform.SetParent(card.transform, false);
         RectTransform iconRect = icon.AddComponent<RectTransform>();
         iconRect.anchoredPosition = new Vector2(0f, 70f);
-        iconRect.sizeDelta = new Vector2(80f, 80f);
+        iconRect.sizeDelta = new Vector2(110f, 110f);
         Image iconImg = icon.AddComponent<Image>();
 
         Sprite iconSprite = null;
@@ -82,11 +82,13 @@ public class UpgradeSelectionUI : MonoBehaviour
         {
             iconImg.sprite = iconSprite;
             iconImg.color = Color.white;
+            iconImg.preserveAspect = true;
         }
         else
         {
             iconImg.sprite = PlayerHealth.GetOrCreateRoundedRectSprite(); // Nice rounded rect for icon
             iconImg.color = themeColor;
+            iconImg.preserveAspect = false;
         }
 
         // Name
